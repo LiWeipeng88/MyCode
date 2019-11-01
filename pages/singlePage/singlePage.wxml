@@ -1,0 +1,71 @@
+<form-container>
+<import src="../../wxParse/wxParse.wxml" />
+<block wx:if="{{isauth}}">
+  <view class="main">
+    <view class="banner-wrap">
+      <swiper indicator-dots="true" indicator-color="#C5C9C9" indicator-active-color="#fff" autoplay="true" interval="4000" duration="800" circular="true">
+         <block wx:key="" wx:for="{{detail.slide}}">
+          <swiper-item>
+            <image src="{{item.img}}" class="slide-image" mode="aspectFill" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="infor-box">
+      <view class="infor">
+        <view class="title clearfix">
+          <view class="left">名称：</view>
+          <view class="right">{{detail.name}}</view>
+        </view>
+        <view class="address clearfix">
+          <view class="left">地址：</view>
+          <view class="right">{{detail.address}}</view>
+        </view>
+        <view class="phone clearfix">
+          <view class="left">电话：</view>
+          <view class="right"> {{detail.mobile}}</view>
+        </view>
+      </view>
+      <view class="infor-row border-t">
+        <view class="col border-r" data-lng="{{detail.lng}}" data-lat="{{detail.lat}}" bindtap="openLocation">
+          <view class="col-con">
+            <image src="/images/icon_about_dw.png" mode="aspectFill"></image>
+            <view>地图导航</view>
+          </view>
+        </view>
+        <view class="col" data-phone="{{detail.mobile}}" bindtap="makeCall">
+          <view class="col-con">
+            <image src="/images/icon_about_dh.png" mode="aspectFill"></image>
+            <view>拨打电话</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="detail-box">
+      <view class="wxParse">
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      </view>
+      <!-- <view class="technical-support">
+        <text>{{watermark}}v{{version}}</text>
+      </view> -->
+    </view>
+  </view>
+</block>
+<!-- 获取用户信息弹出层 -->
+<!-- <view class="getuserinfo-modal-mask fade_in" wx:if="{{isShowgetinfo}}"></view>
+<view class="getuserinfo-modal-con fade_in" wx:if="{{isShowgetinfo}}">
+  <view class="title border-b">提醒</view>
+  <view class="get-info">
+       <image src="{{detail.shopLogo}}" class="shop-logo" mode="aspectFill"></image>
+    <view class="shop-name">{{detail.shopName}}申请获得以下权限</view>
+    <view class="space"></view>
+    <view class="limits">获得你的公开信息(昵称、头像等)</view>  
+    <view class="shop-name">{{detail.shopName}}需要获取您的公开信息才能正常使用哦~</view>
+  </view>
+  <view class="get-btn border-t">去获取<button open-type='getUserInfo' bindgetuserinfo='getuserInfo'></button></view>
+</view>  -->
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>
+</form-container>

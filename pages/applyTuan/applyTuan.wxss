@@ -1,0 +1,74 @@
+/* pages/applyTuan/applyTuan.wxss */
+.input-wrap{
+  background-color:#fff;
+  padding:0 20rpx;
+  margin-top:20rpx;
+}
+.input-wrap .input-item{
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.input-wrap .input-item .desc{
+  width:140rpx;
+  font-size:30rpx;
+  color:#333;
+  letter-spacing: 1rpx;
+}
+.input-wrap .input-item .input-box input{
+  padding: 0 25rpx;
+  color:#111;
+}
+.input-wrap .textarea-box{
+  height:150rpx;
+  margin-top:20rpx;
+}
+.input-wrap .textarea-box textarea{
+  display: block;
+  width:100%;
+  height:100%;
+}
+.tibtn{
+  width:95%;
+  height:100rpx;
+  line-height:100rpx;
+  text-align: center;
+  color:#fff;
+  margin:100rpx auto 0;
+  background-color:#2FCD98;
+  font-size:30rpx;
+  letter-spacing: 1rpx;
+  border-radius:10rpx;
+}
+.ts-wrap{
+  padding:300rpx 0 0;
+  text-align: center;
+}
+.ts-wrap image{
+  display: block;
+  width:180rpx;
+  height:210rpx;
+  margin:0 auto 10rpx;
+}
+.ts-wrap .desc{
+  font-size:30rpx;
+  color:#999;
+}
+.ts-wrap .note{
+  font-size:26rpx;
+  color:#dedede;
+  display: block;
+  width:80%;
+  margin:15rpx auto;
+}
+.ts-wrap .reset-btn{
+  width:30%;
+  height:80rpx;
+  line-height:80rpx;
+  text-align: center;
+  color:#fff;
+  border-radius:40rpx;
+  margin:50rpx auto;
+  font-size:30rpx;
+  letter-spacing: 1rpx;
+  background-color:#2FCD98;
+}

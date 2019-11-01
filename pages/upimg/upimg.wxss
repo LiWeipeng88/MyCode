@@ -1,0 +1,26 @@
+.shanghchuan{
+  display: flex;
+  margin-bottom: 100rpx;
+}
+.x{
+  font-size:36rpx;
+width:170rpx;
+height:50rpx;
+background:#1AAD19;
+text-align:center;
+color:#fff;
+line-height:50rpx;
+margin-bottom: 12rpx;
+}
+
+.upButton{
+  margin-top: 40rpx;
+}
+.qh{
+
+  border:1px solid silver;
+  width:70%;
+  border-radius:20rpx;
+  margin:0px auto;
+
+}

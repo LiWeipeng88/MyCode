@@ -1,0 +1,75 @@
+/* subpages/colonelInfor/colonelInfor.wxss */
+page{height:100%;background-color:#f8f8f8;}
+.no-data{
+  height:100%;
+  background-color:#fff;
+  box-sizing:border-box;
+  padding-top:220rpx;
+}
+.no-data image{
+  display:block;
+  width:180rpx;
+  height:210rpx;
+  margin:0 auto 20rpx;
+}
+.no-data .desc{
+  text-align: center;
+  font-size:26rpx;
+  letter-spacing: 1rpx;
+  color:#999;
+}
+.no-data .btn{
+  background-color:#2CC08C;
+  color:#fff;
+  font-size:24rpx;
+  width:200rpx;
+  text-align: center;
+  margin:30rpx auto 0;
+  padding:20rpx 0;
+  border-radius:40rpx;
+}
+.colonel-infor .infor-wrap{
+  padding:20rpx;
+}
+.colonel-infor .infor-wrap .infor-box{
+  padding:25rpx;
+  background-color:#fff;
+  border-radius:10rpx;
+}
+.colonel-infor .infor-wrap .name{
+  color:#333;
+  font-size:32rpx;
+  font-weight:bold;
+}
+.colonel-infor .name-wrap .desc{
+  color:#999;
+  font-size:24rpx;
+  margin-top:10rpx;
+}
+.colonel-infor .code-wrap{
+  margin-left:20rpx;
+}
+.colonel-infor .code-wrap image{
+  display:block;
+  width:200rpx;
+  height:200rpx;
+  margin-bottom:10rpx;
+}
+.colonel-infor .code-wrap .desc{
+  font-size:22rpx;
+  color:#999;
+  text-align: center;
+}
+.colonel-infor .infor-list{
+  background-color:#fff;
+  padding:0 20rpx;
+}
+.colonel-infor .infor-list .infor-item{
+  padding:30rpx 0;
+  color:#999;
+  font-size:28rpx;
+}
+.colonel-infor .infor-list .infor-item .con{
+  color:#333;
+  padding-left:20rpx;
+}

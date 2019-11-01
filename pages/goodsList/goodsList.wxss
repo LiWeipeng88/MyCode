@@ -1,0 +1,195 @@
+
+.list {
+  padding: 0 40rpx;
+  background-color: #fff
+}
+
+/* 菜单 */
+
+.nav {
+  white-space: nowrap;
+  padding: 5rpx 0;
+}
+
+.nav_item {
+  padding: 10rpx 18rpx;
+  font-size: 28rpx;
+  display: inline-block;
+  color: #5a5a5a;
+  font-weight: bold;
+}
+
+.carts {
+  margin-top: 23rpx;
+  float: right;
+  margin-right: 18px;
+}
+
+.total_num {
+  position: absolute;
+  left: 14px;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  background: #ff7800;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+}
+
+.nav_item.active {
+  border-bottom: 8rpx solid #2cd5ab;
+  color: #000;
+}
+
+/* 商品列表 */
+
+.goods {
+  background-color: #f5f5f5;
+  display: flex;
+  padding: 0rpx 20rpx;
+  justify-content: space-between;
+  flex-wrap:wrap;
+}
+
+.goods-list {
+  background-color: #fff;
+  width: 48.5%;
+  overflow: hidden;
+  margin-top: 16rpx;
+  border-radius: 20rpx;
+  position: relative;
+}
+.lsitMode{
+  position: absolute;
+  width: 344rpx;
+  height: 346rpx;
+  background-image: url('https://ww.cry7.cn/getgoods/sw.png');
+  background-repeat: no-repeat;
+  background-size: 344rpx 346rpx;
+  background-color: #000;
+  opacity: 0.5;
+  z-index: 9;
+  border-radius: 20rpx;
+}
+
+.goods-list .goods-img image {
+  width: 345rpx;
+  height: 345rpx;
+  border-radius: 20rpx;
+}
+.goods-list .goods-detail{
+  padding: 10rpx;
+}
+.time-list{
+  display: flex;
+}
+.goods-list .goods-detail .goods-info .info-title {
+  font-size: 30rpx;
+  color: #333;
+ display:block ;
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis;
+}
+
+.goods-list .goods-detail .goods-info .info-detail {
+  width: 250rpx;
+  height: 58rpx;
+  font-size: 28rpx;
+  padding: 10rpx 0;
+  color: #999999;
+ display:block ;
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis;
+}
+.goods-list .goods-detail .goods-price{
+  display: flex;
+}
+.goods-list .goods-detail .goods-price .price-old{
+  color: #eb5d3f;
+  font-size: 30rpx;
+  flex: 1
+}
+.goods-list .goods-detail .goods-price .price-new{
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.weight{
+  height: 58rpx;
+  font-size: 28rpx;
+  width: 180rpx;
+  color: #999999;
+  display: block;
+  line-height: 58rpx;
+}
+.fenshu{
+  color: #cccccc;
+  font-size: 24rpx;
+  
+}
+.oldPrice{
+  flex: 1;
+  color: #cccccc;
+  font-size: 24rpx;
+  margin-left: 6rpx;
+  text-decoration: line-through;
+}
+.goods-list .goods-detail .goods-price image{
+  width: 50rpx;
+  height: 50rpx;
+}
+/* 购物车按钮 */
+
+.share-btn {
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #fff;
+  background-color: #038c48;
+  border-radius: 50%;
+  position: fixed;
+  right: 20rpx;
+  bottom: 200rpx;
+  z-index: 9999;
+}
+
+.share-btn text {
+  display: block;
+  width: 80rpx;
+  margin: 20rpx auto;
+  line-height: 30rpx;
+}
+
+/* 分类 */
+
+.menu {
+  margin-top: 30rpx;
+}
+
+.menu .navList {
+  white-space: nowrap;
+  padding: 5rpx 0;
+}
+
+.menu .nav {
+  text-align: center;
+  display: inline-block;
+  padding: 10rpx 16rpx;
+}
+
+.menu .nav image {
+  width: 107rpx;
+  height: 107rpx;
+  display: block;
+}
+
+.menu .nav text {
+  font-size: 22rpx;
+  color: #737373;
+}
+.add-sub{
+  display: flex;
+}

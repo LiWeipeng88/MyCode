@@ -1,0 +1,11 @@
+<!-- 音乐播放 -->
+<view class="music-btn {{isPlay?'':'hide'}}" wx:if="{{hasMusic}}" bindtap="_togglePlay">
+  <view class="music-symbol {{isPlay?'play':'stop'}}"  wx:if="{{isPlay}}">
+    <text></text>
+    <text></text>
+    <text></text>
+    <text></text>
+    <text></text>
+  </view>
+  <view class="hide-icon" wx:else></view>
+</view>

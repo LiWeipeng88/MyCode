@@ -1,0 +1,18 @@
+.noaddress-tip { padding-top: 35%; }
+.noaddress-tip image { display: block; margin: 10rpx auto; height: 140rpx; width: 140rpx; }
+.noaddress-tip text { text-align: center; display: block; width: 100%; font-size: 28rpx; color: #999; }
+.address-item { background-color: #fff; padding: 30rpx 25rpx; padding-right: 0; }
+.address-item .icon_check { width: 44rpx; height: 44rpx; margin-right: 20rpx; }
+.address-item .name-tel { font-size: 32rpx; display: block; margin-bottom: 8rpx; }
+.address-item .shipping-address { font-size: 28rpx; color: #666; }
+.address-item .edit-box { padding: 0 25rpx; }
+.address-item .icon_edit { width: 42rpx; height: 100rpx; }
+.btn-box { padding: 0 10%; margin-top: 20rpx; }
+.btn-box .cus-btn { background-color: #00BF29; border: 1px solid #00AF00; text-align: center; color: #fff; border-radius: 3px; padding: 20rpx 0; font-size: 32rpx; margin: 30rpx 0; }
+.btn-box .cus-btn.btn-blue { background-color: #2FCD98; border: 1px solid #2FCD98; }
+
+/*底部操作*/
+.bottom-zhanwei { height: 110rpx; margin-top: 20rpx; }
+.bottom-opera { position: fixed; left: 0; bottom: 0; z-index: 1; width: 100%; background-color: #fff; box-sizing: border-box; padding: 0 25rpx; height: 110rpx; }
+.bottom-opera .icon_add { width: 54rpx; height: 54rpx; margin-right: 15rpx; }
+.bottom-opera .icon_enter { width: 32rpx; height: 32rpx; }

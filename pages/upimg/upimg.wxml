@@ -1,0 +1,28 @@
+
+
+<view>
+
+ 
+
+<button bindtap="uploadimg" type="primary">点击选择上传图</button>
+
+ 
+
+</view>
+<view class='shanghchuan'>
+  <view wx:for="{{source}}" style='width:170rpx;height:300rpx;margin-left:60rpx;'>
+    <view class="x" data-id="{{index}}" bindtap='del'>X</view>
+    <image src='{{item}}' style='width:170rpx;height:300rpx;'   />
+ </view>
+</view> 
+<view>
+
+ <!-- <view>
+    <input bindinput='qh' class="qh"></input>
+ </view> -->
+
+<button bindtap="upload" type="primary" class='upButton'>点击上传</button>
+
+ 
+
+</view>

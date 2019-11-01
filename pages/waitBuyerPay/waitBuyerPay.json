@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "确认订单",
+  "usingComponents": {
+    "form-container": "/pages/components/form-container/form-container"
+  }
+}

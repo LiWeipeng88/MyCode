@@ -1,0 +1,24 @@
+<!--折叠菜单  -->
+<!-- <fold-menu></fold-menu> -->
+<!-- <view class="noaddress-tip" wx:if="{{addressList.length==0}}">
+  <image src="../../images/icon_noaddreess.png" mode="aspectFit"></image>
+  <text>哎呀，你还没有收货地址哦~</text>
+</view> -->
+<view class="address-list border-t" wx:if="{{addressList.length>0}}">
+   <block wx:key="" wx:for="{{addressList}}" wx:for-item="address">
+    <view class="address-item border-b flex-wrap" data-id="{{address.id}}" bindtap="chooseAddress">
+      <image src="{{chooseAddressVal==address.id?checkIconUrl:nocheckIconUrl}}" mode="aspectFit" class="icon_check"></image>
+      <view class="flex-con">
+        <text class="name-tel">{{address.name}}，{{address.mobile}}</text>
+        <text class="shipping-address">收货地址：{{address.detail}}</text>
+      </view>
+      <view class="edit-box" data-id="{{address.id}}" catchtap="editAddress">
+        <image src="../../images/icon_edit.png" mode="aspectFit" class="icon_edit"></image>
+      </view>
+    </view>
+  </block>
+</view>
+<view class="btn-box">
+  <view class="cus-btn btn-blue" bindtap="addAddress">新增收货地址</view>
+  <view class="cus-btn" bindtap="getweChatAddress">读取微信地址</view>
+</view>

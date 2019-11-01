@@ -1,0 +1,143 @@
+.serve-page{
+  padding: 16rpx 30rpx;
+}
+/* banner */
+.banner{
+  width: 100%;
+}
+.banner image{
+  border-radius: 30rpx;
+  width: 690rpx;
+  height: 250rpx;
+}
+/* 服务列表 */
+.serve{
+  margin-top: 16rpx;
+}
+.serve-list{
+  display: flex;
+  margin-top: 16rpx;
+}
+.serve-img{
+  position: relative;
+}
+.serve-img image{
+  width: 210rpx;
+  height: 210rpx;
+}
+.serve-img text{
+  display: block;
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #fff;
+}
+.list-more{
+  position: absolute;
+  top: 84rpx;
+  left: 30rpx;
+  background-color: #fff;
+  width: 74rpx;
+  height: 33rpx;
+  border-radius: 33rpx;
+  text-align: center;
+  line-height: 33rpx;
+  font-size: 18rpx;
+  color: #45dddf;
+}
+.fangwu{
+  color: #45dddf;
+}
+.jiadian{
+  color: #92a7ff;
+}
+.serve-list-info{
+  height: 210rpx;
+  flex: 1;
+  box-sizing: border-box;
+  border:1px solid #ebecef;
+  border-top-right-radius: 30rpx;
+  border-bottom-right-radius: 30rpx;
+  display: flex;
+  flex-wrap:wrap;
+}
+.list-info{
+  width: 237rpx;
+  height: 100rpx;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.list-info-two, .list-info-frist{
+  /* border-bottom: 1px solid #ebecef; */
+}
+.list-info-frist, .list-info-three{
+  /* border-right: 1px solid #ebecef; */
+}
+.list-info image{
+  position: relative;
+  width: 36rpx;
+  height: 36rpx;
+  top: 8rpx;
+  padding-left: 24rpx;
+  padding-right: 16rpx;
+}
+.list-info text{
+  font-size: 24rpx;
+  color: #000;
+  font-weight: bolder;
+  line-height: 100rpx;
+  text-align: center
+}
+/* 空调、鲜花广告 */
+.banner-kh{
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: space-between
+}
+.air image,
+.flower image{
+  width: 334rpx;
+  height: 193rpx;
+}
+.shuma{
+  color:#fb7f7f;
+}
+.qingjie{
+  color:#74dadd;
+}
+.anzhuang{
+  color:#ec7a76;
+}
+.three-list{
+  margin-top: 8rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.fszl{
+  display: block;
+  position: relative;
+  
+}
+.fszl image{
+  width: 220rpx;
+  height: 220rpx;
+}
+.three-list-title{
+  width: 220rpx;
+  position: absolute;
+  top: 25rpx;
+  text-align: center;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.three-list-smell{
+  width: 220rpx;
+  text-align: center;
+  position: absolute;
+  top: 60rpx;
+  font-size: 20rpx;
+  color: #7e8794;
+}

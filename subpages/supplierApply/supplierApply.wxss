@@ -1,0 +1,196 @@
+/* subpages/supplierApply/supplierApply.wxss */
+/* .input-wrap{
+  background-color:#fff;
+  padding:0 20rpx;
+  margin-top:20rpx;
+}
+.input-wrap .input-item{
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.input-wrap .input-item .desc{
+  width:140rpx;
+  font-size:30rpx;
+  color:#333;
+  letter-spacing: 1rpx;
+}
+.input-wrap .input-item .input-box input{
+  padding: 0 25rpx;
+  color:#111;
+}
+.textarea-box{
+  height:280rpx;
+  background-color:#fff;
+  margin-top:20rpx;
+  padding:20rpx;
+}
+.textarea-box textarea{
+  display: block;
+  width:100%;
+  height:100%;
+} */
+ .btn{
+  width:95%;
+  height:100rpx;
+  line-height:100rpx;
+  text-align: center;
+  color:#fff;
+  margin:100rpx auto 0;
+  background-color:#2FCD98;
+  font-size:30rpx;
+  letter-spacing: 1rpx;
+  border-radius:10rpx;
+} 
+.ts-model-mask{
+  background-color:rgba(0,0,0,0.5);
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:100;
+}
+.ts-model{
+  background-color:#fff;
+  border-radius:20rpx;
+  width:600rpx;
+  position:fixed;
+  top:50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  left:50%;
+  margin-left:-300rpx;
+  z-index:101;
+}
+.ts-model .close-btn{
+  text-align: right;
+  padding:20rpx;
+}
+.ts-model .close-btn text{
+  display: inline-block;
+  width:60rpx;
+  height:60rpx;
+  text-align: cdenter;
+  line-height:60rpx;
+  color:#666;
+  font-size:40rpx;
+}
+.ts-model .title{
+  color:#333;
+  text-align: center;
+  font-size:32rpx;
+  padding:30rpx 0 20rpx;
+}
+.ts-model .con{
+  width:80%;
+  margin:30rpx auto;
+  color:#666;
+  text-align: center;
+}
+.ts-model .btn{
+  width:30%;
+  height:60rpx;
+  line-height:60rpx;
+  border-radius:30rpx;
+  margin:50rpx auto;
+}
+
+page{
+  background-color: #f3f4f5;
+}
+.form-title{
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 1.6;
+  padding: 10rpx 0;
+}
+
+.form-wrap{
+  padding: 20rpx 0;
+}
+.form-item{
+  padding: 0 30rpx;
+  margin-bottom: 20rpx;
+}
+.label-name{
+  line-height: 60rpx;
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 700;
+}
+.label-name text{
+  color: red;
+}
+.form-item .cus-input{
+  border:1rpx solid #ededed;  
+  background-color: #fff;
+  border-radius: 8rpx;
+  padding: 0 20rpx;
+  min-height: 90rpx;
+  font-size: 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+.form-item .input-placeholder{color: #999;}
+.form-item textarea.cus-input{
+  padding: 20rpx;
+  min-height: 150rpx;
+}
+.form-item picker{
+  line-height: 90rpx;
+  position: relative;
+}
+.form-item picker .icon_xiala{
+  position: absolute;
+  right: 20rpx;
+  top:0;
+  width: 30rpx;
+  height: 90rpx;
+}
+.addr-choose .detail-addr{
+  line-height: 90rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 600rpx;
+  font-size: 30rpx;
+}
+.addr-choose .detail-addr.gray,.picker.gray{
+  color: #999;
+}
+.addr-choose .icon_addr{
+  height: 32rpx;
+  width: 32rpx;
+  display: block;
+}
+.img-box{
+  width: 100%;
+  height: 360rpx;
+  border:1rpx solid #ededed;  
+  box-sizing: border-box;
+}
+.img-box image{
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: #fff;
+  border-radius: 8rpx;
+}
+.img-box .add-img{
+  padding: 14%;
+  box-sizing: border-box;
+}
+.btn-type button{
+  margin:40rpx auto;
+}
+.btn-type .btn{
+  height:100rpx;
+  line-height:100rpx;
+  text-align: center;
+  color:#fff;
+  margin:40rpx auto;
+  background-color:#2FCD98;
+  font-size:30rpx;
+  letter-spacing: 1rpx;
+  border-radius:10rpx;
+}

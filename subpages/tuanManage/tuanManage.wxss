@@ -1,0 +1,120 @@
+/* subpages/tuanManage/tuanManage.wxss */
+page{background-color:#fff;}
+.main-content .title{
+  padding:30rpx 40rpx;
+  font-size:32rpx;
+  font-weight: bold;
+  color:#111;
+}
+.main-content .ranks{
+  width:90%;
+  margin:0 auto;
+  border-radius:15rpx;
+  box-shadow: 0 0 10rpx #dedede;
+  /* padding:10rpx 20rpx; */
+  box-sizing: border-box;
+  text-align: center;
+  color:#333;
+  font-size:30rpx;
+  line-height: 60rpx;
+  margin-bottom: 32rpx;
+}
+.main-content .ranks .rank{
+  display: flex;
+}
+.main-content .rank .rank_frist{
+  flex:1;
+  border-right: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+}
+.main-content .rank .rank_two{
+  flex:1;
+  border-right: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+}
+.main-content .rank .rank_three{
+  flex:1;
+  border-bottom: 1px solid #dedede;
+}
+.main-content .manage-ranks{
+  padding:0 20rpx;
+}
+.main-content .manage-ranks .ranks-item{
+  display: inline-block;
+  width:100%;
+  margin-bottom:30rpx;
+}
+.manage-ranks .ranks-item .con-wrap{
+  width:95%;
+  margin:0 auto;
+  border-radius:15rpx;
+  box-shadow: 0 0 10rpx #dedede;
+  padding:10rpx 20rpx;
+  box-sizing: border-box;
+}
+.manage-ranks .ranks-item .icon{
+  width:90rpx;
+  height:90rpx;
+  margin-right: 10rpx;
+}
+.manage-ranks .ranks-item .icon image{
+  display: block;
+  width:100%;
+  height:100%;
+}
+.manage-ranks .ranks-item .desc{
+  color:#333;
+  font-size:28rpx;
+}
+.manage-ranks .ranks-item .jt-icon{
+  width:16rpx;
+  height:26.67rpx;
+}
+.manage-ranks .ranks-item .jt-icon image{
+  display: block;
+  width:100%;
+  height:100%;
+}
+
+.main-content .manage-list{
+  padding:10rpx 20rpx;
+}
+.main-content .canvas{
+  margin:0 auto;
+}
+.main-content .manage-list .manage-item{
+  display: inline-block;
+  width:50%;
+  margin-bottom:30rpx;
+}
+.manage-list .manage-item .con-wrap{
+  width:90%;
+  margin:0 auto;
+  border-radius:15rpx;
+  box-shadow: 0 0 10rpx #dedede;
+  padding:20rpx;
+  box-sizing: border-box;
+}
+.manage-list .manage-item .icon{
+  width:90rpx;
+  height:90rpx;
+  margin-right: 10rpx;
+}
+.manage-list .manage-item .icon image{
+  display: block;
+  width:100%;
+  height:100%;
+}
+.manage-list .manage-item .desc{
+  color:#333;
+  font-size:28rpx;
+}
+.manage-list .manage-item .jt-icon{
+  width:16rpx;
+  height:26.67rpx;
+}
+.manage-list .manage-item .jt-icon image{
+  display: block;
+  width:100%;
+  height:100%;
+}

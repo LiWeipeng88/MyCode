@@ -1,0 +1,159 @@
+<!--subpages/tuanManage/tuanManage.wxml-->
+<view class="main-content">
+  <view class="title">管理中心</view>
+    <view class="manage-list">
+    <view class="manage-item" bindtap="toBusinessDaily">
+      <view class="con-wrap flex-wrap">
+        <view class="icon">
+          <image src="/images/icon_rb.png" mode="aspectFit"></image>
+        </view>
+        <view class="desc flex-con">营业日报</view>
+        <view class="jt-icon">
+          <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+   
+    <view class="manage-item" bindtap="toActivityorder">
+      <view class="con-wrap flex-wrap">
+        <view class="icon">
+          <image src="/images/icon_dd.png" mode="aspectFit"></image>
+        </view>
+        <view class="desc flex-con">订单列表</view>
+        <view class="jt-icon">
+          <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="manage-item" bindtap="toOrderHexiao">
+      <view class="con-wrap flex-wrap">
+        <view class="icon">
+          <image src="/images/icon_hx.png" mode="aspectFit"></image>
+        </view>
+        <view class="desc flex-con">取货核对</view>
+        <view class="jt-icon">
+          <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="manage-item" bindtap="toFxCenter">
+      <view class="con-wrap flex-wrap">
+        <view class="icon">
+          <image src="/images/icon_fy.png" mode="aspectFit"></image>
+        </view>
+        <view class="desc flex-con">分佣中心</view>
+        <view class="jt-icon">
+          <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="manage-item" bindtap="toXiaji">
+      <view class="con-wrap flex-wrap">
+        <view class="icon">
+          <image src="/images/icon_fy.png" mode="aspectFit"></image>
+        </view>
+        <view class="desc flex-con">激励奖励</view>
+        <view class="jt-icon">
+          <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <!-- <view class="manage-item" bindtap="toRankList">
+      <view class="con-wrap flex-wrap">
+        <view class="icon">
+          <image src="/images/icon_ph.png" mode="aspectFit"></image>
+        </view>
+        <view class="desc flex-con">小区月排行</view>
+        <view class="jt-icon">
+          <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view> -->
+  </view>
+  <view class="manage-ranks">
+    <view class="ranks-item">
+      <view class="con-wrap flex-wrap">
+        <view class="icon">
+          <image src="/images/icon_zonge.png"></image>
+        </view>
+        <view class="desc flex-con">今日销售总额：{{list.all_price}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="manage-ranks">
+    <view class="ranks-item">
+      <view class="con-wrap flex-wrap">
+        <view class="icon">
+          <image src="/images/icon_danl.png"></image>
+        </view>
+        <view class="desc flex-con">今日单量：{{list.total_num}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="manage-ranks">
+    <view class="ranks-item">
+      <view class="con-wrap flex-wrap">
+        <view class="icon">
+          <image src="/images/icon_paiming.png"></image>
+        </view>
+        <view class="desc flex-con" wx:if="{{list.all_price>=list.px_gz}}">今日收益排名：{{list.paiming}}</view>
+        <view class="desc flex-con" wx:if="{{list.all_price<list.px_gz}}">未进前100名</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 当月数据 -->
+
+  <view class="manage-ranks">
+    <view class="ranks-item">
+      <view class="con-wrap flex-wrap">
+        <view class="icon">
+          <image src="/images/icon_zonge.png"></image>
+        </view>
+        <view class="desc flex-con">当月销售总额：{{yuepaihang.all_price}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="manage-ranks">
+    <view class="ranks-item">
+      <view class="con-wrap flex-wrap">
+        <view class="icon">
+          <image src="/images/icon_danl.png"></image>
+        </view>
+        <view class="desc flex-con">当月单量：{{yuepaihang.total_num}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="manage-ranks">
+    <view class="ranks-item">
+      <view class="con-wrap flex-wrap">
+        <view class="icon">
+          <image src="/images/icon_paiming.png"></image>
+        </view>
+        <view class="desc flex-con" wx:if="{{yuepaihang.all_price>=yuepaihang.px_gz}}">当月收益排名：{{yuepaihang.paiming}}</view>
+        <view class="desc flex-con" wx:if="{{yuepaihang.all_price<yuepaihang.px_gz}}">未进前100名</view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="ranks">
+    <view class="rank">
+      <text class="rank_frist">今日销售总额</text>
+      <text class="rank_two">今日单量</text>
+      <text class="rank_three">今日收益排名</text>
+    </view>
+    <view class="rank">
+      <text class="rank_frist">今日销售总额</text>
+      <text class="rank_two">今日单量</text>
+      <text class="rank_three">今日收益排名</text>
+    </view>
+    <view class="rank">
+      <text class="rank_frist">今日销售总额</text>
+      <text class="rank_two">今日单量</text>
+      <text class="rank_three">今日收益排名</text>
+    </view>
+  </view> -->
+  <view class="cavans-wrap">
+    <canvas class="canvas" style="width:{{cavasW}}px;height:{{cavasH}}px;" canvas-id="chartArea"></canvas>
+  </view>
+
+</view>

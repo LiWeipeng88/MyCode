@@ -1,0 +1,123 @@
+/* subpages/paySuccess/paySuccess.wxss */
+page{background-color:#fff;}
+.main-content{padding:13rpx 0 0;}
+.main-content .img{
+  width:180rpx;
+  height:210rpx;
+  margin:0 auto 20rpx;
+}
+.main-content .img image{
+  display:block;
+  width:100%;
+  height:100%;
+}
+.main-content .desc{
+  text-align: center;
+  font-size:32rpx;
+  color:#333;
+  font-weight:bold;
+}
+.main-content .btn-wrap .btn{
+  width:65%;
+  height:80rpx;
+  text-align: center;
+  line-height:80rpx;
+  font-size:30rpx;
+  border-radius:40rpx;
+  margin:80rpx auto 0;
+  letter-spacing: 1rpx;
+  /* position:relative; */
+  margin-top:22px;
+  margin-left:142rpx;
+}
+.flex-wrap{
+  display: block;
+}
+.main-content .btn-wrap .btn button{
+  position: absolute; 
+  top: 0; 
+  
+  left: 0; 
+  height: 100%; 
+  width: 100%; 
+  box-sizing: border-box; 
+  margin: 0; 
+  z-index: 1; 
+  opacity: 0; 
+}
+button{
+color: #fff;
+width:65%;
+background: #2CC08C;
+height:80rpx;
+text-align:center;
+line-height:80rpx;
+font-size:30rpx;
+border-radius:40rpx;
+margin:80rpx auto 0;
+letter-spacing:1rpx;
+margin-top:22px;
+margin-left:142rpx;
+
+}
+.main-content .btn-wrap .btn.look-btn{
+  background-color:#F6F6F6;
+  color:#666;
+}
+.main-content .btn-wrap .btn.share-btn{
+  background-color:#2CC08C;
+  color:#fff;
+}
+.back-index{
+  height:100rpx;
+  line-height:100rpx;
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  text-align: center;
+}
+.back-index text{
+  font-size:30rpx;
+  color:#666;
+  letter-spacing: 1rpx;
+  vertical-align: middle;
+  margin-right:10rpx;
+}
+.order_tidd{
+  display:block;
+margin-top:10px;
+float:left;
+margin-left:14px;
+
+}
+.order_time{
+  margin-top:10px;
+float:right;
+margin-right:10px;
+
+}
+.share{
+  margin-top:10px;
+  float: left;
+margin-bottom:16px;
+
+}
+.title{
+
+  float: left;
+  margin-left:54rpx;
+}
+.group_g{
+  float: left;
+  transform: scale(0.8);
+  font-size: 35rpx;
+  width: 100%;
+  margin-top:10px
+
+}
+.back-index image{
+  width:16rpx;
+  height:26.67rpx;
+  vertical-align: middle;
+}

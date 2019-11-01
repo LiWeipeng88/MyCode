@@ -1,0 +1,185 @@
+<!--pages/wode/wode.wxml-->
+<form-container> 
+<view class="top-info style1">
+  <button open-type='getUserInfo' wx:if="{{slient==1}}" bindgetuserinfo='getuserInfo'></button>
+  <image src="/images/mine/bg.png" class="info-bg fade_in" mode="widthFix"></image>
+  <view class="user-info flex-wrap">
+    <image src="{{userInfo.avatar}}" class="avatar"></image>
+    <view class="right-name">
+      <view class="name-wrap">
+        <text class="name">{{userInfo.nickname}}</text>
+        <view class="icon-tongbu"><image src="/images/mine/icon_gx.png" mode="aspectFit"></image><button open-type='getUserInfo' bindgetuserinfo='getuserInfo'></button></view>
+      </view>
+      <view class="address flex-wrap" wx:if="{{comInfor&&mineInfo.leaderStatus!=2}}" data-lng="{{comInfor.lng}}" data-lat="{{comInfor.lat}}" data-name="{{comInfor.address}}" catchtap="openLocation">
+        <image src="/images/mine/icon_dw3.png" mode="aspectFit"></image>
+        <view class="desc">{{comInfor.name}}</view>
+      </view> 
+      <view class="label-wrap flex-wrap" wx:if="{{mineInfo.leaderStatus==2}}">
+        <image src="/images/mine/icon_tz.png" mode="aspectFit"></image>
+        <view class="desc">团长</view>
+      </view>
+
+      <view class="label-wrap flex-wrap" style='margin-top:10rpx;width:169rpx'>
+        <image src="/images/mine/icon_tz.png" mode="aspectFit"></image>
+        <view class="desc">积分:{{mineInfo.exp}}</view>
+      </view>
+    </view>
+    <view class="jt-icon flex-con" bindtap="toPersonalSet">
+    <text style='color:#fff;font-size:29rpx'>切换小区<text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text></text>
+      <image src="/images/icon_right_white.png" mode="aspectFit"></image>
+    </view>
+  </view>
+  <!-- <view class="shezhi-btn" bindtap="openSettingPage">
+    <image src="/images/mine/icon_mine_set_white.png" mode="aspectFit"></image>
+  </view> -->
+</view>
+<view class="myorder-wrap">
+  <view class="all-order border-t flex-wrap">
+    <text>我的订单</text>
+    <view class="flex-con" data-type="all" bindtap="toMyOrder">
+      <text>查看全部订单</text>
+      <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+    </view>
+  </view>
+  <view class="order-state border-t">
+    <view class="icon_order" data-type="nopay" bindtap="toMyOrder">
+      <view class="icon-box">
+        <image src="/images/mine/icon_dfk.png" mode="aspectFit"></image>
+        <text class="number" wx:if="{{mineInfo.dfkNum>0}}">{{mineInfo.dfkNum}}</text>
+      </view>
+      <text>待付款</text>
+    </view>
+    <view class="icon_order" data-type="peisong" bindtap="toMyOrder">
+      <view class="icon-box">
+        <image src="/images/mine/icon_dhx.png" mode="aspectFit"></image>
+        <text class="number" wx:if="{{mineInfo.dpsNum>0}}">{{mineInfo.dpsNum}}</text>
+      </view>
+      <text>待配送</text>
+    </view>
+    <view class="icon_order" data-type="hadpay" bindtap="toMyOrder">
+      <view class="icon-box">
+        <image src="/images/mine/icon_dhx.png" mode="aspectFit"></image>
+        <text class="number" wx:if="{{mineInfo.dfhNum>0}}">{{mineInfo.dfhNum}}</text>
+      </view>
+      <text>待取货</text>
+    </view>
+    
+    <view class="icon_order" data-type="finish" bindtap="toMyOrder">
+      <view class="icon-box">
+        <image src="/images/mine/icon_wc.png" mode="aspectFit"></image>
+        <text class="number" wx:if="{{mineInfo.dshNum>0}}">{{mineInfo.dshNum}}</text>
+      </view>
+      <text>已完成</text>
+    </view>
+    <view class="icon_order" data-type="refund" bindtap="toMyOrder">
+      <view class="icon-box">
+        <image src="/images/mine/icon_sh.png" mode="aspectFit"></image>
+        <text class="number" wx:if="{{mineInfo.tkwqNum>0}}">{{mineInfo.tkwqNum}}</text>
+      </view>
+      <text>售后</text>
+    </view>
+  </view>
+</view>
+<view class="service-wrap">
+  <view class="title-wrap border-b">
+    {{mineInfo.myserviceTitle}}
+  </view>
+  <view class="service-list">
+    <!-- wx:if="{{mineInfo.myyhqShow==1}}" -->
+    <view class="service-item" wx:if="{{mineInfo.myyhqShow==1}}" bindtap="toMycoupon">
+      <image class="icon" src="/images/mine/new_coupon.png" mode="aspectFit"></image>
+      <text>{{mineInfo.myyhqName}}</text>
+      <view class="phone" wx:if="{{mineInfo.couponCount>0}}">{{mineInfo.couponCount}}张优惠券可用</view>
+    </view>
+    <view class="service-item" wx:if="{{mineInfo.couponShow==1}}" bindtap="toCouponList">
+      <image class="icon" src="/images/mine/new_yhqdt.png" mode="aspectFit"></image>
+      <text>{{mineInfo.couponName}}</text>
+    </view>
+    <!-- wx:if="{{mineInfo.leaderStatus!=2}}" -->
+    <view class="service-item" wx:if="{{mineInfo.tzapplyShow==1&&mineInfo.leaderStatus!=2}}" data-status="{{mineInfo.leaderStatus}}" bindtap="toApplyTuan"> 
+      <image class="icon" src="/images/mine/new_pt.png" mode="aspectFit"></image>
+      <text>{{mineInfo.tzapplyName}}</text>
+    </view>
+    <view class="service-item" wx:if="{{mineInfo.tzcenterShow==1}}" bindtap="toTuanManage">
+      <image class="icon" src="/images/mine/new_manage.png" mode="aspectFit"></image>
+      <text>{{mineInfo.tzcenterName}}</text>
+    </view>
+    <view class="service-item" wx:if="{{mineInfo.tzinfoShow==1}}" bindtap="toTuanInfor">
+      <image class="icon" src="/images/mine/new_tz.png" mode="aspectFit"></image>
+      <text>{{mineInfo.tzinfoName}}</text>
+    </view>
+    <view class="service-item" wx:if="{{mineInfo.kefuShow==1}}">
+      <button open-type="contact" wx:if="{{customerMobile==0||(customerMobile==1&&contactPhone!='')}}" bindcontact="contactRecord"> </button>
+        <button class="kefu-btn" open-type="getPhoneNumber" wx:if="{{customerMobile==1&&contactPhone==''}}" bindgetphonenumber="getPhoneNumber"> </button>
+      <image class="icon" src="/images/mine/new_kf.png" mode="aspectFit"></image>
+      <text>{{mineInfo.kefuName}}</text>
+    </view>
+    <view class="service-item" wx:if="{{mineInfo.gysapplyShow==1}}" bindtap="toSupplierApply">
+      <image class="icon" src="/images/mine/new_gys.png" mode="aspectFit"></image>
+      <text>{{mineInfo.gysapplyName}}</text>
+    </view>
+    <view class="service-item" wx:if="{{mineInfo.qiandaoShow==1}}" bindtap="qiandao">
+      <image class="icon" src="/images/mine/new_gys.png" mode="aspectFit"></image>
+      <text>{{mineInfo.qiandaoName}}</text>
+    </view>
+    <!-- <view class="service-item" wx:if="{{mineInfo.myphoneShow==1}}">
+      <button open-type="getPhoneNumber" wx:if="{{!mineInfo.myphoneNum}}" catchgetphonenumber="getPhoneNumber"> </button>
+      <image class="icon" src="/images/mine/new_sj.png" mode="aspectFit"></image>
+      <text>{{mineInfo.myphoneName}}</text>
+      <view class="biaoqian" wx:if="{{!mineInfo.myphoneNum}}">绑定</view>
+      <view class="phone" wx:if="{{mineInfo.myphoneNum}}">{{mineInfo.myphoneNum}}</view>
+    </view> -->
+    <!-- 邀请 -->
+      <view class="service-item" wx:if="{{mineInfo.yaoqingShow==1&&mineInfo.leaderStatus==2}}"  data-onoff="2" bindtap="yaoqing">
+      <button data-info='{{order}}'  open-type="share" hover-class='none'></button>
+      <image class="icon" src="/images/mine/new_xcx.png" mode="aspectFit"></image>
+      
+      <text>{{mineInfo.yaoqingName}}</text>
+      <view class="label" wx:if="{{!yaoqing}}">
+        <image src="/images/mine/hot.png" mode="aspectFit"></image>
+      </view>
+    </view> 
+
+  <view class="service-item" wx:if="{{mineInfo.jiamengShow==1 && mineInfo.peisong==1}}"  data-onoff="2" bindtap="jiameng">
+      
+      <image class="icon" src="/images/mine/new_xcx.png" mode="aspectFit"></image>
+      
+      <text>{{mineInfo.jiamengName}}</text>
+      <view class="label" wx:if="{{!jiameng}}">
+        <image src="/images/mine/hot.png" mode="aspectFit"></image>
+      </view>
+    </view> 
+   
+
+    <view class="service-item" wx:if="{{mineInfo.appletadShow==1}}"  data-onoff="2" bindtap="toTechnicalPage">
+      <image class="icon" src="/images/mine/new_xcx.png" mode="aspectFit"></image>
+      <text>{{mineInfo.appletadName}}</text>
+      <view class="label" wx:if="{{!appletad}}">
+        <image src="/images/mine/hot.png" mode="aspectFit"></image>
+      </view>
+    </view> 
+    
+  </view>
+</view>
+
+<view class="technical-support" data-onoff="{{supportOpen==1}}" wx:if="{{openWatermark==1}}" bindtap="toTechnicalPage">
+  <image src="{{watermarkLogo}}" class="company-logo" mode="aspectFit" wx:if="{{watermarkLogo}}"></image>
+  <text>柒個秋天</text>
+  
+</view>
+<!-- 获取用户信息提示框 -->
+<view class="get-userinfo-modal" wx:if="{{slient==1&&isShowgetuser}}">
+  <view class="get-userinfo">
+    <view class="label-title">小程序授权提示</view>
+    <view class="tipx-txt">允许小程序获得你的头像昵称信息</view>
+    <view class="flex-wrap border-t" style="padding:10rpx 0;">
+      <view class="btn flex-con border-r" bindtap="hideGetuser">取消</view>
+      <view class="btn flex-con confirm-btn">确定<button open-type='getUserInfo' bindgetuserinfo='getuserInfo'></button></view>
+    </view>
+  </view>
+</view>
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>
+</form-container> 

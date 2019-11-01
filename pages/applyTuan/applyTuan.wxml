@@ -1,0 +1,60 @@
+<!--pages/applyTuan/applyTuan.wxml-->
+<block wx:if="{{status==0||status==4}}">
+  <view class="input-wrap">
+    <view class="input-item flex-wrap border-b">
+      <view class="desc">姓名</view>
+      <view class="input-box flex-con">
+        <input type="text" placeholder="姓名" value="{{name}}" data-type="name"  bindinput="dataChage"></input>
+      </view>
+    </view>
+    <view class="input-item flex-wrap border-b">
+      <view class="desc">手机号</view>
+      <view class="input-box flex-con">
+        <input type="number" placeholder="请输入您的手机号" value="{{phone}}" maxlength="11" data-type="phone" bindinput="dataChage"></input>
+      </view>
+    </view>
+    <view class="input-item flex-wrap border-b">
+      <view class="desc">微信号</view>
+      <view class="input-box flex-con">
+        <input type="text" placeholder="请输入您的微信号" value="{{wx}}" data-type="wx" bindinput="dataChage"></input>
+      </view>
+    </view> 
+    <view class="input-item flex-wrap border-b" >
+      <view class="desc">所在小区</view>
+      <view class="input-box flex-con">
+        <input type="text" placeholder="请输入您所在小区" value="{{area}}" data-type="area" bindinput="dataChage"></input>
+      </view>
+    </view>
+    <view class="textarea-box flex-wrap">
+      <textarea placeholder="补充说明" value="{{note}}" data-type="note" bindinput="dataChage"></textarea>
+    </view> 
+  </view>
+  <view class="tibtn" bindtap="submitInfor">提交申请</view> 
+</block>
+<view class="ts-wrap" wx:if="{{status==1}}">
+  <image src="/images/zw_sq.png" mode="aspectFit"></image>
+  <text class="desc">您的申请已提交，请耐心等待！</text>
+</view> 
+
+<view class="ts-wrap" wx:if="{{status==3}}">
+  <image src="/images/zw_sq.png" mode="aspectFit"></image>
+  <text class="desc">很遗憾，您的申请未通过平台审核！</text>
+  <text class="note">拒绝原因：{{leaderReason}}</text>
+  <view class="reset-btn" bindtap="reApply">重新申请</view>
+</view> 
+
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>
+
+<!-- 获取用户信息提示框 -->
+<view class="get-userinfo-modal" wx:if="{{slient==1&&isShowgetuser}}">
+  <view class="get-userinfo">
+    <view class="label-title">小程序授权提示</view>
+    <view class="tipx-txt">允许小程序获得你的头像昵称信息</view>
+    <view class="flex-wrap border-t" style="padding:10rpx 0;">
+      <view class="btn flex-con confirm-btn">确定<button open-type='getUserInfo' bindgetuserinfo='getuserInfo'></button></view>
+    </view>
+  </view>
+</view>

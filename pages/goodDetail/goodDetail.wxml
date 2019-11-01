@@ -1,0 +1,254 @@
+<!--subpages/goodDetail/goodDetail.wxml-->
+<form-container style="background:#fff;"> 
+<import src="../../wxParse/wxParse.wxml" />
+<view wx:if="{{detailInfor}}">
+  <view class="banner-wrap">
+     <swiper indicator-dots="true" indicator-color="rgba(255,255,255,0.8)" indicator-active-color="#fff" autoplay="true" interval="4000" duration="800" circular="true">
+        <block wx:key="" wx:for="{{detailInfor.slide}}" wx:for-item="slide"> 
+          <swiper-item>
+            <image src="{{slide}}" class="slide-image" mode="aspectFill" />
+          </swiper-item>
+        </block> 
+    </swiper> 
+    <!-- <image src="{{detailInfor.cover}}" mode="widthFix"></image> -->
+  </view>
+  
+  <view class="time-wrap"  wx:if="{{detailInfor.status!=1 && wuye_id!=1 && detailInfor.ys_time==0}}">
+    <image  src="/images/icon_time.png" wx:if="{{wuye_id!=1}}" mode="aspectFit"></image>
+    <view class="desc" wx:if="{{wuye_id!=1}}">
+      距离团购<text>{{start}}</text>还有<text wx:if="{{days>0}}">{{days}}天</text><text>{{hours}}小时</text><text>{{minutes}}分</text><text>{{seconds}}秒</text>
+    </view>
+  </view>
+
+  <view class="time-wrap"  wx:if="{{detailInfor.status!=1 && wuye_id!=1 && detailInfor.ys_time==1}}">
+    <image  src="/images/icon_time.png" wx:if="{{wuye_id!=1}}" mode="aspectFit"></image>
+    <view class="desc" wx:if="{{wuye_id!=1}}">
+      距离秒杀<text>{{ms_time}}</text>还有<text>{{hour}}小时</text><text>{{minute}}分</text><text>{{second}}秒</text>
+    </view>
+  </view>
+  <!-- <view class="zitidian" wx:if="{{wuye_id!=1}}" ><text decode="{{true}}" space="{{true}}">&nbsp;</text><image class="addr-icon" src="/images/icon_dw.png" mode="aspectFit"></image><text decode="{{true}}" space="{{true}}">&nbsp;</text>当前自提站：{{detailInfor.xq.asc_address}}</view> -->
+  <!-- <view class="infor-wrap">
+    <view class="name-stock flex-wrap">
+      <view class="name flex-con">
+        {{detailInfor.name}}
+      </view>
+      <view class="stock" wx:if="{{wuye_id!=1}}">
+        <view class="num" >仅剩<text style='color:#FF7800'>{{detailInfor.stock}}</text>件</view>
+         <view class="desc"></view>
+      </view>
+    </view>
+    <view class="brief">{{detailInfor.brief}}</view>
+    <view class="money-wrap">
+      <view class="money">
+        <text class="label" wx:if="{{wuye_id!=1}}">团购价</text>
+        <text wx:if="{{wuye_id!=1}}" >￥{{detailInfor.price}}</text>
+        <text class="sold"  wx:if="{{detailInfor.sold>0}}">市场价:￥{{detailInfor.oldPrice}}</text>
+      </view>
+      <view class="shop-money" wx:if="{{detailInfor.oldPrice>0}}">已售{{detailInfor.sold}}件</view> 
+    </view>
+    <view class="time-wrap" wx:if="{{wuye_id!=1}}">
+      <view class="time">
+        <text class="desc">团购截止时间：</text>
+        <text>{{detailInfor.surplus}}</text>
+      </view>
+      <view class="time">
+        <text class="desc">提货时间：</text>
+        <text>{{detailInfor.receiveTime}}</text>
+      </view>
+    </view>
+  </view> -->
+  <view class="listTxet">
+        <view class="infoTxet" wx:if="{{item!=1}}">
+          <!-- <text class='smellTitle' bindtap='goodDetail' data-acid="{{activity.id}}" data-id="{{item.id}}">{{item.brief}}</text> -->
+          <text class="title" bindtap='goodDetail' data-acid="{{activity.id}}" data-id="{{item.id}}"><text style='color:red'>【特价】</text>{{item.name}}</text>
+          <view class="info" bindtap='goodDetail' data-acid="{{activity.id}}" data-id="{{item.id}}">
+            <text class="shopp">已售{{item.sold}}/仅剩{{item.stock}}</text>
+            <!-- <text class="infoColor">提货时间:{{activity.asa_receive_end}}</text> -->
+            <text class="infoColor">10.26截单 | 10.27送达</text>
+          </view>
+        </view>
+        <view class='goumai' wx:if="{{item!=1}}">
+          <view class='price'>
+            ￥
+            <text class='bigPrice'>{{item.price}}</text>
+            <text class='smellPrice'>￥{{item.oldPrice}}</text>
+          </view>
+          <view class="listBtn">
+            <button bindtap='submitOrder' wx:if="{{item.stock>=1}}" wx:if="{{item.stock>=1 && item.kaishi==0}}" data-id="{{item.id}}" data-gwc='1' data-acid="{{activity.id}}">买 TA</button>
+            <button bindtap='goodDetail' style='width:200rpx;' wx:if="{{item.stock>=1 && item.kaishi==1}}" data-id="{{item.id}}" data-gwc='1' data-acid="{{activity.id}}" data-sy_time="{{item.kaishi}}">{{item.xiaoshi}}点开始</button>
+            <button bindtap='goodDetail' style='width:326rpx;' wx:if="{{item.stock>=1}}" wx:if="{{item.stock>=1 && item.kaishi==-5}}" data-id="{{item.id}}" data-gwc='1' data-sy_time="{{item.kaishi}}" data-acid="{{activity.id}}">秒杀已结束</button>
+            <button bindtap='goodDetail' style='width:326rpx;' wx:if="{{item.stock>=1 && item.kaishi==2}}" data-id="{{item.id}}" data-gwc='1' data-acid="{{activity.id}}" data-sy_time="{{item.kaishi}}">{{item.H}}小时{{item.i}}分{{item.s}}秒结束</button>
+          </view>
+        </view>
+      </view>
+  <!-- 生成海报 -->
+  <view class=""></view>
+  <!-- <view><button bindtap='haibao' >生成海报</button></view>
+  <canvas style="width: 200px; height: 345px;" canvas-id="firstCanvas"></canvas>
+  <button bindtap='saveShareImg'>保存图片</button> -->
+  <view class="detail-wrap"  wx:if="{{detailInfor.detail!=''}}">
+    <view class="title"  bindtap='changeinfo' >
+      <text wx:if="{{wuye_id!=1}}"   >商品详情</text>
+      <text wx:if="{{wuye_id==1}}"   >服务说明</text>
+    </view>
+    <!-- <view class="buy_d"  wx:if="{{wuye_id!=1}}" bindtap='changeinfo1' >
+      <text     >购买记录</text>
+      
+    </view> -->
+     <!-- <view class="buy_d"  wx:if="{{wuye_id==1}}" bindtap='changeinfo1' >
+      <text     >服务记录</text>
+      
+    </view> -->
+    <view class="wxParse"  wx:if="{{buy_list_d==2}}" >
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      
+    </view>
+    <view wx:if="{{buy_list_d==2}}" >
+    <image wx:if="{{wuye_id!=1}}" style='height:500px;width:100%;' src="https://ww.cry7.cn/upload/group_images/shouhou.jpg" mode="widthFix"></image></view>
+    
+   <image wx:if="{{wuye_id==1}}" style='height:500px;width:100%;' src="https://ww.cry7.cn/upload/group_images/dianqi.jpg" mode="widthFix"></image>
+  </view>
+   <view wx:if="{{buy_list_d==1}}" class="lll" >
+        <view class="user_d" wx:for="{{detailInfor.buy_list}}" >
+        <view class="user_header">
+        <!-- <view class="img_i">{{item.index}}</view> -->
+        <image src='{{item.m_avatar}}' ></image>
+        <view class="user_num">购买{{item.one_num}}份</view>
+      
+        <view class="user_name" >{{item.m_nickname}}</view>
+        
+        </view>
+         
+    </view>
+   <view class="nomore-tip" >购买人数太多仅显示前5人</view> 
+     <view class="zw" style='margin-bottom:80px;'></view>
+
+        
+    </view>
+  <view class="bottom-zhanwei">
+    <view class="bottom-opreation flex-wrap border-t">
+      <view class="btn" bindtap="backIndex">
+        <view class="icon" >
+          <image  src="/images/icon_home1.png" mode="aspectFit"></image>
+        </view>
+        <text>首页</text>
+      </view>
+      <view class="btn">
+        <view class="icon">
+          <image src="/images/icon_kf.png" mode="aspectFit"></image>
+        </view>
+        <text>客服</text>
+        <button open-type="contact" wx:if="{{customerMobile==0||(customerMobile==1&&contactPhone!='')}}" bindcontact="contactRecord"> </button>
+      <button class="kefu-btn" open-type="getPhoneNumber" wx:if="{{customerMobile==1&&contactPhone==''}}" bindgetphonenumber="getPhoneNumber"> </button>
+      </view>
+      <!-- <view class="btn" bindtap="cartModelShow">
+        <view class="icon">
+          <image src="/images/icon_cart.png" mode="aspectFit"></image>
+          <view class="num" wx:if="{{cartSumNum>0}}">{{cartSumNum}}</view>
+        </view>
+        <text>购物车</text>
+      </view> -->
+      <block wx:if="{{detailInfor.stock>0&&detailInfor.status!=1 }}">
+        <view class="buy-btn cart-btn flex-con" wx:if="{{wuye_id!=1 && detailInfor.ys_time!=1}}" bindtap="addcart">
+          加入购物车
+        </view> 
+        <view class="buy-btn flex-con" wx:if="{{wuye_id!=1 && detailInfor.start>0 && detailInfor.end>0 && detailInfor.ys_time==1}}" bindtap="nowbuy1" style="background:#ccc">
+          秒杀未开始
+        </view> 
+        <view class="buy-btn flex-con" wx:if="{{wuye_id!=1 && detailInfor.start<0 && detailInfor.end>0 && detailInfor.ys_time==1}}" bindtap="nowbuy">
+          立即购买
+        </view> 
+        <view class="buy-btn flex-con" wx:if="{{wuye_id!=1 && detailInfor.start<0 && detailInfor.end<0 && detailInfor.ys_time==1}}" bindtap="nowbuy1" style="background:#ccc">
+          秒杀已结束
+        </view> 
+        <view class="buy-btn flex-con" wx:if="{{wuye_id!=1 && detailInfor.ys_time!=1}}" bindtap="nowbuy">
+          立即购买
+        </view> 
+         <view class="buy-btn flex-con" wx:if="{{wuye_id==1}}" bindtap="nowbuy">
+          立即预约
+        </view> 
+      </block>
+      <block wx:else>
+        <view class="grey-bth flex-con">
+          <block wx:if="{{detailInfor.stock<=0&&detailInfor.status!=1}}">已售罄</block>
+          <block wx:if="{{detailInfor.status==1}}">已结束</block>
+        </view>
+      </block> 
+    </view>
+  </view>
+</view>
+<!-- 购物车弹窗 -->
+<!-- <view class="cart-model-mask" wx:if="{{cartModelShow}}" bindtap="cartModelHide"></view>
+<view class="cart-model" wx:if="{{cartModelShow}}">
+  <view class="title-wrap flex-wrap">
+    <view class="desc flex-con">
+      <text>已选商品</text>
+    </view>
+    <view class="empty-cart" bindtap="clearCart">
+      <image src="/images/del.png" mode="acpect"></image>
+      <text>清空购物车</text>
+    </view>
+  </view>
+  <view class="good-list">
+    <block wx:key="" wx:for="{{cartList}}" wx:for-item="cart">
+      <view class="good-item flex-wrap border-b">
+        <view class="name flex-con">{{cart.name}}</view>
+        <view class="money">￥{{cart.price}}</view>
+        <view class="add-sub">
+          <text class="btn sub-btn" data-id="{{cart.gid}}" data-type="sub" catchtap="goodNumCount">-</text>
+          <text class="num">{{cart.num}}</text>
+          <text class="btn abb-btn" data-id="{{cart.gid}}"  data-type="add" catchtap="goodNumCount">+</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view> -->
+
+<!-- 商品购买弹窗 -->
+<view class="modal-mask {{isShowModal? 'show' : ''}}" bindtap="hideModal"></view>
+<view class="buy-modal  {{isShowModal? 'show' : ''}}">
+  <view class="good-info-choose border-b">
+    <view class="good-pic-name"> 
+      <image src="{{detailInfor.cover}}" class="good-pic" mode="aspectFill" data-curimg="{{detailInfor.cover}}" data-imgs="{{detailInfor.cover}}" bindtap="singlePeiviewImg"></image>
+      <view class="name-info">
+        <text class="name">{{detailInfor.name}}</text>
+        <text class="price">￥{{detailInfor.price}}</text>  
+      </view>
+      <image src="/images/icon_close.png" mode="aspectFit" class="close-btn" bindtap="hideModal"></image>
+    </view>
+    <view class="buy-number flex-wrap border-t">
+      <view class="remain-number flex-con" wx:if="{{wuye_id!=1}}">
+        <text>购买数量:</text>
+        <text class="remain">剩余{{detailInfor.stock}}件</text>
+      </view>
+      <view class="change-num" wx:if="{{wuye_id!=1}}">
+        <text class="minus {{detailInfor.cartNum<=1 ? 'disabled' : ''}}" data-type="sub" catchtap="goodChange">-</text>
+        <input type="number" value="{{detailInfor.cartNum}}" disabled class="number"></input>
+        <text class="add {{detailInfor.cartNum>=detailInfor.stock ? 'disabled' : ''}}" data-type="add" catchtap="goodChange">+</text>
+      </view>
+    </view>
+  </view>
+  <view class="btn-area">
+    <!-- <text class="confirm-addcart"  data-gid="{{detailInfor.id}}" bindtap="confirmAddcart" wx:if="{{modalOperaType=='addcart'}}">加入购物车</text> -->
+    <text class="next-step" data-wuye="{{wuye_id}}" wx:if="{{modalOperaType=='buy'}}" wx:if="{{wuye_id!=1}}"  bindtap="submitOrder">立即购买</text>
+    <text class="next-step" data-wuye="{{wuye_id}}" wx:if="{{modalOperaType=='buy'}}" wx:if="{{wuye_id==1}}"  bindtap="submitOrder">立即预约</text>
+  </view>
+</view> 
+ <!-- 获取用户信息提示框 -->
+  <view class="get-userinfo-modal" wx:if="{{slient==1&&isShowgetuser}}">
+    <view class="get-userinfo">
+      <view class="label-title">小程序授权提示</view>
+      <view class="tipx-txt">允许小程序获得你的头像昵称信息</view>
+      <view class="flex-wrap border-t" style="padding:10rpx 0;">
+        <view class="btn flex-con border-r" bindtap="hideGetuser">取消</view>
+        <view class="btn flex-con confirm-btn">确定
+          <button open-type='getUserInfo' bindgetuserinfo='getuserInfo'></button>
+        </view>
+      </view>
+    </view>
+  </view>
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>
+</form-container> 

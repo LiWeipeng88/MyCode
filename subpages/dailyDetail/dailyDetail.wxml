@@ -1,0 +1,45 @@
+<!--subpages/dailyDetail/dailyDetail.wxml-->
+<view class="history-wrap">
+  <view class="fenlei flex-wrap">
+    <view class="desc flex-con">订单号</view>
+    <view class="desc flex-con">商品<text>(数量)</text></view>
+    <view class="desc flex-con">价格</view>
+  </view>
+  <view class="history-list" wx:if="{{DataList.length>0}}">
+    <block wx:key="" wx:for="{{DataList}}" wx:for-item="order">
+      <view class="history-item flex-wrap">
+        <view class="time flex-con">{{order.tid}}</view>
+        <view class="money flex-con">
+          <block wx:key="" wx:for="{{order.goods}}" wx:for-item="good">
+            <view class="good-wrap">
+              <text class="name">{{good.name}}</text>
+              <text class="num">x {{good.num}}</text>
+            </view>
+          </block>
+        </view>
+        <view class="money flex-con">￥{{order.money}}</view> 
+      </view>
+    </block>
+  </view>
+  <!--上拉加载提示-->
+  <view class="loading-tip" wx:if="{{showLoading}}">
+    <view class="icon_load">
+      <view id="floatingBarsG">
+        <view class="blockG" id="rotateG_01"></view>
+        <view class="blockG" id="rotateG_02"></view>
+        <view class="blockG" id="rotateG_03"></view>
+        <view class="blockG" id="rotateG_04"></view>
+        <view class="blockG" id="rotateG_05"></view>
+        <view class="blockG" id="rotateG_06"></view>
+        <view class="blockG" id="rotateG_07"></view>
+        <view class="blockG" id="rotateG_08"></view>
+      </view>
+    </view>
+    <text>努力加载中...</text>
+  </view> 
+  <view class="nomore-tip" wx:if="{{noMoretip}}">没有更多数据了</view> 
+</view>
+<view class="no-data" style="padding:200rpx 0;" wx:if="{{DataList.length<=0}}">
+  <image src="/images/empty_img.png" mode="aspectFit"></image>
+  <text>暂无相关内容哦~</text>
+</view>  

@@ -1,0 +1,55 @@
+<!--subpages/fxCenter/fxCenter.wxml-->
+<!-- <view class="top-wrap">
+</view> -->
+
+
+<view class="deal-details">
+  <!-- <view class="details-label border-b">下级收益明细</view>
+  <view class="details-tab border-b"> -->
+    
+    <text wx:if="{{alist.length>0}}" wx:for="{{alist}}"   data-type="1" bindtap="toggleDetailstype">团长名称:{{item.asl_name}}</text> 
+  </view>
+  <view class="details-list" wx:if="{{list.length>0}}">
+     <block wx:key="" wx:for="{{list}}">
+    <view class="details-item border-b">
+      <view class="flex-wrap">
+        <view class="details-txt flex-con">团长：{{item.name}} 产生收益</view>
+        <view class="details-val">{{item.money}}元</view>
+      </view>
+      <view class="time">{{item.time}}</view>
+    </view>
+    </block>
+  </view>
+  <!-- 上拉加载提示--> 
+ <!-- <view class="loading-tip" wx:if="{{showLoading}}">
+  <view class="icon_load">
+    <view id="floatingBarsG">
+      <view class="blockG" id="rotateG_01"></view>
+      <view class="blockG" id="rotateG_02"></view>
+      <view class="blockG" id="rotateG_03"></view>
+      <view class="blockG" id="rotateG_04"></view>
+      <view class="blockG" id="rotateG_05"></view>
+      <view class="blockG" id="rotateG_06"></view>
+      <view class="blockG" id="rotateG_07"></view>
+      <view class="blockG" id="rotateG_08"></view>
+    </view>
+  </view>
+  <text>努力加载中...</text>
+</view>   -->
+
+<!-- wx:if="{{detailData.list.length>0}}" -->
+ <!-- <view class="record-wrap" wx:if="{{detailData.list.length>0}}">
+  <view class="title">已结算记录</view>
+  <view class="record-list">
+    <block wx:key="" wx:for="{{detailData.list}}">
+      <view class="record-item border-b flex-wrap">
+        <view class="time flex-con">{{item.time}}</view>
+        <view class="money">￥{{item.money}}</view>
+      </view>
+    </block>
+  </view>
+  <view class="more-btn" bindtap="openMoreRecord">
+    <text>查看更多</text>
+    <image src="/images/icon_right-green.png"></image>
+  </view> 
+</view> -->

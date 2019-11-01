@@ -1,0 +1,38 @@
+/* subpages/dailyDetail/dailyDetail.wxss */
+page{background-color:#fff;}
+.history-wrap{
+  padding:0 20rpx;
+}
+.history-wrap .fenlei{
+  padding: 30rpx 0;
+  color:#666;
+  font-size:30rpx;
+  text-align: center;
+}
+.history-wrap .history-item{
+  padding:30rpx 0;
+  text-align: center;
+  font-size:28rpx;
+  color:#333;
+}
+.history-wrap .history-item .good-wrap .name{
+  display: inline-block;
+  max-width:70%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  margin-right: 5rpx;
+}
+.history-wrap .history-item .good-wrap .num{
+  color:#999;
+  vertical-align: middle;
+}
+.history-wrap .history-item:nth-of-type(2n+1){
+  background-color:#F8F8F8;
+}
+.history-wrap .history-item .time{
+  font-size:24rpx;
+  color:#999;
+  padding:0 5rpx;
+}

@@ -1,0 +1,45 @@
+/* pages/serveList/serveList.wxss */
+.serve-contenr{
+  
+}
+.serve-list{
+  border-top: 10rpx solid #eef3f7;
+  padding: 0rpx 30rpx;
+  margin-bottom: 30rpx;
+}
+.serve-title{
+  font-size: 30rpx;
+  margin-top: 15rpx;
+  padding: 13rpx 0rpx;
+  color: #d23847;
+  font-weight: bold;
+}
+.backIndex{
+height: 80rpx;
+background-color: #f3f4f8;
+color: #000;
+font-size: 24rpx;
+line-height: 80rpx;
+text-align: center;
+border-top: 10rpx solid #eef3f7;
+margin: 0rpx 30rpx;
+}
+.serve-info{
+  display: flex;
+  flex-wrap: wrap;
+}
+.serve-info text{
+  display: block;
+  margin-top: 15rpx;
+  margin-left: 9rpx;
+  width: 220rpx;
+  height: 80rpx;
+  background-color: #f3f4f8;
+  text-align: center;
+  line-height: 80rpx;
+  color: #000;
+  font-size: 24rpx;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}

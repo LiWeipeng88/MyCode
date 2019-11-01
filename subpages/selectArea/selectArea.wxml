@@ -1,0 +1,53 @@
+<!--subpages/selectArea/selectArea.wxml-->
+<view class="top-infor">
+  <view class="search-wrap border-b">
+    <view class="search-box flex-wrap">
+      <image class="search-icon" src="/images/icon_fl_sousuo.png" mode="aspectFit"></image>
+      <view class="input-box flex-con">
+        <input type="text" value="{{keyword}}" placeholder="请输入小区名" bindconfirm="searchArea" confirm-type="搜索"></input>
+      </view>
+    </view>
+  </view>
+  <view class="current-address" wx:if="{{comInfor}}">
+    <view class="title">
+      <image src="/images/icon_home2.png" mode="aspectFit"></image>
+      <text>当前地址</text>
+    </view>
+    <view class="address-wrap" data-lng="{{comInfor.lng}}" data-lat="{{comInfor.lat}}" data-name="{{comInfor.address}}" catchtap="openLocation">
+      <view class="area-wrap">
+        <image class="addr-icon" src="/images/icon_dw.png" mode="aspectFit"></image>
+        <text>所属小区:</text>
+        <text class="area">{{comInfor.name}}</text>
+        <!-- <view>{{comInfor.postAddress}}</view> -->
+        <view><text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;</text>自 提 点:{{comInfor.postAddress}}</view>
+      </view>
+      <!-- <view class="get-addr">{{comInfor.address}}</view> -->
+    </view>
+  </view> 
+</view>
+<view class="all-area" wx:if="{{AreaList.length>0}}">
+  <view class="title">仅显示距离最近的20个社区点</view>
+  <view class="area-list">
+    <block wx:key="" wx:for="{{AreaList}}" wx:for-item="area">
+      <view class="area-item border-b" data-com="{{area}}" bindtap="chooseArea">
+        <view class="area-wrap flex-wrap1">
+          <view class="flex-con">
+              <image class="addr-icon" src="/images/icon_dw.png" mode="aspectFit"></image>
+              <text>所属小区:</text>
+              <text class="area">{{area.name}}<block wx:if="{{area.postAddress}}"></block></text>
+              <view><text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;</text>自 提 点:{{area.postAddress}}</view>
+          </view>
+          <view wx:if="{{mi!=0}}" class="distance">{{area.distance}}</view>
+        </view>
+        <!-- <view class="get-addr">{{area.address}}</view> -->
+      </view>
+    </block>
+  </view>
+</view>
+<view class="no-data" wx:if="{{AreaList.length<=0}}">
+  <image src="/images/icon_tdw.png" mode="aspectFit"></image>
+  <text>暂无相关内容</text>
+</view>
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>

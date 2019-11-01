@@ -1,0 +1,43 @@
+<!--subpages/personalSet/personalSet.wxml-->
+<view class="input-wrap">
+  <view class="input-item flex-wrap border-b">
+    <view class="desc">姓名</view>
+    <view class="input-box flex-con">
+      <input type="text" placeholder="请输入真实姓名" value="{{name}}" data-type="name"  bindinput="dataChage"></input>
+    </view>
+  </view>
+  <view class="input-item flex-wrap border-b">
+    <view class="desc">手机号</view>
+    <view class="input-box flex-con">
+      <input type="number" placeholder="请输入您的手机号" maxlength="11" value="{{phone}}" data-type="phone"  bindinput="dataChage"></input>
+    </view>
+  </view>
+  <view class="input-item flex-wrap border-b">
+    <view class="desc">微信号</view>
+    <view class="input-box flex-con">
+      <input type="text" placeholder="请输入您的微信号" value="{{wx}}" data-type="wx"  bindinput="dataChage"></input>
+    </view>
+  </view> 
+  <view class="input-item flex-wrap" bindtap="toSelectArea">
+    <view class="desc">所在小区</view>
+    <view class="input-box flex-con">
+      <input type="text" disabled value="{{comName}}" placeholder="请选择"></input>
+    </view>
+    <view class="jt-icon">
+      <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+    </view>
+  </view>
+</view>
+<view class="input-wrap">
+  <view class="input-item flex-wrap" bindtap="toAddressManage">
+    <view class="desc flex-con">我的地址</view>
+    <view class="jt-icon">
+      <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+    </view>
+  </view>
+</view>
+<view class="btn" bindtap="submitInfor">保存</view> 
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>

@@ -1,0 +1,177 @@
+<view class="conterIndex">
+  <!-- 用户、搜索 -->
+  <view class="user">
+    <view class="userName">
+      <view class="icon">
+        <image src="{{indexInfo.pic}}"></image>
+      </view>
+      <view class="name">
+        <text>{{com_info.name}}</text>
+      </view>
+    </view>
+    <view class="userSearch">
+      <image src="../../images/sarech.jpg" bindtap='search'></image>
+      <input style='padding-left: 40rpx; padding-top:2rpx;' placeholder="搜索商品" bindconfirm="search" bindinput='getSearchVal' maxlength='16' focus="{{focus}}" />
+    </view>
+  </view>
+  <!-- banner -->
+  <swiper class="banner" indicator-dots="{{indicatorDots}}" circular="true" indicator-color="#fff" indicator-active-color="#07f033" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <view wx:for="{{indexInfo.slide}}" wx:for-item="slide" bindtap='indexgoto' data-indexpage="{{slide.link}}">
+      <swiper-item>
+        <image src="{{slide.img}}" class="slide-image" />
+      </swiper-item>
+    </view>
+  </swiper>
+  <!-- 分类 -->
+  <view class="menu" wx:if="{{cate_open==1}}">
+    <scroll-view class="navList" scroll-x>
+      <view class="nav" wx:for="{{cate}}" bindtap='cate_info' data-cate_id="{{item.sk_id}}">
+        <image src="{{item.sk_logo}}"></image>
+        <text class="">{{item.sk_name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- list -->
+  <!-- 广告位 -->
+  <view class='advert'>
+    <view class='advert-first'>
+
+    </view>
+    <view class='advert-two'>
+      <view class='right-first'>
+
+      </view>
+      <view class='right-two'>
+        
+      </view>
+    </view>
+  </view>
+  <!-- list -->
+  <view class="coupon-wrap" bindtap="openCoupon" wx:if="{{indexInfo.template.couponOpen==1}}">
+    <image src="{{indexInfo.template.couponImg}}" mode="widthFix"></image>
+  </view>
+  <block wx:key="" wx:for="{{activityList}}" wx:for-item="activity">
+    <view class="xlistNav" wx:if="{{activity.asa_is_buy==0}}">
+      <view class="xlistImg">
+        <image src="{{activity.img1}}" data-id="{{activity.id}}" bindtap="activityDetail"></image>
+      </view>
+      
+      <view class="xlistTxet">
+        <view class="xinfoTxet" data-id="{{activity.id}}" bindtap="activityDetail">
+          <text class="xtitle">{{activity.title}}</text>
+          <view class="xinfo">
+            <!-- <text>{{activity.desc}}</text><text class="xinfoColor">提货时间 {{activity.asa_receive_start}}</text> -->
+          </view>
+        </view>
+        <view class="xlistBtn">
+          <button data-id="{{activity.id}}" bindtap="activityDetail">查看活动详情</button>
+        </view>
+      </view>
+    </view>
+
+
+
+    <!-- <view class="xshare-btn" wx:if="{{show_carts==1 && hd_id>0}}">
+<view class="xtotal_num" wx:if="{{cartSumNum>0}}">{{cartSumNum}}</view>
+<image class="xcarts" bindtap='cartModelShow' data-gwc='1' style='width:87rpx;height:101rpx;float:right;margin-right:6px;margin-top:1rpx;' src='../../images/tm_carts.png'></image>
+</view> -->
+
+    <!-- 单品 -->
+
+    <view class="listNav" wx:for="{{activity.goods_one.goods}}" wx:if="{{activity.asa_is_buy==1}}">
+    
+      <view class='listModel' wx:if="{{item.stock<=0}}"></view>
+      <view class="listImg" wx:if="{{item!=1}}">
+        <image src="{{item.cover}}" bindtap='goodDetail' data-acid="{{activity.id}}" data-id="{{item.id}}"></image>
+        <!-- <view wx:if="{{item!=1}}" class="shop-info">翠香迷糊桃，色香味俱全</view> -->
+      </view>
+      
+      <view wx:if="{{item==1}}" class="listImg">
+        <image src="{{qiandao}}" bindtap='qiandao' data-acid="1" data-id="1"></image>
+      </view>
+      <view class="listTxet">
+        <view class="infoTxet" wx:if="{{item!=1}}">
+          <!-- <text class='smellTitle' bindtap='goodDetail' data-acid="{{activity.id}}" data-id="{{item.id}}">{{item.brief}}</text> -->
+          <text class="title" bindtap='goodDetail' data-acid="{{activity.id}}" data-id="{{item.id}}"><text style='color:red'>【特价】</text>{{item.name}}</text>
+          <view class="info" bindtap='goodDetail' data-acid="{{activity.id}}" data-id="{{item.id}}">
+            <text class="shopp">已售{{item.sold}}/仅剩{{item.stock}}</text>
+            <!-- <text class="infoColor">提货时间:{{activity.asa_receive_end}}</text> -->
+            <text class="infoColor">10.26截单 | 10.27送达</text>
+          </view>
+        </view>
+        <view class='goumai' wx:if="{{item!=1}}">
+          <view class='price'>
+            ￥
+            <text class='bigPrice'>{{item.price}}</text>
+            <text class='smellPrice'>￥{{item.oldPrice}}</text>
+          </view>
+          <view class="listBtn">
+            <button bindtap='submitOrder' wx:if="{{item.stock>=1}}" wx:if="{{item.stock>=1 && item.kaishi==0}}" data-id="{{item.id}}" data-gwc='1' data-acid="{{activity.id}}">买 TA</button>
+            <button bindtap='goodDetail' style='width:200rpx;' wx:if="{{item.stock>=1 && item.kaishi==1}}" data-id="{{item.id}}" data-gwc='1' data-acid="{{activity.id}}" data-sy_time="{{item.kaishi}}">{{item.xiaoshi}}点开始</button>
+            <button bindtap='goodDetail' style='width:326rpx;' wx:if="{{item.stock>=1}}" wx:if="{{item.stock>=1 && item.kaishi==-5}}" data-id="{{item.id}}" data-gwc='1' data-sy_time="{{item.kaishi}}" data-acid="{{activity.id}}">秒杀已结束</button>
+            <button bindtap='goodDetail' style='width:326rpx;' wx:if="{{item.stock>=1 && item.kaishi==2}}" data-id="{{item.id}}" data-gwc='1' data-acid="{{activity.id}}" data-sy_time="{{item.kaishi}}">{{item.H}}小时{{item.i}}分{{item.s}}秒结束</button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+
+
+    <!-- 单品 -->
+
+
+
+
+
+
+
+
+
+
+  </block>
+  <view class='update'>好产品持续更新中</view>
+  <view class="share-btn" wx:if="{{show_carts==1 && hd_id>0}}">
+    <view class="total_num" wx:if="{{cartSumNum>0}}">{{cartSumNum}}</view>
+    <image class="carts" bindtap='cartModelShow' data-gwc='1' style='width:87rpx;height:101rpx;float:right;margin-right:6px;margin-top:1rpx;' src='../../images/tm_carts.png'></image>
+
+  </view>
+
+  <!-- <view class='goTop' hidden='{{!floorstatus}}' bindtap="goTop">
+  <text>返回\n顶部</text>
+  </view> -->
+
+  <!-- 购物车弹窗 -->
+  <view class="cart-model-mask" wx:if="{{cartModelShow}}" bindtap="cartModelHide"></view>
+  <view class="cart-model" style='bottom:0rpx' wx:if="{{cartModelShow}}">
+    <view class="title-wrap flex-wrap">
+      <view class="desc flex-con">
+        <text>已选商品</text>
+      </view>
+      <view class="empty-cart" bindtap="clearCart">
+        <image src="/images/del.png" mode="acpect"></image>
+        <text>清空购物车</text>
+      </view>
+    </view>
+    <view class="good-list">
+      <block wx:key="" wx:for="{{cartList}}" wx:for-item="cart">
+        <view class="good-item flex-wrap border-b">
+          <view class="name flex-con">{{cart.name}}</view>
+          <view class="money">￥{{cart.price}}</view>
+          <view class="add-sub">
+            <text class="btn sub-btn" data-id="{{cart.gid}}" data-type="sub" catchtap="goodNumCount">-</text>
+            <text class="num">{{cart.num}}</text>
+            <text class="btn abb-btn" data-id="{{cart.gid}}" data-type="add" catchtap="goodNumCount">+</text>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="good-item flex-wrap border-b" bindtap='submitOrder' data-double='1' style='background:#2CC08C;text-align:center;color:#fff'>
+      <text style='margin-left:310rpx;'>立即支付</text>
+
+    </view>
+
+  </view>
+
+
+</view>

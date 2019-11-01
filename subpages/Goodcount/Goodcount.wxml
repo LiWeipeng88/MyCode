@@ -1,0 +1,28 @@
+<!--subpages/Goodcount/Goodcount.wxml-->
+<view class="good-infor flex-wrap">
+  <view class="cover">
+    <image src="{{detailData.activity.cover}}" mode="aspectFit"></image>
+  </view>
+  <view class="infor-wrap flex-con">
+    <view class="name">
+      {{detailData.activity.title}}
+    </view>
+    <view class="brief">{{detailData.activity.desc}}</view>
+  </view>
+</view>
+<view class="history-wrap">
+  <view class="fenlei flex-wrap">
+    <view class="desc flex-con">商品名称</view>
+    <view class="desc flex-con">数量</view>
+    <view class="desc flex-con">总金额</view>
+  </view>
+  <view class="history-list">
+    <block wx:key="" wx:for="{{detailData.list}}" wx:for-item="good">
+      <view class="history-item flex-wrap">
+        <view class="time flex-con">{{good.name}}</view>
+        <view class="num flex-con">{{good.num}}</view>
+        <view class="money flex-con">￥{{good.money}}</view> 
+      </view>
+    </block>
+  </view>
+</view>

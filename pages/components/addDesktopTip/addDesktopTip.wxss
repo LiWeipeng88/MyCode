@@ -1,0 +1,10 @@
+/* 添加到桌面样式 */
+.add-desktop-tip { position: fixed; top: 16rpx; right: 136rpx; border-radius: 8rpx; background-color: rgba(0, 0, 0, .5); height: 76rpx; line-height: 78rpx; z-index: 101; color: #fff; padding: 0 20rpx; font-size: 30rpx; }
+.add-desktop-tip:before { content: ''; position: absolute; top: -20rpx; right: 24rpx; border-width: 12rpx; border-style: dashed dashed solid dashed; border-color: transparent transparent rgba(0, 0, 0, .5) transparent; z-index: 1; }
+
+/*图片渐入效果*/
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.fade_in { animation: fadeIn 1s both; }

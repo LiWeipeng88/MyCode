@@ -1,0 +1,232 @@
+<!--subpages/activityDetail/activityDetail.wxml-->
+<form-container> 
+<view class="notice-wrap {{memberShow?'amation':''}} flex-wrap" wx:if="{{memberShow}}">
+  <view class="avatar">
+    <image src="{{memberData.avatar}}" mode="aspectFit"></image>
+  </view>
+  <view class="infor flex-con">
+    <text class="name">{{memberData.nickname}}</text>
+    <text>参与了此活动！</text>
+  </view>
+</view>
+<view class="infor-wrap" wx:if="{{detailInfor}}">
+  <view class="peo-infor flex-wrap">
+    <view class="avatar">
+      <image src="{{detailInfor.avatar}}" mode="aspectFit"></image>
+    </view>
+    <view class="infor flex-con">
+      <view class="nickname">{{detailInfor.nickname}}</view>
+      <!-- <view class="time"><text>{{detailInfor.time}}</text><text class="borw border-l" wx:if="{{detailInfor.showNum}}">{{detailInfor.showNum}}人准备团</text></view> -->
+    </view>
+    <view class="phone-icon" data-mobile="{{detailInfor.mobile}}" bindtap="makePhone">
+      <image src="/images/icon_tel.png" mode="aspectFit"></image>
+    </view>
+  </view>
+  <view class="time-wrap"  wx:if="{{detailInfor.asa_wuye==0}}">
+    <view class="time">
+      <text class="desc">团购截止时间：</text>
+      <text>{{detailInfor.groupTime}}</text>
+    </view>
+    <view class="time"  wx:if="{{detailInfor.asa_wuye==0}}">
+      <text class="desc"><text decode="{{true}}" space="{{true}}"></text>提货时间：</text>
+      <text>{{detailInfor.receiveTime}}</text>
+    </view>
+  </view>
+</view>
+
+<view class="user-avatar-box flex-wrap" wx:if="{{detailInfor.join>0 && detailInfor.asawuye==0}}">
+            <block wx:key="" wx:for="{{detailInfor.data}}" wx:if="{{index<5}}">
+              <image src="{{item.m_avatar}}" class="user-avatar" mode="aspectFill"></image>
+            </block>
+            <image src="/images/more-avatar.png" class="user-avatar" mode="aspectFill" wx:if="{{activity.avatars.length>=5}}"></image>
+            <!-- <view class="flex-con" style='color:#2cc08c'>本小区共
+              <text>{{detailInfor.join}}</text>人已购买</view> -->
+</view>
+<view class="detail-wrap" wx:if="{{detailInfor.asa_wuye==0}}" >
+  <view wx:if="{detailInfor.asa_wuye==0}" class="name">{{detailInfor.title}}</view>
+  <view wx:if="{detailInfor.asa_wuye==1}" class="name" ></view>
+  <view class="brief">{{detailInfor.desc}}</view>
+  <view class="goods-img"  wx:if="{{detailInfor.asa_wuye==0}}">
+    <image src='{{detailInfor.img1}}' style='width:100%; height:435rpx;'></image>
+  </view>
+</view>
+<view class="goods-wrap" wx:if="{{goodsList.length>0}}">
+  <view class="title"  wx:if="{{detailInfor.asa_wuye==0}}" >
+    <text>所售商品</text>
+  </view>
+  <view class="title"  wx:if="{{detailInfor.asa_wuye==1}}" >
+    <text>{{detailInfor.title}}</text>
+  </view>
+  <view class="good-list" wx:if="{{detailInfor.listType==2}}">
+    <block wx:key="" wx:for="{{goodsList}}" wx:for-item="good">
+    <view class="pic-good-item" data-id="{{good.id}}" data-wuye="{{detailInfor.asa_wuye}}" bindtap="goodDetail">
+      <view class="pic-good-info">
+        <view class="name">{{good.name}}</view>
+        <view class="goods-img" wx:if="{{good.slide.length>0}}">
+          <block wx:key="" wx:for="{{good.slide}}">
+            <view class="img-box" wx:if="{{index<3}}"  data-curimg="{{item}}" data-imgs="{{good.slide}}" catchtap="peiviewImg">
+              <image src="{{item}}" mode="aspectFit"></image>
+              <view class="zhezhao" wx:if="{{good.stock<=0}}"></view>
+            </view>
+          </block>
+        </view>
+        <view class="brief">{{good.brief}}</view>
+      </view>
+      <view class="flex-wrap good-price">
+        <view class="flex-con">
+          <view class="now-price">￥{{good.price}}</view>
+          <view class="ori-price">市场价:￥{{good.oldPrice}}</view>
+        </view>
+        <view class="right-opera">
+          <block wx:if="{{good.stock>0}}">
+            <view class="add-sub">
+              <text class="btn sub-btn {{good.num<=0?'gray':''}}"  data-id="{{good.id}}" data-type="sub" catchtap="goodNumCount">-</text>
+              <text class="num">{{good.num}}</text>
+              <text class="btn abb-btn" data-id="{{good.id}}"  data-type="add" catchtap="goodNumCount">+</text>
+            </view>
+            <view class="sale-num">已售{{good.sold}}</view>
+          </block>
+          <view class="noGood" wx:if="{{good.stock<=0}}">已售罄</view>
+        </view>
+      </view>
+    </view>
+    </block>
+  </view>
+  <view class="good-list" wx:if="{{detailInfor.listType==1}}">
+    <block wx:key="" wx:for="{{goodsList}}" wx:for-item="good">
+      <view class="good-item flex-wrap" data-id="{{good.id}}" data-wuye="{{detailInfor.asa_wuye}}" bindtap="goodDetail">
+        <view class="cover">
+          <image src="{{good.cover}}" mode="aspectFill"></image>
+          <view class="zhezhao" wx:if="{{good.stock<=0}}"></view>
+        </view>
+        <view class="infor-wrap flex-con">
+            <view class="name">{{good.name}}</view>
+            <view class="price" wx:if="{{detailInfor.asa_wuye==1}}">￥{{good.price}}元</view>
+            <view class="money-wrap flex-wrap">
+              <view class="money" wx:if="{{detailInfor.asa_wuye==0}}"> 
+                <text class="label">团购价</text>
+                ￥{{good.price}}
+              </view>
+
+               <view class="money" data-wuye="{{detailInfor.asa_wuye}}" style='color:#888;font-size:30rpx;margin-bottom:-22rpx;' wx:if="{{detailInfor.asa_wuye==1}}"> 
+                <text style='width:100%'>{{good.brief}}</text>
+               <view class="money button_m"  wx:if="{{detailInfor.asa_wuye==1}}" ><text style='color:#fff'>立即预约</text></view>
+              </view>
+              <view class="sold" wx:if="{{good.sold>0 &&  detailInfor.asa_wuye==0}}">仅剩{{good.stock}}件</view>
+            </view> 
+            <view class="flex-wrap">
+              <view class="shop-money flex-con">
+                <block wx:if="{{good.oldPrice>0 &&  detailInfor.asa_wuye==0}}">
+                  市场价:￥{{good.oldPrice}}
+                </block>
+              </view>
+              <view class="add-sub"  wx:if="{{good.stock>0 && detailInfor.asa_wuye==0}}">
+                <text class="btn sub-btn" wx:if="{{good.num>=1}}" data-id="{{good.id}}" data-type="sub" catchtap="goodNumCount">-</text>
+                <text wx:if="{{good.num>=1}}" class="num">{{good.num}}</text>
+                <text class="btn abb-btn" data-id="{{good.id}}"  data-type="add" catchtap="goodNumCount">+</text>
+              </view> 
+              <view class="noGood" wx:if="{{good.stock<=0 &&  detailInfor.asa_wuye==0}}">已售罄</view>
+            </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view>
+  
+    <view wx:for="{{info}}" wx:if="{{detailInfor.asa_wuye==0}}" class="pic_info">
+      <view class="left_r"  wx:if="{{item.m_avatar!=null}}" >
+      <!-- <view class="img_i">{{item.t_paixu_id==null ? '': item.t_paixu_id}}</view> -->
+        <view class="img_s"><image src="{{item.m_avatar}}"></image></view>
+        <view class="nickname">{{item.m_nickname}}</view>
+        <!-- <view  class="left_p">{{item.t_pay_time}}</view> -->
+        <view class="left_x" wx:for="{{item.child}}" wx:for-item="good_list" >
+         <text>{{good_list.to_title}}*{{good_list.to_num}}</text>
+        </view>
+     </view>
+    </view>
+
+  </view>
+  <view class="nomore-tip" wx:if="{{goodsList.length>0}}" wx:if="{{detailInfor.asa_wuye==0}}">购买人数太多仅显示前5人</view> 
+</view>
+<view class="bottom-zhanwei"  wx:if="{{detailInfor.asa_wuye==0}}">
+  <view class="bottom-opreation flex-wrap border-t">
+    <view class="btn" bindtap="backIndex">
+      <view class="icon">
+        <image src="/images/icon_home1.png" mode="aspectFit"></image>
+      </view>
+      <text>首页</text>
+    </view>
+    <view class="btn">
+      <view class="icon">
+        <image src="/images/icon_kf.png" mode="aspectFit"></image>
+      </view>
+      <text>客服</text>
+      <button open-type="contact" wx:if="{{customerMobile==0||(customerMobile==1&&contactPhone!='')}}" bindcontact="contactRecord"> </button>
+      <button class="kefu-btn" open-type="getPhoneNumber" wx:if="{{customerMobile==1&&contactPhone==''}}" bindgetphonenumber="getPhoneNumber"> </button>
+    </view>
+    <view class="btn" bindtap="cartModelShow">
+      <view class="icon">
+        <image src="/images/icon_cart.png" mode="aspectFit"></image>
+        <view class="num" wx:if="{{cartSumNum>0}}">{{cartSumNum}}</view>
+      </view>
+      <text>购物车</text>
+    </view>
+    <view class="buy-btn {{detailInfor.status==1||detailInfor.status==2?'grey-bth':''}} flex-con" bindtap="submitOrder">
+      <block wx:if="{{detailInfor.status==1}}">已结束</block>
+      <block wx:if="{{detailInfor.status==2}}">未开始</block>
+      <block wx:if="{{detailInfor.status==3}}">去拼团</block>
+    </view> 
+    <!-- <view class="grey-bth flex-con" bindtap="toApplyTuan">
+      发起团购请申请成为团长
+    </view>  -->
+  </view>
+</view>
+
+<view class="share-btn">
+  <text>分享活动</text>
+  <button open-type="share"></button>
+</view>
+<!-- 购物车弹窗 -->
+<view class="cart-model-mask" wx:if="{{cartModelShow}}" bindtap="cartModelHide"></view>
+<view class="cart-model" wx:if="{{cartModelShow}}">
+  <view class="title-wrap flex-wrap">
+    <view class="desc flex-con">
+      <text>已选商品</text>
+    </view>
+    <view class="empty-cart" bindtap="clearCart">
+      <image src="/images/del.png" mode="acpect"></image>
+      <text>清空购物车</text>
+    </view>
+  </view>
+  <view class="good-list">
+    <block wx:key="" wx:for="{{cartList}}" wx:for-item="cart">
+      <view class="good-item flex-wrap border-b">
+        <view class="name flex-con">{{cart.name}}</view>
+        <view class="money">￥{{cart.price}}</view>
+        <view class="add-sub">
+          <text class="btn sub-btn" data-id="{{cart.gid}}" data-type="sub" catchtap="goodNumCount">-</text>
+          <text class="num">{{cart.num}}</text>
+          <text class="btn abb-btn" data-id="{{cart.gid}}"  data-type="add" catchtap="goodNumCount">+</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+  <!-- 获取用户信息提示框 -->
+  <view class="get-userinfo-modal" wx:if="{{slient==1&&isShowgetuser}}">
+    <view class="get-userinfo">
+      <view class="label-title">小程序授权提示</view>
+      <view class="tipx-txt">允许小程序获得你的头像昵称信息</view>
+      <view class="flex-wrap border-t" style="padding:10rpx 0;">
+        <view class="btn flex-con border-r" bindtap="hideGetuser">取消</view>
+        <view class="btn flex-con confirm-btn">确定
+          <button open-type='getUserInfo' bindgetuserinfo='getuserInfo'></button>
+        </view>
+      </view>
+    </view>
+  </view>
+<!--错误提示--> 
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>
+</form-container> 

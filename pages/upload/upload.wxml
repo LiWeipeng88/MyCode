@@ -1,0 +1,8 @@
+<view>
+  <view class="title"><text>共{{total}}个小区 已送<text >{{wc}}</text>个 未送<text>{{wwc}}</text>个</text></view>
+<view class="list" wx:for="{{list}}" style="{{item.over==1?'background-color:#999':''}}" data-id="{{item.asc_id}}" bindtap='toImg' data-over="{{item.over}}"  >{{item.asc_name}}</view>
+</view>
+
+<!-- <view>
+  <button type="primary" bindtap='lookqh' >查看欠货小区</button>
+</view> -->

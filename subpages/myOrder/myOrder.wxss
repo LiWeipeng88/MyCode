@@ -1,0 +1,136 @@
+/* subpages/myOrder/myOrder.wxss */
+page{border:none;}
+.tab-title-zhanwei {
+  height: 96rpx;
+}
+.no-data image{
+  display: block;
+  width:180rpx;
+  height:210rpx;
+}
+.tab-title {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  display: table;
+}
+.tab-title scroll-view{
+  height: 96rpx;
+  white-space: nowrap;
+}
+.tab-title scroll-view text{
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+  padding: 0 5rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  box-sizing: border-box;
+}
+.tab-title text.active {
+  color: #2CC08C;
+  position: relative;
+}
+
+.tab-title text.active:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  height: 2px;
+  width: 50%;
+  background-color: #2CC08C;
+}
+.order-list{
+  padding:20rpx;
+}
+.order-list .order-item{
+  background-color:#fff;
+  border-radius:15rpx;
+  box-sizing: border-box;
+  box-shadow: 0  0 10rpx #f5f5f5;
+  padding:20rpx;
+  letter-spacing: 1rpx;
+  margin-bottom: 20rpx;
+}
+.order-list .order-item .tid-status{
+  padding-bottom:20rpx;
+  color:#999;
+  font-size:26rpx;
+}
+.order-list .order-item .tid-status .status{
+  font-size:30rpx;
+  color:#FF8519;
+}
+.order-list .good-info{
+  padding:20rpx;
+  background-color:#F9F9F9;
+}
+.order-list .good-info .item{
+  margin-bottom: 10rpx;
+}
+.order-list .good-info .cover{
+  width:160rpx;
+  height:160rpx;
+  margin-right:20rpx;
+}
+.order-list .good-info .cover image{
+  display: block;
+  width:100%;
+  height:100%;
+  border-radius:4rpx;
+}
+.order-list .good-info .infor-wrap{
+  height:160rpx;
+}
+.order-list .good-info .infor-wrap .name{
+  padding-right:40rpx;
+  font-size:28rpx;
+  color:#333; 
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  word-break:break-all;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:3;
+}
+.order-list .good-info .infor-wrap .money{
+  color:#333;
+  font-size:30rpx;
+}
+.order-list .good-info .infor-wrap .num{
+  color:#999;
+  font-size:24rpx;
+  text-align: right;
+  margin-top:20rpx;
+}
+.order-list .order-item .total-money{
+  font-size:26rpx;
+  color:#999;
+  padding: 20rpx;
+  text-align: right;
+}
+.order-list .order-item .total-money text{
+  font-size:30rpx;
+  color:#333;
+}
+.order-list .order-item  .btn-wrap{
+  text-align: right;
+}
+.order-list .order-item  .btn-wrap .btn{
+  display: inline-block;
+  padding:10rpx 20rpx;
+  font-size:26rpx;
+  color:#999;
+  border-radius:30rpx;
+  margin-left:30rpx;
+  border:1rpx solid #999;
+} 
+.order-list .order-item  .btn-wrap .btn.blue-btn{
+  color:#2CC08C;
+  border:1rpx solid #2CC08C;
+}

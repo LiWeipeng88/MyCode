@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "活动详情",
+  "usingComponents": {
+    "form-container": "/pages/components/form-container/form-container"
+  }
+}

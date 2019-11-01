@@ -1,0 +1,29 @@
+<!--components/custom-notice.wxml-->
+<form report-submit="true" bindsubmit="formSubmit">
+  <button plain="true" class='btn' hover-class="none" data-type="click" form-type="submit">
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  <slot></slot>
+  </button>
+</form> 

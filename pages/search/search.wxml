@@ -1,0 +1,53 @@
+<!--pages/search/search.wxml-->
+ <view class="search"><input class="search_val" placeholder='输入商品名称搜索'  bindinput='getSearchVal' value='{{val}}' maxlength='16'></input>
+    <view class="search_btn" bindtap='search'>搜索</view>
+  </view>
+    <view class="search_key">
+    <text class="search_v" style='color:#999;'>热门搜索：</text>
+    <text wx:for="{{search_hot}}"  bindtap='search' bindconfirm="search" data-val="{{item.value}}" class="search_v">{{item.value}}</text>
+    </view>
+  
+
+  <view class='list'>
+  <!-- 菜单 -->
+  <view class="nav_wrap">
+    <scroll-view class="nav" scroll-x>
+      <view bindtap="activeNav" data-index="{{index}}" class="nav_item {{index === activeNav?'active':'' }}" wx:for="{{ navList }}" wx:key="{{ index }}">
+        {{item}}
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 商品列表 -->
+
+
+
+  <view class='goodsList'  wx:for="{{goods}}">
+    <view class='goodsImg' bindtap='goodDetail' data-acid="{{item.asa_id}}" data-id="{{item.g_id}}">
+      <image src='{{item.img1}}'></image>
+    </view>
+    <view class='goodsInfo' >
+      <view class='goodsTitle' bindtap='goodDetail' data-acid="{{item.asa_id}}" data-id="{{item.g_id}}">{{item.g_name}}
+        <view class='dati'>
+          <text>{{item.g_brief}}</text>
+        </view>
+      </view>
+      <view class='goodsText' bindtap='goodDetail' data-acid="{{item.asa_id}}" data-id="{{item.g_id}}">
+        <view class='newPrice'>￥
+          <text>{{item.g_price}}</text></view>
+        <view class='oldPrice'>市场价:
+          <text>￥{{item.g_ori_price}}</text>
+        </view>
+        <view class='goodsTime' bindtap='goodDetail' data-acid="{{item.asa_id}}" data-id="{{item.g_id}}">
+          <text class='goodsTimeText'>提货日期</text>
+          <text class='goodsTimeData'>{{item.asa_receive_start}}</text>
+        </view>
+        
+      </view>
+  <view class='shopping' data-gwc="2" data-acid="{{item.asa_id}}" bindtap="submitOrder" data-double="2" data-id="{{item.g_id}}">
+          <image data-gwc="2" data-acid="{{item.asa_id}}"  data-double="2" data-id="{{item.g_id}}" src='../../images/buy.png'></image>
+      </view>
+    </view>
+  </view>
+  
+  
+</view>

@@ -1,0 +1,153 @@
+<!--index.wxml-->
+
+<view class='serve-page'>
+  <!-- banner -->
+  <view class='banner'>
+    <image src='{{banner}}'></image>
+  </view>
+  <!-- 服务列表 -->
+  <view class='serve'>
+    <!-- 房屋维修 -->
+    <view class='serve-list' wx:for="{{server}}" wx:key="index" wx:for-item="item">
+      <view class='serve-img' bindtap='gotolist' data-aid="{{item.asa_id}}">
+        <image src='{{item.asa_avatar}}'></image>
+        <text>{{item.asa_title}}</text>
+        <view class='list-more fangwu'>
+          更多 >
+        </view>
+      </view>
+      <view class='serve-list-info'>
+        <view class='list-info list-info-frist ' data-id="{{citem.g_id}}" data-aid="{{item.asa_id}}" data-wuye="{{item.asa_is_wuye}}" bindtap="goodDetail" wx:for="{{item.goods_info}}" wx:if="{{index<4}}" wx:for-item="citem">
+          <image src='{{citem.g_cover}}'></image>
+          <text>{{citem.g_name}}</text>
+        </view>
+
+      </view>
+    </view>
+
+    <!-- 空调、鲜花广告 -->
+    <view class='banner-kh'>
+      <view class='air'>
+
+        <image bindtap="goodsGo" data-pages='{{pages1}}' src='{{img1}}'></image>
+      </view>
+      <view class='flower'>
+        <image bindtap="goodsGo" data-pages='{{pages2}}' src='{{img2}}'></image>
+      </view>
+    </view>
+    <!-- 底部三个列表  -->
+  </view>
+  <!-- 服务列表 -->
+  <view class='serve'>
+    <!-- 房屋维修 -->
+    <view class='serve-list' wx:for="{{server1}}">
+      <view class='serve-img' bindtap='gotolist' data-aid="{{item.asa_id}}">
+        <image src='{{item.asa_avatar}}'></image>
+        <text>{{item.asa_title}}</text>
+        <view class='list-more fangwu'>
+          更多 >
+        </view>
+      </view>
+      <view class='serve-list-info'>
+        <view class='list-info list-info-frist' data-id="{{citem.g_id}}" data-aid="{{item.asa_id}}" data-wuye="{{item.asa_is_wuye}}" bindtap="goodDetail" wx:for="{{item.goods_info}}" wx:if="{{index<4}}" wx:for-item="citem">
+          <image src='{{citem.g_cover}}'></image>
+          <text>{{citem.g_name}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 空调、鲜花广告 -->
+    <view class='banner-kh'>
+      <view class='air'>
+        <image src='../../images/kongtiao.png' bindtap="goodsGo" data-pages='{{pages3}}' src='{{img3}}'></image>
+      </view>
+      <view class='flower'>
+        <image src='../../images/xianhua.png' bindtap="goodsGo" data-pages='{{pages4}}' src='{{img4}}'></image>
+      </view>
+    </view>
+    <!-- 底部三个列表  -->
+  </view>
+  <view class='serve-list' wx:for="{{server2}}">
+    <view class='serve-img' bindtap='gotolist' data-aid="{{item.asa_id}}">
+      <image src='{{item.asa_avatar}}'></image>
+      <text>{{item.asa_title}}</text>
+      <view class='list-more fangwu'>
+        更多 >
+      </view>
+    </view>
+    <view class='serve-list-info'>
+      <view class='list-info list-info-frist' data-id="{{citem.g_id}}" data-aid="{{item.asa_id}}" data-wuye="{{item.asa_is_wuye}}" bindtap="goodDetail" wx:for="{{item.goods_info}}" wx:if="{{index<4}}" wx:for-item="citem">
+        <image src='{{citem.g_cover}}'></image>
+        <text>{{citem.g_name}}</text>
+      </view>
+    </view>
+  </view>
+
+
+
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form-container>
+
+  <!-- 单商品 -->
+  <!-- 获取用户信息提示框 -->
+  <view class="get-userinfo-modal" wx:if="{{slient==1&&isShowgetuser}}">
+    <view class="get-userinfo">
+      <view class="label-title">小程序授权提示</view>
+      <view class="tipx-txt">允许小程序获得你的头像昵称信息</view>
+      <view class="flex-wrap border-t" style="padding:10rpx 0;">
+        <view class="btn flex-con border-r" bindtap="hideGetuser">取消</view>
+        <view class="btn flex-con confirm-btn">确定
+          <button open-type='getUserInfo' bindgetuserinfo='getuserInfo'></button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--错误提示-->
+  <view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+    {{errorTip.text}}
+  </view>
+
+  <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+  <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+    <view>
+      <view style='margin-top:-45px;font-size:45rpx;'>加盟合作</view>
+      <view class="jiameng">
+        <view class="rexian">团长加盟热线</view>
+        <view class="number" bindtap='callphone' data-phone='{{phone.phone1}}'>{{phone.phone1}}</view>
+        <view class="call" bindtap='callphone' data-phone='{{phone.phone1}}'>拨打电话</view>
+        <view class="sq" bindtap='sqtz' data-status="0">在线申请</view>
+      </view>
+      <image style='width:100%;height:270rpx;width:90%;' src='https://ww.cry7.cn/getgoods/sq1.png'></image>
+    </view>
+    <view>
+
+      <view class="jiameng" style='top:429rpx'>
+        <view class="rexian">供应商合作热线</view>
+        <view class="number" bindtap='callphone1' data-phone='{{phone.phone2}}'>{{phone.phone2}}</view>
+        <view class="call" bindtap='callphone1' data-phone='{{phone.phone2}}'>拨打电话</view>
+        <view class="sq" bindtap='sqgys'>在线申请</view>
+      </view>
+      <image style='width:100%;height:270rpx;width:90%;margin-top:26rpx;' src='https://ww.cry7.cn/getgoods/sq2.png'></image>
+    </view>
+  </view>
+</form-container>

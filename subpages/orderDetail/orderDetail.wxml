@@ -1,0 +1,292 @@
+<!--subpages/orderDetail/orderDetail.wxml-->
+<view class="order-status flex-wrap">
+  <view class="desc">订单状态：</view>
+  <view class="status-wrap flex-con flex-wrap">
+    <view class="status">{{orderDetail.statusNote}}</view>
+    <!-- <view class="left-time">(剩12小时59分自动关闭)</view> -->
+  </view>
+  <!-- 核销入口 -->
+  <view class="hexiao-enter {{orderDetail.status==6?'active':''}}" bindtap="codeModelShow" wx:if="{{orderDetail.status==3||orderDetail.status==4||orderDetail.status==5||orderDetail.status==6}}">
+    <image src="/images/icon_qrcode.png" mode="aspectFit"></image>
+    <text class="text" wx:if="{{orderDetail.status==6}}">已取货</text>   
+    <text class="no-text" wx:if="{{orderDetail.status==3||orderDetail.status==4||orderDetail.status==5}}">点击取货</text>   
+  </view> 
+ 
+</view>
+<view class="sent-time flex-wrap" wx:if="{{orderDetail.wuye_id==0}}">
+  <view class="desc">
+    <block wx:if="{{orderDetail.postType==2 && orderDetail.wuye_id==0}}">提货时间：</block>
+    <block wx:if="{{orderDetail.postType==1 && orderDetail.wuye_id==0}}">配送时间：</block>
+  </view>
+  <view class="infor flex-con">{{orderDetail.start_time}}-{{orderDetail.end_time}}</view>
+</view>
+<!-- 收货地址 -->
+<view class="address-wrap flex-wrap border-t" wx:if="{{orderDetail.postType==1}}">
+  <view class="icon">
+    <image src="/images/icon_dw.png"></image>
+  </view>
+  <view class="infor flex-con">
+    <view class="name-phone flex-wrap">
+      <view class="name flex-con">收货人:{{orderDetail.address.consignee}}</view>
+      <view class="phone">{{orderDetail.address.phone}}</view>
+    </view>
+    <view class="address">
+      收货地址：{{orderDetail.address.address}}
+    </view>
+  </view>
+  <!-- <view class="jt-icon">
+    <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+  </view> -->
+</view>
+<!-- 自提地址 -->
+<view class="take-delivery address-wrap flex-wrap border-t" data-lng="{{orderDetail.community.lng}}" data-lat="{{orderDetail.community.lat}}" data-name="{{orderDetail.community.address}}" bindtap="openLocation" wx:if="{{orderDetail.postType==2}}" >
+  <view class="address flex-con">
+    <view class="area">
+      <image class="addr-icon" src="/images/icon_dw.png" mode="aspectFit"></image>
+        <text>所属小区:</text>
+        <text class="area-name">{{orderDetail.community.name}}<block wx:if="{{orderDetail.postAddress}}">（{{orderDetail.postAddress}}）</block></text> 
+    </view>
+    <view class="get-address">
+      {{orderDetail.community.address}}
+    </view>
+  </view>
+  <view class="jt-icon">
+    <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+  </view>
+</view>
+<!-- 团长信息 -->
+<view class="tuan-infor flex-wrap" wx:if="{{orderDetail.leaderName!=''}}">
+  <view class="desc">团长：</view>
+  <view class="name flex-con">{{orderDetail.leaderName}}</view>
+  <view class="phone-icon" data-mobile="{{orderDetail.leaderMobile}}" bindtap="makePhone">
+    <image src="/images/icon_tel.png" mode="aspectFit"></image>
+  </view>
+</view>
+<!-- 物流信息 -->
+<view class="tuan-infor flex-wrap"bindtap='showwuliu' data-name="{{orderDetail.t_wuliu_recode}}" data-code="{{orderDetail.t_wuliu_code}}" wx:if="{{orderDetail.wuye_id==0}}" >
+  <view class="desc">快递：</view>
+<view class="name flex-con" wx:if="{{orderDetail.t_wuliu_name==null}}">暂无快递信息</view>
+  <view class="name flex-con" wx:if="{{orderDetail.t_wuliu_name!=null}}">{{orderDetail.t_wuliu_name}} {{orderDetail.t_wuliu_code}}</view>
+</view>
+<view wx:for="{{wuliu_list}}" >
+
+<view  class="tuan-infor flex-wrap"  >
+ 
+  <view class="name flex-con">{{item.context}} </view>
+  
+</view>
+<view  class="tuan-infor flex-wrap"  >
+ 
+  <view class="name flex-con">{{item.time}} </view>
+  
+</view>
+</view>
+<view class="good-infor-wrap">
+  <block wx:key="" wx:for="{{orderDetail.goods}}" wx:for-item="good">
+    <view class="good-info flex-wrap">
+      <view class="cover">
+        <image src="{{good.cover}}" mode="aspectFit"></image>
+      </view>
+      <view class="infor-wrap flex-con flex-wrap1">
+        <view class="name flex-con">{{good.name}}</view>
+        <view class="money-num">
+          <view class="money">￥{{good.price}}</view>
+          <view class="num">x {{good.num}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <!-- <view class="note-wrap flex-wrap">
+    <view class="desc">留言</view>
+    <view class="con flex-con">暂无</view>
+  </view> -->
+</view>
+<view class="good-fjinfo">
+      <block wx:key="" wx:for="{{orderDetail.extraRemark}}" wx:if="{{orderDetail.extraRemark.length>0}}">
+      <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='text'}}">
+        <view class="cusinput-label">{{item.name}}:</view>
+        <view class="right-input flex-con">
+          <text>{{item.value.length>0?item.value:"无"}}</text>
+        </view>
+      </view>
+      <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='number'}}">
+        <view class="cusinput-label">{{item.name}}:</view>
+        <view class="right-input flex-con">
+          <text>{{item.value.length>0?item.value:"无"}}</text>
+        </view>
+      </view>
+      <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='email'}}">
+        <view class="cusinput-label">{{item.name}}:</view>
+        <view class="right-input flex-con">
+          <text>{{item.value.length>0?item.value:"无"}}</text>
+        </view>
+      </view>
+      <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='date'}}">
+        <view class="cusinput-label">{{item.name}}:</view>
+        <view class="right-input flex-con">
+          <text>{{item.value.length>0?item.value:"无"}}</text>
+        </view>
+      </view>
+      <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='time'}}">
+        <view class="cusinput-label">{{item.name}}:</view>
+        <view class="right-input flex-con">
+          <text>{{item.value.length>0?item.value:"无"}}</text>
+        </view>
+      </view>
+      <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='idcard'}}">
+        <view class="cusinput-label">{{item.name}}:</view>
+        <view class="right-input flex-con">
+          <text>{{item.value.length>0?item.value:"无"}}</text>
+        </view>
+      </view>
+      <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='mobile'}}">
+        <view class="cusinput-label">{{item.name}}:</view>
+        <view class="right-input flex-con">
+          <text>{{item.value.length>0?item.value:"无"}}</text>
+        </view>
+      </view>
+      <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='image'}}">
+        <view class="cusinput-label">{{item.name}}:</view>
+        <view class="right-input flex-con">
+          <view class="img-box" data-id="{{item.id}}" data-curimg="{{item.img}}" data-imgs="{{[item.img]}}" bindtap="peiviewImg">
+            <image src="{{item.img}}" mode="aspectFill" wx:if="{{item.value!=''}}"></image>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+<view class="desc-infor">
+  <view class="infor-item flex-wrap">
+    <view class="desc flex-con">商品金额</view>
+    <view class="con">￥{{orderDetail.goodsFee}}</view>
+  </view>
+  <view class="infor-item flex-wrap" wx:if="{{orderDetail.postType==1}}">
+    <view class="desc flex-con">配送费</view>
+    <view class="con">￥{{orderDetail.freight}}</view>
+  </view>
+  <view class="infor-item flex-wrap">
+    <view class="desc flex-con">优惠</view>
+    <view class="con">-￥{{orderDetail.discount}}</view>
+  </view>
+  <view class="total-wrap border-t">
+    实付款：<text>￥{{orderDetail.total}}</text>
+  </view>
+</view>
+<view class="desc-infor infor">
+  <view class="infor-item flex-wrap">
+    <view class="desc">订单号:</view>
+    <view class="con flex-con">{{orderDetail.tid}}</view>
+  </view>
+  <view class="infor-item flex-wrap">
+    <view class="desc">取货方式:</view>
+    <view class="con flex-con">{{orderDetail.postTypeNote}}</view>
+  </view>
+  <view class="infor-item flex-wrap" wx:if="{{orderDetail.postType==2}}">
+    <view class="desc">取货人:</view>
+    <view class="con flex-con">{{orderDetail.receiverName}}</view>
+  </view>
+  <view class="infor-item flex-wrap" wx:if="{{orderDetail.postType==2}}">
+    <view class="desc">联系方式:</view>
+    <view class="con flex-con">{{orderDetail.receiverPhone}}</view>
+  </view>
+  <view class="infor-item flex-wrap">
+    <view class="desc">下单时间:</view>
+    <view class="con flex-con">{{orderDetail.createTime}}</view>
+  </view>
+  <view class="infor-item flex-wrap" wx:if="{{orderDetail.payTime}}">
+    <view class="desc">支付时间:</view>
+    <view class="con flex-con">{{orderDetail.payTime}}</view>
+  </view>
+  <view class="infor-item flex-wrap">
+    <view class="desc">支付方式:</view>
+    <view class="con flex-con">{{orderDetail.payTypeNote}}</view>
+  </view>
+</view>
+
+<view class="get-userinfo-modal" wx:if="{{tip_onshow==1}}"  >
+    <view class="get-userinfo">
+      <view class="label-title">如需改价请输入实收价格</view>
+      <view class="tipx-txt"><input type='number' bindinput='changeprice' value='{{price_total}}' focus="true" class="price_input" /></view>
+      <view class="flex-wrap border-t" style="padding:10rpx 0;">
+       <view  class="btn flex-con border-r" bindtap="quxiao">取消支付</view>
+        <view  class="btn flex-con confirm-btn border-r">确定
+          <button data-wuye_id="{{orderDetail.wuye_id}}"   bindtap='orderPay' ></button>
+        </view>
+        
+        
+      </view>
+    </view>
+  </view>
+
+
+<view class="bottom-zhanwei">
+  <view class="bottom-btn">
+    <view class="btn" wx:if="{{orderDetail.status==1}}" data-id="{{orderDetail.tid}}" bindtap="cancelOrder">取消订单</view>
+    <view class="btn" wx:if="{{orderDetail.status>=6}}" data-id="{{orderDetail.tid}}" bindtap="delOrder">删除订单</view>
+    <!-- <view class="btn" wx:if="{{(orderDetail.status==3||orderDetail.status==4||orderDetail.status==5||orderDetail.status==6)&&orderDetail.feedback>0}}" bindtap="seeWeiquan">维权记录</view> -->
+    <view class="btn" wx:if="{{(orderDetail.status==3||orderDetail.status==4||orderDetail.status==5||orderDetail.status==6)&&orderDetail.feedback==1}}" data-tid="{{orderDetail.tid}}" bindtap="cancelTk">撤销维权</view>
+    <view class="btn blue-btn"wx:if="{{orderDetail.status==1 && orderDetail.wuye_id==0}}" bindtap="orderPay">立即支付</view>
+
+    <view class="btn blue-btn"  wx:if="{{orderDetail.status==1 && orderDetail.wuye_id==1}}" bindtap="is_show">立即支付</view>
+    <view class="btn blue-btn" wx:if="{{(orderDetail.status==3||orderDetail.status==4||orderDetail.status==5)&&orderDetail.feedback==0}}" bindtap="applyTuikuan">申请退款</view>
+
+  <view class="btn blue-btn" data-tid="{{orderDetail.tid}}" wx:if="{{orderDetail.status==3}}" bindtap="confirmVerify">确认取货</view>
+
+  </view>
+</view>
+<!--弹出层-->
+<view class="modal-mask" wx:if="{{isShowModal}}" bindtap="hideModal"></view>
+<view class="modal-content" wx:if="{{isShowModal}}">
+  <view class="applytk-wrap">
+    <view class="title">退款申请
+      <image src="../../images/icon_close.png" mode="aspectFit" class="close-modal" bindtap="hideModal"></image>
+    </view>
+    <view  class="tk-input-row" style="display:block;" >
+    <text>退款商品</text>
+    <radio-group  bindchange="radiochange"   >
+    <!-- {{orderDetail.goods}} -->
+    <radio checked='true' bindtap='quanbu' >全部</radio>
+    <view wx:for="{{orderDetail.goods}}">
+      <radio data-id="{{item.gid}}" wx:if="{{orderDetail.goods.length>1}}" bindtap='get_info' data-num='{{item.num}}' data-id='{{item.gid}}'  data-price='{{item.price}}' value="{{item.price}}">{{item.name}} * {{item.num}}件</radio>
+      <!-- <view style='float:right;margin-left:68%;'><view class="jianjia" bindtap=''>-</view></input><view class="jianjia">+</view></view> -->
+      </view>
+    </radio-group>    
+  
+    </view>
+    <view class="tk-input-row">
+      <text>退款金额(单价)</text>
+      <input class="cus-input" type="digit" disabled="true"  placeholder="请输入退款金额" value="{{tkMoney}}" bindinput="tkMoneyChange" />
+    </view>
+     <!-- <view class="tk-input-row" wx:if="{{num>0}}">
+      <text>数量</text>
+      <input class="cus-input" type="digit"  placeholder="数量" style='width:15%;' value="{{num}}" bindinput="numChange" />
+    </view> -->
+    <view class="tk-input-row">
+      <text>退款原因</text>
+      <textarea class="cus-input" fixed="{{true}}" auto-height maxlength="50" value="{{tkReason}}" placeholder="请输入您的退款原因哦~" bindinput="tkReasonChange" />
+    </view>
+    <view class="tk-input-row">
+      <text>联系方式</text>
+      <input class="cus-input" type="digit" maxlength="11" placeholder="请输入您的联系方式~" value="{{tkContact}}" bindinput="tkContactChange" />
+    </view>
+    <view class="btn-box">
+      <text class="cus-btn red-btn" bindtap="submitTkapply">提交申请</text>
+    </view>
+  </view>
+</view>
+<!-- 核销二维码弹窗 -->
+<view class="code-model-mask" wx:if="{{codeShow}}" bindtap="closeCodeModel"></view>
+<view class="code-model" wx:if="{{codeShow}}">
+  <view class="title">请将二维码出示给团长</view>
+  <view class="code-wrap">
+    <image src="{{orderDetail.qrcode}}" mode="aspectFit"></image>
+    <view class="desc">取货码：{{orderDetail.code}}</view>
+  </view>
+  <view class="close-btn border-t" bindtap="closeCodeModel">
+    关闭
+  </view>
+</view>
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>

@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "fold-menu": "/pages/components/foldMenu/foldMenu",
+    "form-container": "/pages/components/form-container/form-container"
+  }
+}

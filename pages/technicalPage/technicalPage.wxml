@@ -1,0 +1,77 @@
+<!--折叠菜单  -->
+<!-- <fold-menu></fold-menu> -->
+<import src="../../wxParse/wxParse.wxml" />
+<view class="main">
+  <view class="banner-wrap">
+    <swiper indicator-dots="true" indicator-color="#C5C9C9" indicator-active-color="#fff" autoplay="true" interval="4000" duration="800" circular="true">
+       <block wx:key="" wx:for="{{detail.slide}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" mode="aspectFill" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="infor-box">
+    <view class="infor">
+      <view class="title clearfix">
+        <view class="left">名称：</view>
+        <view class="right">{{detail.name}}</view>
+      </view>
+      <view class="address clearfix">
+        <view class="left">地址：</view>
+        <view class="right">{{detail.address}}</view>
+      </view>
+      <view class="phone clearfix">
+        <view class="left">电话：</view>
+        <view class="right"> {{detail.mobile}}</view>
+      </view>
+    </view>
+    <view class="infor-row border-t">
+      <view class="col border-r" data-lng="{{detail.lng}}" data-lat="{{detail.lat}}" bindtap="openLocation">
+        <view class="col-con">
+          <image src="/images/icon_about_dw.png" mode="aspectFill"></image>
+          <view>地图导航</view>
+        </view>
+      </view>
+      <view class="col" data-phone="{{detail.mobile}}" bindtap="makeCall">
+        <view class="col-con">
+          <image src="/images/icon_about_dh.png" mode="aspectFill"></image>
+          <view>拨打电话</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="input-wrap">
+    <view class="title">留下电话号码，客服马上联系您</view>
+    <view class="input-box">
+      <view class="input-item flex-wrap">
+        <view class="desc">姓名<text></text></view>
+        <view class="input flex-con border-b">
+          <input type="text" value="{{name}}" placeholder="请输入您的真实姓名" bindinput="nameChage"></input>
+        </view>
+      </view>
+      <view class="input-item flex-wrap">
+        <view class="desc">手机号<text></text></view>
+        <view class="input flex-con border-b">
+          <input type="number" value="{{mobile}}" placeholder="请输入您的手机号" maxlength="11" bindinput="mobileChage"></input>
+        </view>
+      </view>
+      <view class="input-item flex-wrap">
+        <view class="desc">行业<text></text></view>
+        <view class="input flex-con border-b">
+          <input type="text" value="{{industry}}" placeholder="请输入您当前所从事的行业" bindinput="industryChage"></input>
+        </view>
+      </view>
+    </view>
+    <view class="submit-btn" bindtap="submitInfor">提 交</view>
+  </view>
+  <view class="detail-box">
+    <view class="wxParse">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+  </view>
+</view>
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>

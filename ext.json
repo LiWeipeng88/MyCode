@@ -1,0 +1,49 @@
+{
+  "extEnable": false,
+  "extAppid": "wx3e37415f708cf0da",
+  "ext": {
+    "navigationBarBackgroundColor":"#2CC08C",
+    "navigationBarTextStyle":"white",
+    "suid": "fw0s9xvd1p",
+    "appid": "wx3e37415f708cf0da",
+    "version": "1.1.9",
+    "base": 19,
+    "ald_config": {
+      "app_key": "0328dbf433a87f8acfe935b6412f4d4c",
+      "getLocation": 1,
+      "getUserinfo": 1
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "black",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#afafaf",
+    "selectedColor": "#2CC08C",
+    "borderStyle": "black",
+    "backgroundColor": "#F7F8F8",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/icon/bpjl/icon_home.png",
+        "selectedIconPath": "images/icon/bpjl/icon_home_d.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/activity/activityDetail",
+        "iconPath": "images/icon/bpjl/wuye.png",
+        "selectedIconPath": "images/icon/bpjl/wuye2.png",
+        "text": "服务"
+      },
+      {
+        "pagePath": "pages/wode/wode",
+        "iconPath": "images/icon/bpjl/icon_my.png",
+        "selectedIconPath": "images/icon/bpjl/icon_my_d.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

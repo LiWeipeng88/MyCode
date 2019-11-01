@@ -1,0 +1,159 @@
+<form-container>
+<!--折叠菜单  -->
+<!-- <fold-menu></fold-menu> -->
+<!-- 顶部用户信息 -->
+<!-- <view class='main-info-show border-b'>
+  <view class='info-item border-r'>
+    <text>可提现</text>
+    <text class="money" style='color:#15B83B;'>￥{{memberInfo.deduct_ktx}}</text>
+  </view>
+  <view class='info-item border-r'>
+    <text>已提现</text>
+    <text class="money" style='color:#0094F8;'>￥{{memberInfo.deduct_ytx}}</text>
+  </view>
+  <view class='info-item border-r'>
+    <text>待审核</text>
+    <text class="money" style='color:#FF2433;'>￥{{memberInfo.deduct_dsh}}</text>
+  </view>
+</view> -->
+<!-- 操作列表 -->
+<view class='info-opera-wrap'>
+  <view class='info-item' wx:if="{{cfgInfo.wxOpen==1}}">
+    <view class='info-item-show flex-wrap border-b' data-type="wechat" bindtap='clickUnfold'>
+      <view class='left-label flex-con'>
+        <text>微信提现</text>
+      </view>
+      <view class='right-enter'>
+        <text>强烈推荐</text>
+        <image src='/images/icon_xiala_red.png' wx:if="{{isUnfold}}" class='icon-more' mode='aspectFit'></image>
+        <image src='/images/icon_fold_gray.png' wx:if="{{!isUnfold}}" class='icon-more' mode='aspectFit'></image>
+      </view>
+    </view>
+    <view class='second-item border-b {{isUnfold?"show":""}}'>
+      <view class='info-item-show flex-wrap'>
+        <view class='left-label'>
+          <text>提现金额</text>
+        </view>
+        <view class='right-enter flex-con'>
+          <input type="number" placeholder='请输入提现金额' value='{{money}}' bindinput='moneyChange'></input>
+          <view class="tips" style="padding:0;margin-top:5rpx;color:#999;font-size:24rpx;" wx:if="{{cfgInfo.serviceMsg}}">{{cfgInfo.serviceMsg}}</view>
+        </view>
+      </view>
+      <view class='info-item-show flex-wrap'>
+        <view class='left-label'>
+          <text>姓　　名</text>
+        </view>
+        <view class='right-enter flex-con'>
+          <input type="text" placeholder='请输入姓名' value='{{name}}' bindinput='nameChange'></input>
+        </view>
+      </view>
+      <view class='info-item-show flex-wrap' wx:if="{{cfgInfo.mobileOpen==1}}">
+        <view class='left-label'>
+          <text>手　　机</text>
+        </view>
+        <view class='right-enter flex-con'>
+          <input type="number" maxlength='11' placeholder='请输入手机' value='{{phone}}' bindinput='phoneChange'></input>
+        </view>
+      </view>
+      <view class='info-item-show flex-wrap' wx:if="{{cfgInfo.accountOpen==1}}">
+        <view class='left-label'>
+          <text>账号信息</text>
+        </view>
+        <view class='right-enter flex-con'>
+          <input type="text" placeholder='请输入账号信息' value='{{account}}' bindinput='accountChange'></input>
+        </view>
+      </view>
+      <!-- <view class='tips'>{{cfgInfo.desc}}</view> -->
+      <view class='confirm-btn' bindtap='confirmSubmit'>确定提交</view>
+    </view>
+  </view>
+  <view class='info-item' wx:if="{{cfgInfo.bankOen==1}}">
+    <view class='info-item-show flex-wrap border-b' data-type="bank" bindtap='clickUnfold'>
+      <view class='left-label flex-con'>
+        <text>银行卡提现</text>
+      </view>
+      <view class='right-enter'>
+        <!-- <text>强烈推荐</text> -->
+        <image src='/images/icon_xiala_red.png' wx:if="{{isBankUnfold}}" class='icon-more' mode='aspectFit'></image>
+        <image src='/images/icon_fold_gray.png' wx:if="{{!isBankUnfold}}" class='icon-more' mode='aspectFit'></image>
+      </view>
+    </view>
+    <view class='second-item border-b {{isBankUnfold?"show":""}}'>
+      <view class='info-item-show flex-wrap'>
+        <view class='left-label'>
+          <text>提现金额</text>
+        </view>
+        <view class='right-enter flex-con'>
+          <input type="number" placeholder='请输入提现金额' value='{{bankmoney}}' bindinput='bankmoneyChange'></input>
+          <view class="tips" style="padding:0;margin-top:5rpx;color:#999;font-size:24rpx;" wx:if="{{cfgInfo.serviceMsg}}">{{cfgInfo.serviceMsg}}</view>
+        </view>
+      </view>
+      <view class='info-item-show flex-wrap'>
+        <view class='left-label'>
+          <text>姓　　名</text>
+        </view>
+        <view class='right-enter flex-con'>
+          <input type="text" placeholder='请输入姓名' value='{{username}}' bindinput='usernameChange'></input>
+        </view>
+      </view>
+      <view class='info-item-show flex-wrap' wx:if="{{cfgInfo.bankMobileOpen==1}}">
+        <view class='left-label'>
+          <text>手　　机</text>
+        </view>
+        <view class='right-enter flex-con'>
+          <input type="number" maxlength='11' placeholder='请输入手机' value='{{userphone}}' bindinput='userphoneChange'></input>
+        </view>
+      </view>
+      <view class='info-item-show flex-wrap'>
+        <view class='left-label'>
+          <text>银行名称</text>
+        </view>
+        <view class='right-enter flex-con'>
+          <picker bindchange="bindBankChange" value="{{bankIndex}}" range="{{bankList}}" range-key="bank">
+            <view class="picker {{bankList[bankIndex].bank?'':'gray'}}">
+              {{bankList[bankIndex].bank?bankList[bankIndex].bank:'请选择银行名称'}}
+            </view>
+            <image src="/images/icon_fold_gray.png" mode="aspectFit"></image>
+          </picker>
+        </view>
+      </view>
+      <view style="color:red;font-size:24rpx;color:#999;padding-left:230rpx;margin-bottom:10rpx;">注：仅支持可选银行</view>
+      <view class='info-item-show flex-wrap'>
+        <view class='left-label'>
+          <text>银行账号</text>
+        </view>
+        <view class='right-enter flex-con'>
+          <input type="number" value="{{cardnum}}" placeholder='请输入银行卡号' bindinput='cardnumChange'></input>
+        </view>
+      </view>
+      
+      <!-- <view class='info-item-show flex-wrap'>
+        <view class='left-label'>
+          <text decode="{{true}}">开&emsp;户&emsp;行</text>
+        </view>
+        <view class='right-enter flex-con'>
+          <input type="text" placeholder='请输入开户行' value='{{khbank}}' bindinput='khbankChange'></input>
+        </view>
+      </view> -->
+       <!-- <view class='tips'>{{cfgInfo.desc}}</view>   -->
+      <view class='confirm-btn' bindtap='confirmBankSubmit'>确定提交</view>
+    </view>
+  </view>
+  <view class='info-item' bindtap='towithdrawRecord'>
+    <view class='info-item-show flex-wrap border-b'>
+      <view class='left-label flex-con'>
+        <text>提现记录</text>
+      </view>
+      <view class='right-enter'>
+        <image src='/images/icon-more.png' class='icon-more-enter' mode='aspectFit'></image>
+      </view>
+    </view>
+  </view>
+  <view class="withdraw-tips" wx:if="{{cfgInfo.desc!=''}}">提现说明：{{cfgInfo.desc}}</view>
+</view>
+
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>
+</form-container>

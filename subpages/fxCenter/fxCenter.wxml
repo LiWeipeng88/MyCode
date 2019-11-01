@@ -1,0 +1,78 @@
+<!--subpages/fxCenter/fxCenter.wxml-->
+<view class="top-wrap">
+</view>
+<view class="infor-wrap">
+  <view class="flex-wrap">
+    <view class="infor-item flex-con">
+      <view class="title">{{detailData.deduct_ktx}}</view>
+      <view class="desc">可提现(元)</view>
+    </view>
+    <view class="infor-item flex-con">
+      <view class="title">{{detailData.deduct_ytx}}</view>
+      <view class="desc">已提现(元)</view>
+    </view>
+    <view class="infor-item flex-con">
+      <view class="title">{{detailData.deduct_dsh}}</view>
+      <view class="desc">待审核(元)</view>
+    </view>
+  </view>
+  <view class="tx-btn" bindtap="toTx">去提现</view>
+</view>
+<view class="note">
+  {{note.info}}
+</view>
+<view class="deal-details">
+  <view class="details-label border-b">交易明细</view>
+  <view class="details-tab border-b">
+    <text class="{{detailsType==3?'active':''}}" data-type="3" bindtap="toggleDetailstype">提现记录</text>
+    <text class="{{detailsType==1?'active':''}}" data-type="1" bindtap="toggleDetailstype">收益记录</text> 
+  </view>
+  <view class="details-list" wx:if="{{detailsList.length>0}}">
+     <block wx:key="" wx:for="{{detailsList}}">
+    <view class="details-item border-b">
+      <view class="flex-wrap">
+        <view class="details-txt flex-con">{{item.statusDesc}}</view>
+        <view class="details-val">{{item.status==1?'+':'-'}}{{item.money}}</view>
+      </view>
+      <view class="time">{{item.time}}</view>
+    </view>
+    </block>
+  </view>
+  <!-- 上拉加载提示--> 
+ <view class="loading-tip" wx:if="{{showLoading}}">
+  <view class="icon_load">
+    <view id="floatingBarsG">
+      <view class="blockG" id="rotateG_01"></view>
+      <view class="blockG" id="rotateG_02"></view>
+      <view class="blockG" id="rotateG_03"></view>
+      <view class="blockG" id="rotateG_04"></view>
+      <view class="blockG" id="rotateG_05"></view>
+      <view class="blockG" id="rotateG_06"></view>
+      <view class="blockG" id="rotateG_07"></view>
+      <view class="blockG" id="rotateG_08"></view>
+    </view>
+  </view>
+  <text>努力加载中...</text>
+</view>  
+<view class="nomore-tip" wx:if="{{noMoretip&&detailsList.length>0}}">没有更多数据了</view>
+  <view class="no-data" style="padding:100rpx 0;" wx:if="{{detailsList.length<=0}}">
+    <image src="/images/empty_img.png" mode="aspectFit"></image>
+    <text>暂无相关记录哦~</text>
+  </view>
+</view>
+<!-- wx:if="{{detailData.list.length>0}}" -->
+ <!-- <view class="record-wrap" wx:if="{{detailData.list.length>0}}">
+  <view class="title">已结算记录</view>
+  <view class="record-list">
+    <block wx:key="" wx:for="{{detailData.list}}">
+      <view class="record-item border-b flex-wrap">
+        <view class="time flex-con">{{item.time}}</view>
+        <view class="money">￥{{item.money}}</view>
+      </view>
+    </block>
+  </view>
+  <view class="more-btn" bindtap="openMoreRecord">
+    <text>查看更多</text>
+    <image src="/images/icon_right-green.png"></image>
+  </view> 
+</view> -->

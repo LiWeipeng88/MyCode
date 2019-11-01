@@ -1,0 +1,8 @@
+<!--pages/qianhuo/qianhuo.wxml-->
+<view>
+  <view>
+    <text>小区名称</text>
+    <text>欠货</text>
+    <text>时间</text>
+  </view>
+</view>

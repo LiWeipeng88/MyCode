@@ -1,0 +1,49 @@
+<!--subpages/couponList/couponList.wxml-->
+<view class="no-data" style="padding:320rpx 0 0;" wx:if="{{couponList.length<=0}}">
+  <image src="/images/zw_coupon.png" mode="aspectFit"></image>
+  <text>暂无可使用的优惠券哦~</text>
+</view>  
+<view class="coupon-list" wx:if="{{couponList.length>0}}">
+  <block wx:key="" wx:for="{{couponList}}" wx:for-item="coupon">
+    <view class="coupon-item">
+      <image class="bg" src="/images/img_coupon.png" mode="aspectFit"></image>
+      <view class="coupon-infor">
+          <view class="money-wrap flex-wrap">
+            <view class="money">
+              <text>￥</text>{{coupon.value}}
+            </view>
+            <view class="desc flex-con">任意活动<block wx:if="{{coupon.limit>0}}">满{{coupon.limit}}</block>减{{coupon.value}}</view>
+            <view class="btn-wrap" wx:if="{{coupon.used==1}}" data-id="{{coupon.id}}" bindtap="getCoupon">
+              立即领取
+            </view>
+          </view>
+          <view class="flex-wrap">
+            <view class="time flex-con">有效期至 {{coupon.end}}</view>
+            <view class="use-btn"  wx:if="{{coupon.used==0}}" bindtap="backIndex"> 去使用</view>
+          </view>
+      </view>
+      <image wx:if="{{coupon.used==0}}" class="label-icon" src="/images/icon_yl.png" mode="aspectFit"></image>  
+    </view>
+  </block> 
+</view>
+<!--上拉加载提示-->
+<view class="loading-tip" wx:if="{{showLoading}}">
+  <view class="icon_load">
+    <view id="floatingBarsG">
+      <view class="blockG" id="rotateG_01"></view>
+      <view class="blockG" id="rotateG_02"></view>
+      <view class="blockG" id="rotateG_03"></view>
+      <view class="blockG" id="rotateG_04"></view>
+      <view class="blockG" id="rotateG_05"></view>
+      <view class="blockG" id="rotateG_06"></view>
+      <view class="blockG" id="rotateG_07"></view>
+      <view class="blockG" id="rotateG_08"></view>
+    </view>
+  </view>
+  <text>努力加载中...</text>
+</view> 
+<view class="nomore-tip" wx:if="{{noMoretip}}">没有更多数据了</view> 
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>

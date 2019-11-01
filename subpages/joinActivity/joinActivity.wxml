@@ -1,0 +1,73 @@
+<!--subpages/joinActivity/joinActivity.wxml-->
+<view class="top-zhanwei">
+  <view class="couponTab-wrap">
+    <view class="coupon-tab flex-wrap">
+      <view class="tab-item flex-con {{status=='on'?'active':''}}" data-status="on" bindtap="toggleChange">
+        <text>已参与</text>
+      </view>
+      <view class="tab-item flex-con {{status=='finish'?'active':''}}" data-status="finish" bindtap="toggleChange">
+        <text>已完成</text>
+      </view>
+      <view class="tab-item flex-con {{status=='expire'?'active':''}}" data-status="expire" bindtap="toggleChange">
+        <text>已过期</text>
+      </view>
+    </view>
+  </view>
+</view> 
+<view class="activity-list" wx:if="{{activityList.length>0}}">
+  <block wx:key="" wx:for="{{activityList}}" wx:for-item="active">
+    <view class="activity-item" data-id="{{active.aid}}" data-groupid="{{active.groupId}}" bindtap="activityDetail">
+      <view class="name-status flex-wrap">
+        <view class="name flex-con">{{active.activity}}</view>
+        <view class="status">{{active.statusNote}}</view>
+      </view>
+      <view class="desc">
+        <text>排龙序号:{{active.count}}号</text>
+        <text>{{active.time}}</text>
+      </view>
+      <view class="good-wrap">
+        <block wx:key="" wx:for="{{active.goods}}" wx:for-item="good">
+          <view class="good-item flex-wrap">
+            <view class="name flex-con">{{good.name}}</view>
+            <view class="money">+{{good.num}}</view>
+          </view>
+        </block>
+      </view>
+      <view class="address-wrap flex-wrap"> 
+        <image src="/images/icon_dw.png" mode="aspectFit"></image>
+        <view class="address flex-con">{{active.community.address}}</view>
+      </view> 
+      <view class="btn-wrap border-t" >
+        <view class="btn" data-groupid="{{active.groupId}}" catchtap="toActivityorder">查看订单</view>
+        <view class="btn" data-groupid="{{active.groupId}}" catchtap="toActivitycount">活动统计</view>
+        <view class="btn" data-groupid="{{active.groupId}}" catchtap="toGoodcount">商品统计</view>
+        <view class="btn" data-groupid="{{active.groupId}}" catchtap="creatPost">
+          生成海报
+        </view> 
+      </view>
+    </view>
+  </block>
+</view>
+<!--上拉加载提示-->
+<view class="loading-tip" wx:if="{{showLoading}}">
+  <view class="icon_load">
+    <view id="floatingBarsG">
+      <view class="blockG" id="rotateG_01"></view>
+      <view class="blockG" id="rotateG_02"></view>
+      <view class="blockG" id="rotateG_03"></view>
+      <view class="blockG" id="rotateG_04"></view>
+      <view class="blockG" id="rotateG_05"></view>
+      <view class="blockG" id="rotateG_06"></view>
+      <view class="blockG" id="rotateG_07"></view>
+      <view class="blockG" id="rotateG_08"></view>
+    </view>
+  </view>
+  <text>努力加载中...</text>
+</view> 
+<view class="nomore-tip" wx:if="{{noMoretip}}">没有更多数据了</view> 
+<view class="no-activity" wx:if="{{activityList.length<=0}}">
+  <image src="/images/zw_sq.png" mode="aspectFit"></image>
+  <text>暂无参与活动</text>
+  <view class="btn" bindtap="backIndex">快去参与</view>
+</view> 
+

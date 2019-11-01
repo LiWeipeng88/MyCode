@@ -1,0 +1,1 @@
+<view class="add-desktop-tip fade_in" wx:if="{{isAddtipshow}}">点此“添加到桌面”</view>

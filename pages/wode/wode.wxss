@@ -1,0 +1,109 @@
+/* pages/wode/wode.wxss */
+.top-info.style1 { position: relative;height: 210rpx; background-color:#2CC08C;}
+.top-info.style1 button { position: absolute; left: 0; top: 0; height: 100%; width: 100%; margin: 0; opacity: 0; z-index: 1; }
+.top-info.style1 image.info-bg { display: block; width: 100%; filter: url(blur.svg#blur); -webkit-filter: blur(1px); filter: blur(1px); }
+.top-info.style1 .user-info { position: absolute; left: 0; top: 0; width: 100%; box-sizing: border-box; padding: 0 25rpx; height: 100%; }
+.top-info.style1 .user-info .avatar { height: 150rpx; width: 150rpx; display: block; border-radius: 50%; margin-right: 25rpx; }
+.top-info.style1 .user-info .right-name { color: #fff; }
+.top-info.style1 .user-info .right-name text { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 500rpx; }
+.top-info.style1 .user-info .right-name text.name { font-size: 32rpx; margin-bottom: 10rpx; }
+.top-info.style1 .user-info .right-name .name-wrap { text-align: left; font-size: 0; }
+.top-info.style1 .user-info .right-name .name-wrap .name { display: inline-block; vertical-align: middle; line-height: 56rpx; height: 56rpx; margin-top: 5rpx; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; max-width: 320rpx; text-align: center; margin: 0 auto; font-size: 32rpx; color: #fff; position: relative; z-index: 1; }
+.top-info.style1 .user-info .right-name .name-wrap .icon-tongbu { padding: 10rpx; display: inline-block; vertical-align: middle; position: relative; }
+.top-info.style1 .user-info .right-name .name-wrap .icon-tongbu image { display: block; width: 34rpx; height: 34rpx; position: relative; top: -2rpx; }
+.top-info.style1 .user-info .right-name text.member { font-size: 26rpx; }
+.top-info.style1 .shezhi-btn { position: absolute; width: 80rpx; height: 80rpx; top: 0; right: 0; z-index: 10; }
+.top-info.style1 .shezhi-btn image { display: block; margin: 20rpx auto; width: 40rpx; height: 40rpx; }
+.top-info .address image{width:25rpx;height:31.25rpx;margin-right:10rpx;}
+.top-info .address .desc{display:inline-block;font-size:26rpx;}
+.top-info .jt-icon{text-align: right;}
+.top-info .jt-icon image{width:16rpx;height:26.67rpx;}
+.top-info .label-wrap{width:140rpx;background-color:rgba(0,0,0,0.1);border-radius:35rpx;text-align: center;}
+.top-info .label-wrap image{width:50rpx;height:50rpx;margin-right:5rpx;}
+.top-info .label-wrap .desc{color:#fff;font-size:24rpx;margin-top:-2rpx;}
+
+.myorder-wrap{
+  margin:16rpx 0;
+}
+.all-order{
+  padding: 10rpx 20rpx 10rpx 25rpx;
+  background-color: #fff;
+}
+.all-order>text{
+  font-size: 32rpx;
+}
+.all-order>view{
+  text-align: right;
+  padding: 20rpx 0;
+}
+.all-order>view text{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 26rpx;
+  color: #999;
+  margin-right: 10rpx;
+}
+.all-order>view image{
+  display: inline-block;
+  vertical-align: middle;
+  width:16rpx;
+  height:26.67rpx;
+  position: relative;
+  top: 2rpx;
+}
+.order-state{
+  width: 100%;
+  background-color: #fff;
+  padding: 40rpx 0;
+  display: table;
+  border-bottom: 1px solid #eee;
+}
+.order-state>view{
+  display: table-cell;
+  width: 1000rpx;
+}
+.order-state>view text{
+  color: #666;
+  text-align: center;
+  font-size: 28rpx;
+  display: block;
+}
+.order-state>view .icon-box{
+  width: 50rpx;
+  height: 50rpx;
+  margin:0 auto;
+  margin-bottom: 5rpx;
+  position: relative;
+}
+.order-state .icon-box image{
+   display: block;
+   width: 100%;
+   height: 100%;
+}
+.order-state .icon-box .number{
+  min-width: 36rpx;
+  height: 36rpx;
+  line-height: 34rpx;
+  padding: 0 5rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  text-align: center;
+  font-size: 24rpx;
+  position: absolute;
+  top:-15rpx;
+  right: -15rpx;
+  border:1px solid #FFA131;
+  color: #FFA131;
+  border-radius: 50%;
+}
+
+.service-wrap{background-color:#fff;margin-top:20rpx;padding:0 20rpx;box-sizing:border-box;}
+.service-wrap .title-wrap{font-size:32rpx;padding:30rpx 0;}
+.service-wrap .service-item{display:inline-block;width:25%;padding:35rpx 0;position:relative;overflow: hidden;}
+.service-wrap .service-item button{position: absolute; left: 0; top: 0; height: 100%; width: 100%; margin: 0; opacity: 0; z-index: 1;}
+.service-wrap .service-item .icon{display: block;width:50rpx;height:50rpx;margin:0 auto 10rpx;}
+.service-wrap .service-item text{display:block;text-align: center;font-size:24rpx;color:#666;letter-spacing: 1rpx;/*padding:0 10rpx;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;*/}
+.service-wrap .service-item .label{width:54rpx;height:26rpx;position:absolute;right:10rpx;top:10rpx;}
+.service-wrap .service-item .label image{display: block;width:100%;height:100%;}
+.service-wrap .service-item .biaoqian{background-color:#f44234;color:#fff;position:absolute;top:9rpx;right:5rpx;font-size:20rpx;padding:4rpx 10rpx;border-radius: 30rpx;line-height: 1.2;}
+.service-wrap .service-item .phone{font-size:22rpx;color:#999;position:absolute;left:0;right:0;bottom:5rpx;text-align: center;}

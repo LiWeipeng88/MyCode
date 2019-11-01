@@ -1,0 +1,87 @@
+/* subpages/Activitycount/Activitycount.wxss */
+.good-infor{
+  padding:30rpx 20rpx;
+  background-color:#fff;
+  margin-bottom: 20rpx;
+}
+.good-infor .cover{
+  width:140rpx;
+  height:140rpx;
+}
+.good-infor .cover image{
+  display: block;
+  width:100%;
+  height:100%;
+  border-radius:10rpx;
+}
+.good-infor .infor-wrap{
+  padding-left:20rpx;
+}
+.good-infor .infor-wrap .name{
+  color:#333;
+  height:80rpx;
+  line-height:40rpx;
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  word-break:break-all;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+}
+.good-infor .infor-wrap .brief{
+  max-width:550rpx;
+  color:#999;
+  font-size:26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 10rpx;
+}
+.infor-list{
+  padding:20rpx 0;
+  background-color:#fff;
+}
+.infor-list .infor-item{
+  display: inline-block;
+  width:33.33%;
+  text-align: center;
+  padding:60rpx 0;
+  box-sizing: border-box;
+  border-right: 1rpx solid #f9f9f9;
+  position:relative;
+}
+.infor-list .infor-item .desc.ps{
+  position:absolute;
+  bottom:20rpx;
+  left:0;
+  right:0;
+  text-align: center;
+}
+.infor-list .infor-item.border-bottom{
+  border-bottom:1rpx solid #f9f9f9;
+}
+.infor-list .infor-item:nth-child(3n){
+  border-right:0;
+}
+.infor-list .infor-item .num{
+  color:#333;
+  font-weight: bold;
+  font-size: 36rpx;
+}
+.infor-list .infor-item .desc{
+  color:#999;
+  font-size:26rpx;
+  margin-top:10rpx;
+}
+.reset-btn{
+  width:30%;
+  height:80rpx;
+  line-height:80rpx;
+  text-align: center;
+  color:#fff;
+  border-radius:40rpx;
+  margin:50rpx auto;
+  font-size:30rpx;
+  letter-spacing: 1rpx;
+  background-color:#2FCD98;
+}

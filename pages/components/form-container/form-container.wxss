@@ -1,0 +1,113 @@
+button.btn{
+  padding:0;
+  margin:0;
+  display:inline;
+  position: static;
+  border:0;
+  border-radius:0;
+  text-align: left;
+  line-height: 1.5;
+  word-break:break-all;
+  white-space:normal;
+}
+
+button.btn::after{
+  content:'';
+  width: 0;
+  height:0;
+  -webkit-transform:scale(1);
+  transform:scale(1);
+  display:none;
+  background-color:transparent;
+}
+
+/* 获取用户信息 */
+.getuserinfo-modal-mask{
+  position: fixed;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+.getuserinfo-modal-con{
+  position: fixed;
+  left:15%;
+  top:50%;
+  width: 70%;
+  transform: translateY(-50%);
+  background-color: #fff;
+  z-index: 12;
+  border-radius: 10rpx;
+}
+.getuserinfo-modal-con .title{
+  font-size: 34rpx;
+  text-align: center;
+  height: 96rpx;
+  line-height: 96rpx;
+}
+.getuserinfo-modal-con .get-info{
+  padding: 20rpx;
+  text-align: center;
+}
+.getuserinfo-modal-con .get-info .shop-logo{
+  display: block;
+  width:80rpx;
+  height:80rpx;
+  margin:0 auto;
+  margin-bottom: 10rpx;
+  border-radius: 50%;
+}
+.getuserinfo-modal-con .get-info .shop-name{
+  font-size: 30rpx;
+  line-height: 1.5;
+  padding: 5rpx 15rpx;
+  margin-bottom: 15rpx;
+}
+.getuserinfo-modal-con .get-info .space{
+  height: 1px;
+  transform: scaleY(0.5);
+  background-color: #dfdfdf;
+  width: 82%;
+  margin: 0 auto;
+}
+.getuserinfo-modal-con .get-info .limits{
+  font-size: 27rpx;
+  color: #999;
+  margin-top: 15rpx;
+  margin-bottom: 28rpx;
+  position: relative;
+  padding-left: 20rpx;
+  display: inline-block;
+}
+.getuserinfo-modal-con .get-info .limits:after{
+  content: '';
+  position: absolute;
+  left:0;
+  top:50%;
+  height: 12rpx;
+  width: 12rpx;
+  margin-top: -6rpx;
+  border-radius: 50%;
+  background-color: #999;
+}
+.getuserinfo-modal-con .get-btn{
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #12b413;
+  /* font-weight: bold; */
+  position: relative;
+}
+.getuserinfo-modal-con .get-btn button{
+  position: absolute;
+  left:0;
+  top:0;
+  height: 100%;
+  width: 100%;
+  margin:0;
+  opacity: 0;
+  z-index: 1;
+}

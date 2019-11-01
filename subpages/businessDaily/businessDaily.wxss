@@ -1,0 +1,48 @@
+/* subpages/businessDaily/businessDaily.wxss */
+.canvas{margin:0 auto;}
+.Daily-infor{
+  background-color:#fff;
+  padding:20rpx 0;
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+}
+.Daily-infor .money{
+  color:#2FCD98;
+  font-size:34rpx;
+  padding:0 20rpx;
+}
+.Daily-infor .desc{
+  color:#999;
+  font-size:26rpx;
+  margin-bottom: 20rpx;
+  padding:0 20rpx;
+}
+.history-wrap{
+  background-color:#fff;
+  padding:0 20rpx 20rpx;
+}
+.history-wrap .title{
+  font-size:32rpx;
+  color:#333;
+  letter-spacing: 1rpx;
+  padding:20rpx 0;
+}
+.history-wrap .fenlei{
+  padding: 10rpx 0 20rpx;
+  color:#666;
+  font-size:30rpx;
+  text-align: center;
+}
+.history-wrap .history-item{
+  padding:30rpx 0;
+  text-align: center;
+  font-size:28rpx;
+  color:#333;
+}
+.history-wrap .history-item:nth-of-type(2n+1){
+  background-color:#F8F8F8;
+}
+.history-wrap .history-item .time{
+  font-size:24rpx;
+  color:#999;
+}

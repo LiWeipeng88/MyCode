@@ -1,0 +1,64 @@
+/* subpages/orderHexiao/orderHexiao.wxss */
+.hexiao-wrap{
+  padding:30rpx 20rpx;
+}
+.hexiao-wrap .hexiao-item{
+  background-color:#fff;
+  border-radius:15rpx;
+  padding:30rpx 0;
+  box-shadow: 0  0 20rpx #ccc;
+}
+.hexiao-wrap .hexiao-item .desc{
+  text-align: center;
+  color:#333;
+  font-size:32rpx;
+}
+.hexiao-wrap .hexiao-item .input-wrap{
+  width:80%;
+  margin:30rpx auto;
+}
+.hexiao-wrap .hexiao-item .input-wrap .input-box{
+  box-sizing:border-box;
+  border:1rpx solid #eee;
+  border-radius:10rpx;
+  padding:10rpx 15rpx;
+}
+.hexiao-wrap .hexiao-item .input-wrap .input-box input{
+  padding:0;
+}
+.hexiao-wrap .hexiao-item .input-wrap .icon{
+  width:50rpx;
+  height:46.25rpx;
+  margin-left:20rpx;
+}
+.hexiao-wrap .hexiao-item .input-wrap .icon image{
+  display: block;
+  width:100%;
+  height:100%;
+}
+.hexiao-wrap .hexiao-item .reset-btn{
+  width:30%;
+  height:80rpx;
+  line-height:80rpx;
+  text-align: center;
+  color:#fff;
+  border-radius:40rpx;
+  margin:50rpx auto 0;
+  font-size:30rpx;
+  letter-spacing: 1rpx;
+  background-color:#2FCD98;
+}
+.record-btn{
+  margin:50rpx auto;
+  text-align: center;
+}
+.record-btn text{
+  color:#999;
+  vertical-align: middle;
+}
+.record-btn image{
+  width:16rpx;
+  height:26.67rpx;
+  margin-left:10rpx;
+  vertical-align: middle;
+} 

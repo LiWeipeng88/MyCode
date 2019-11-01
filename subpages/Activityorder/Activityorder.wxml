@@ -1,0 +1,149 @@
+<!--subpages/Activityorder/Activityorder.wxml-->
+<view class="search-tab-wrap">
+  <view class="search-tab">
+    <view class="search-wrap flex-wrap border-b">
+      <view class="search-box flex-con flex-wrap">
+        <image src="/images/icon_sousuo.png" mode="aspectFit"></image>
+        <view class="input-box flex-con">
+          <input type="text" value="{{keyword}}" placeholder="请输入收货人、手机号、订单号" bindinput="searchValue"></input>
+        </view>
+      </view>
+      <view class="search-btn" bindtap="searchOrder">
+        搜索
+      </view>
+    </view>
+    <view class="coupon-tab flex-wrap">
+      <view class="tab-item flex-con {{status=='all'?'active':''}}" data-status="all" data-id='0' bindtap="toggleChange">
+        <text>全部</text>
+      </view>
+      <view class="tab-item flex-con {{status=='hadpay'?'active':''}}" data-status="hadpay" data-id='0' bindtap="toggleChange">
+        <text>待核销</text>
+      </view>
+      <view class="tab-item flex-con {{status=='peisong'?'active':''}}" data-status="peisong" data-id='1'bindtap="toggleChange">
+        <text>正在配送</text>
+      </view>
+      <view class="tab-item flex-con {{status=='finish'?'active':''}}" data-status="finish" data-id='0' bindtap="toggleChange">
+        <text>已完成</text>
+      </view>
+      <view class="tab-item flex-con {{status=='refund'?'active':''}}" data-status="refund" data-id='0' bindtap="toggleChange">
+        <text>售后</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="order-list" wx:if="{{activityList.length>0}}">
+<view class="order-list" wx:if="{{activityList.length>0}}">
+  <view class="tab-item"   bindtap="hexiao" style='color:#FFF;width:138rpx;height:54rpx;background:#2FCD98;text-align:center;line-height:54rpx;margin:0px auto;border-radius:18rpx;margin-bottom:20rpx'>
+        <text>一键核销</text>
+      </view>
+    </view>
+  <block wx:key="" wx:for="{{activityList}}" wx:for-item="order">
+    <view class="order-item">
+      <view class="tid-status flex-wrap">
+     
+        <view class="tid-num flex-con">
+          订单编号：{{order.tid}}
+        </view>
+        <view class="status">{{order.statusNote}}</view>
+      </view>
+       <view class="tid-num flex-con">
+          <image src="{{order.pic}}" style='width:50rpx;height:50rpx;'></image>
+        </view>
+      <view class="peo-infor" wx:if="{{order.postType==1}}">
+        <view class="item flex-wrap">
+          <view class="desc flex-con">配送类型</view>
+          <view class="con">{{order.postTypeNote}}</view>
+        </view>
+        <view class="item flex-wrap">
+          <view class="desc flex-con">联系人</view>
+          <view class="con">{{order.address.consignee}}</view>
+        </view>
+       
+        <view class="item flex-wrap">
+          <view class="desc flex-con">联系电话</view>
+          <view class="con">{{order.address.phone}}</view>
+        </view>
+        <view class="item flex-wrap">
+          <view class="desc flex-con">配送地址</view>
+          <view class="con">{{order.address.address}}</view>
+        </view>
+      </view>
+      <view class="peo-infor" wx:if="{{order.postType==2}}">
+        <view class="item flex-wrap">
+          <view class="desc flex-con">配送类型</view>
+          <view class="con">{{order.postTypeNote}}</view>
+        </view>
+         <view class="item flex-wrap">
+          <view class="desc flex-con">微信名称</view>
+          <view class="con">{{order.nickname}}</view>
+        </view>
+        <view class="item flex-wrap">
+          <view class="desc flex-con">联系人</view>
+          <view class="con">{{order.receiverName}}</view>
+        </view>
+        <view class="item flex-wrap">
+          <view class="desc flex-con">联系电话</view>
+          <view class="con">{{order.receiverPhone}}</view>
+        </view>
+        <view class="item flex-wrap">
+          <view class="desc flex-con">自提小区</view>
+           <view class="con">{{order.community.name}}</view>
+        </view>
+         <view class="item flex-wrap">
+          <view class="desc flex-con">下单时间</view>
+           <view class="con">{{order.payTime}}</view>
+        </view>
+         <view class="item flex-wrap">
+          <view class="desc flex-con">提货时间</view>
+          
+        </view>
+        <view class="item flex-wrap">
+          
+          <view class="con">{{order.start_time}}-{{order.end_time}}</view>
+        </view>
+      </view>
+      <view class="good-wrap">
+        <block wx:key="" wx:for="{{order.goods}}" wx:for-item="good">
+          <view class="good-item flex-wrap">
+            <view class="name flex-con">{{good.name}}</view>
+            <view class="money">x {{good.num}}</view>
+          </view>
+        </block>
+      </view>
+      <view class="total-money">
+        共1件商品 合计：<text>￥{{order.total}}</text>
+      </view>
+      <view class="btn-wrap">
+        <!-- <view class="btn" wx:if="{{order.status==3||order.status==4||order.status==5}}" data-tid="{{order.tid}}" catchtap="refundMoney">退款</view>  -->
+        <view class="btn blue-btn" data-status='1' wx:if="{{order.status==3 && order.yes==1}}" data-tid="{{order.tid}}" bindtap="confirmVerify">确认核销</view>
+         <view class="btn blue-btn" data-status='0' style='color:#999;border:1rpx solid #999;' wx:if="{{order.status==3 && order.yes==null}}" data-tid="{{order.tid}}" bindtap="confirmVerify">请等待收货</view>
+      </view>
+    </view>
+  </block>
+</view>
+<!--上拉加载提示-->
+<view class="loading-tip" wx:if="{{showLoading}}">
+  <view class="icon_load">
+    <view id="floatingBarsG">
+      <view class="blockG" id="rotateG_01"></view>
+      <view class="blockG" id="rotateG_02"></view>
+      <view class="blockG" id="rotateG_03"></view>
+      <view class="blockG" id="rotateG_04"></view>
+      <view class="blockG" id="rotateG_05"></view>
+      <view class="blockG" id="rotateG_06"></view>
+      <view class="blockG" id="rotateG_07"></view>
+      <view class="blockG" id="rotateG_08"></view>
+    </view>
+  </view>
+  <text>努力加载中...</text>
+</view> 
+<view class="nomore-tip" wx:if="{{noMoretip}}">没有更多数据了</view> 
+<view class="no-activity" wx:if="{{activityList.length<=0}}">
+  <image src="/images/zw_order.png" mode="aspectFit"></image>
+  <text>暂无相关内容</text>
+</view> 
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>
+

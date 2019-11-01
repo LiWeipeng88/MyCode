@@ -1,0 +1,122 @@
+<!--subpages/supplierApply/supplierApply.wxml-->
+<!-- <view class="input-wrap">
+  <view class="input-item flex-wrap border-b">
+    <view class="desc">姓名</view>
+    <view class="input-box flex-con">
+      <input type="text" placeholder="请输入真是姓名" value="{{name}}" data-type="name" bindinput="dataChange"></input>
+    </view>
+  </view>
+  <view class="input-item flex-wrap">
+    <view class="desc">手机号</view>
+    <view class="input-box flex-con">
+      <input type="number" placeholder="请输入您的手机号" maxlength="11" value="{{phone}}" data-type="phone" bindinput="dataChange"></input>
+    </view>
+  </view>
+</view>
+<view class="textarea-box">
+  <textarea placeholder="商品描述" value="{{brief}}" data-type="brief" bindinput="dataChange"></textarea>
+</view>
+<view class="btn" bindtap="submitInfor">提交申请</view>  -->
+<view class="no-data" wx:if="{{formData.length<=0}}">
+  <image src="/images/empty_img.png" mode="aspectFit"></image>
+  <text>暂无表单数据哦~</text>
+</view>
+<view class="form-wrap" wx:if="{{formData.length>0}}">
+  <view class="form-list">
+     <block wx:key="" wx:for="{{formData}}">
+      <view class="form-item">
+        <!-- 单行文本 -->
+        <view class="single-input" wx:if="{{item.type=='input'}}">
+          <view class="label-name">{{item.data.title}}
+            <text wx:if="{{item.require=='true'}}">*</text>
+          </view>
+          <view class="input-box">
+            <input type="text" class="cus-input" value="{{item.value}}" placeholder="{{item.data.placeholder}}" data-id="{{item.id}}" bindinput="dataChange"></input>
+          </view>
+        </view>
+        <!-- 多行文本 -->
+        <view class="mutli-input" wx:if="{{item.type=='textarea'}}">
+          <view class="label-name">{{item.data.title}}
+            <text wx:if="{{item.require=='true'}}">*</text>
+          </view>
+          <view class="input-box">
+            <textarea class="cus-input" auto-height value="{{item.value}}" placeholder="{{item.data.placeholder}}" data-id="{{item.id}}" bindinput="dataChange"></textarea>
+          </view>
+        </view>
+        <!-- 地图选择 -->
+        <view class="choose-addr" wx:if="{{item.type=='map'}}">
+          <view class="label-name">{{item.data.title}}
+            <text wx:if="{{item.require=='true'}}">*</text>
+          </view>
+          <view class="input-box">
+            <view class="addr-choose cus-input flex-wrap" data-id="{{item.id}}" bindtap="chooseLocation">
+              <view class="flex-con">
+                <view class="detail-addr {{item.valueShow?'':'gray'}}">{{item.valueShow?item.valueShow:item.data.placeholder}}</view>
+              </view>
+              <image src="http://tiandiantong.oss-cn-beijing.aliyuncs.com/images/icon_choose_addr.png" class="icon_addr" mode="aspectFit"></image>
+            </view>
+            <!-- <input type="text" class="cus-input" value="{{item.value}}" placeholder="{{item.data.placeholder}}" data-id="{{item.id}}" bindinput="dataChange"></input> -->
+          </view>
+        </view>
+        <!-- 日期选择 -->
+        <view class="date-type" wx:if="{{item.type=='time'}}">
+          <view class="label-name">{{item.data.title}}
+            <text wx:if="{{item.require=='true'}}">*</text>
+          </view>
+          <view class="input-box">
+            <picker mode="date" class="cus-input" data-id="{{item.id}}" bindchange="dataChange">
+              <view class="picker {{item.value?'':'gray'}}">{{item.value?item.value:'请选择日期'}}</view>
+              <image src="/images/icon_xiala_more.png" class="icon_xiala" mode="aspectFit"></image>
+            </picker>
+          </view>
+        </view>
+        <!-- 图片上传 -->
+        <view class="img-upload" wx:if="{{item.type=='upload'}}">
+          <view class="label-name">{{item.data.title}}
+            <text wx:if="{{item.require=='true'}}">*</text>
+          </view>
+          <view class="input-box">
+            <view class="img-box" data-id="{{item.id}}" bindtap="chooseSingleImage">
+              <image src="{{item.img}}" mode="aspectFill" wx:if="{{item.value!=''}}"></image>
+              <image src="/images/icon_upload_img.png" class="add-img" mode="aspectFit" wx:if="{{item.value==''}}"></image>
+            </view>
+          </view>
+        </view>
+        <!-- 下拉选择 -->
+        <view class="select-input" wx:if="{{item.type=='select'}}">
+          <view class="label-name">{{item.data.title}}
+            <text wx:if="{{item.require=='true'}}">*</text>
+          </view>
+          <view class="input-box">
+            <picker mode="selector" class="cus-input" range="{{item.data.options}}" range-key="title" data-id="{{item.id}}" bindchange="dataChange">
+              <view class="picker {{item.value?'':'gray'}}">{{item.value?item.value:'请选择'}}</view>
+              <image src="/images/icon_xiala_more.png" class="icon_xiala" mode="aspectFit"></image>
+            </picker>
+          </view>
+        </view>
+        <view class="btn-type" wx:if="{{item.type=='submit'}}">
+          <view class="input-box">
+            <!-- <button type="primary" bindtap="submitData">{{item.data.title}}</button> -->
+            <view class="btn" bindtap="submitData">提交申请</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 提示弹窗 -->
+<view class="ts-model-mask" wx:if="{{tsModelShow}}" bindtap="ModelHide"></view>
+<view class="ts-model" wx:if="{{tsModelShow}}">
+  <!-- <view class="close-btn">
+    <text bindtap="ModelHide">X</text>
+  </view> -->
+  <view class="title">温馨提示</view>
+  <view class="con">您的申请已成功提交，随后工作人员会与您取得联系</view>
+  <view class="btn" bindtap="ModelHide">确定</view>
+</view>
+
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>

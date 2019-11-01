@@ -1,0 +1,23 @@
+.list{
+  width:218rpx;
+  height:55rpx;
+  text-align:center;
+  line-height:55rpx;
+  float:left;
+ 
+  margin-left:24rpx;
+  margin-top:21rpx;
+  border-radius:27rpx;
+  color:#fff;
+  background: #2cd5ab;
+
+
+}
+
+.title{
+
+text-align:center;
+font-size:33rpx;
+margin-top:20rpx;
+
+}

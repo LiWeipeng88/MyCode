@@ -1,0 +1,431 @@
+<form-container> 
+<view class="deliveryMethod flex-wrap" wx:if="{{wuye_id!=1}}">
+  <text>配送方式</text>
+  <view class="flex-con">
+    <radio-group class="radio-group" wx:if="{{!orderstatus}}" bindchange="expressWayChange">
+      <label class="radio" wx:for="{{orderInfo.expressWay}}">
+        <radio value="{{item.id}}" checked="{{item.id==expressWayId}}" color="#2CC08C" />
+        <text><text class="name">{{item.name}}</text></text>
+      </label> 
+    </radio-group>
+    <text class="expressWay-show" wx:if="{{orderstatus}}">{{expressWayname}}</text>
+  </view>
+</view>
+
+<view class="take-delivery" wx:if="{{bs==1 && wuye_id!=1}}" style="margin-bottom:20rpx;">
+  <view class="address-wrap flex-wrap" bindtap="selectArea">
+    <view class="address flex-con">
+      <view class="area" >
+        <image class="addr-icon" src="/images/icon_dw.png" mode="aspectFit"></image>
+        <block wx:if="{{xq_info}}">
+          <text>所属小区:</text>
+          <text class="area-name">{{xq_info.asc_name}}<block wx:if="{{xq_info.asc_address_detail}}"></block></text>
+        <view><text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;</text>自 提 点:{{xq_info.asc_address_detail}}</view>
+        </block>  
+        <block wx:if="{{!xq_info}}">
+          请选择所在小区
+        </block>  
+      </view> 
+      <block wx:if="{{xq_info}}">
+          <!-- <view class="get-address">
+            {{comInfor.address}}
+          </view> -->
+      </block>  
+    </view>
+
+    <view class="jt-icon" wx:if="{{!orderstatus}}">
+      <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+    </view>
+  </view>
+</view> 
+<!-- 取货人信息(门店自提需填入的信息) -->
+ <!-- wx:if="{{expressWayId==2}}"  -->
+<view class="take-delivery" wx:if="{{expressWayId==2}}">
+<button type='primary' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+  获取手机号码
+  </button>
+  <view class="delivery-item flex-wrap border-b">
+  
+    <text class="label-name" wx:if="{{wuye_id!=1}}">取货人</text>
+    <text class="label-name" wx:if="{{wuye_id==1}}">联系人</text>
+    <view class="right-input flex-con">
+      <input type="text" placeholder="请输入取货人姓名" value="{{takeUser}}" bindinput="takeUserChange" hidden="{{orderstatus}}" />
+      <text wx:if="{{orderstatus}}">{{takeUser.length>0?takeUser:"无"}}</text>
+    </view>
+  </view>
+  
+  <view class="delivery-item flex-wrap border-b">
+    <text class="label-name">联系电话</text>
+    <view class="right-input flex-con">
+      <input type="text" type='number' placeholder="请输入取货人电话" value="{{takeUsertel}}" maxlength="11" bindinput="takeUsertelChange" hidden="{{orderstatus}}" />
+      <text wx:if="{{orderstatus}}">{{takeUsertel.length>0?takeUsertel:"无"}}</text>
+    </view>
+  </view>
+</view> 
+<!-- wx:if="{{expressWayId!=2}}" -->
+<view class="address-wrap" wx:if="{{expressWayId!=2}}">
+  <view class="address-con flex-wrap">
+    <view class="noaddress flex-con {{addressInfo.length==0?'show':''}}" data-type="waitorder" bindtap="chooseAddress">
+      <image src="/images/icon_dw.png" mode="aspectFit"></image>
+      <text>添加收货地址</text>
+    </view>
+    <view class="hasaddress flex-con flex-wrap {{addressInfo.id?'show':''}}" data-type="waitorder" bindtap="chooseAddress">
+      <view class="flex-con">
+        <image src="/images/icon_dw.png" mode="aspectFit" class="icon_address"></image>
+        <view class="address-detail">
+          <view class="name-tel flex-wrap">
+            <text class="name flex-con">收货人:{{addressInfo.name}}</text>
+            <text class="tel">{{addressInfo.mobile}}</text>
+          </view>
+          <text class="delivery-address">收货地址：{{addressInfo.detail}}</text>
+        </view>
+      </view>
+      <image src="/images/icon_right_gray.png" mode="aspectFit" class="address-enter" wx:if="{{!orderstatus}}"></image>
+    </view>
+  </view>
+</view>  
+
+<view class="good-info-wrap" wx:if="{{wuye_id!=1}}">
+  <view class="good-info">
+      <block wx:key="" wx:for="{{orderInfo.goodsData}}" wx:for-item="good"> 
+      <view class="good-item flex-wrap">
+        <image src="{{good.img}}" mode="aspectFill" class="good-img"></image>
+        <view class="good-name flex-con">
+          <text class="name">{{good.name}}</text>
+          <!-- <text class="guige">{{good.format ? good.format : ''}}</text> -->
+        </view>
+        <view class="price-num">
+          <text>￥{{good.price}}</text>
+          <text class="num"><!--<block wx:if="{{good.weight>0}}">{{good.weight}}kg </block>-->× {{good.num}}</text>
+        </view>
+      </view>
+     </block> 
+  </view>
+  <!-- <view class="note flex-wrap">
+    <view class="desc">留 言</view>
+    <view class="note-input flex-con">
+      <input wx:if="{{!orderstatus}}" type="text" value="{{note}}" placeholder="如有特殊要求，请在此附言" bindinput="noteChange"></input>
+      <view wx:if="{{orderstatus}}">{{item.value.length>0?item.value:"无"}}</view>
+    </view>
+  </view> -->
+</view>
+<view class="info-item flex-wrap" style="padding:15rpx 25rpx;" wx:if="{{orderInfo.coupon.length>1}}" data-type="coupon" bindtap="showModal">
+  优惠
+  <view class="right-info flex-con flex-wrap">
+    <view class="flex-con">
+      <text wx:if="{{!chooseCoupon}}">您有{{orderInfo.coupon.length-1}}个优惠券可使用</text>
+      <view class="choose-coupon" hidden="{{!chooseCoupon}}">
+        <text class="name">{{chooseCoupon.name}}</text>
+        <text class="desc">
+          <block wx:if="{{chooseCoupon.limit==0}}">无使用限制</block>
+          <block wx:if="{{chooseCoupon.limit>0}}">满{{chooseCoupon.limit}}可用</block>,立减{{chooseCoupon.value}}元</text>
+      </view>
+    </view>
+    <image src="/images/food-jt.png" wx:if="{{!orderstatus}}" class="see-enter" mode="aspectFit"></image>
+  </view>
+</view>
+<!-- <view class="info-item flex-wrap" wx:if="{{orderInfo.fullAct.length>0}}" data-type="promotion" bindtap="showModal">
+  促销
+  <view class="right-info flex-con flex-wrap">
+    <view class="flex-con">
+      <text wx:if="{{!choosePromotion}}">您有{{orderInfo.fullAct.length}}个促销优惠可使用</text>
+      <text hidden="{{!choosePromotion}}">{{choosePromotion.name}}</text>
+    </view>
+    <image src="/images/food-jt.png" wx:if="{{!orderstatus}}" class="see-enter" mode="aspectFit"></image>
+  </view>
+</view> -->
+<view class="info-item border-t"  wx:if="{{wuye_id!=1}}">
+  <view class="flex-wrap">
+    商品金额
+    <view class="right-info flex-con">
+      <text class="price red">￥{{orderInfo.goodsTotal}}</text>
+    </view>
+  </view>
+  <view class="flex-wrap" wx:if="{{expressWayId==3}}">
+    运　　费<text style="font-size:26rpx;color:#999;" wx:if="{{orderInfo.totalWeight>0}}">（ 总重: {{orderInfo.totalWeight}} kg ）</text>
+    <view class="right-info flex-con">
+      <text class="price red">+￥{{postTotal}}</text>
+    </view>
+  </view>  
+  <view class="flex-wrap" wx:if="{{expressWayId==1}}">
+    配 送 费
+    <view class="right-info flex-con">
+      <text class="price red">+￥{{deliveryMoney}}</text>
+    </view>
+  </view> 
+  <view class="flex-wrap"  wx:if="{{wuye_id!=1}}">
+    优 惠 
+    <view class="right-info flex-con">
+      <text class="price red">-￥{{chooseCoupon.value?chooseCoupon.value:'0'}}</text>
+    </view>
+  </view>
+  <!-- <view class="flex-wrap" wx:if="{{orderInfo.fullAct.length>0}}">
+    促销优惠
+    <view class="right-info flex-con">
+      <text class="price red">-￥{{choosePromotion.value?choosePromotion.value:'0'}}</text>
+    </view>
+  </view> -->
+</view>
+<view class="good-fjinfo" style="margin-top:16rpx;" wx:if="{{remarkExtra.length>0}}">
+   <block wx:key="" wx:for="{{remarkExtra}}">
+  <view class="delivery-method border-b {{item.multi?'':'flex-wrap'}}" wx:if="{{item.type=='text'}}">
+    <view class="cusinput-label {{item.multi?'lineh':''}}"><text class="name">{{item.name}}</text>:<text class="must" wx:if="{{item.require}}">*</text></view>
+    <view class="right-input flex-con">
+      <block wx:if="{{item.multi}}">
+        <textarea wx:if="{{orderstatus==''&&!isShowModal}}" placeholder="{{item.placeholder?item.placeholder:'请输入'+item.name}}" value="{{item.value}}" data-id="{{item.id}}" bindinput="dataChange"></textarea>
+
+        <textarea wx:if="{{orderstatus==''&&!isShowModal}}" placeholder="{{item.placeholder?item.placeholder:'请输入'+item.name}}" value="{{item.value}}" data-id="{{item.id}}" bindinput="dataChange"></textarea>
+        <view class="textarea-place" wx:else>{{item.value?item.value:item.placeholder}}</view>
+      </block>
+      <block wx:else>
+        <input type="text" wx:if="{{orderstatus=='' && wuye_id!=1}}" placeholder="{{item.placeholder?item.placeholder:'请输入'+item.name}}" value="{{item.value}}" data-id="{{item.id}}" bindinput="dataChange"/>
+
+         <input type="text" wx:if="{{orderstatus=='' && wuye_id==1}}" placeholder="请输入详细地址" value="{{item.value}}" data-id="{{item.id}}" bindinput="dataChange"/>
+      </block>
+      <text wx:if="{{orderstatus}}">{{item.value.length>0?item.value:"无"}}</text>
+    </view>
+  </view>
+  <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='number'}}">
+    <view class="cusinput-label"><text class="name">{{item.name}}</text>:<text class="must" wx:if="{{item.require}}">*</text></view>
+    <view class="right-input flex-con">
+      <input type="number" wx:if="{{orderstatus==''}}" placeholder="{{item.placeholder?item.placeholder:'请输入'+item.name}}" value="{{item.value}}" data-id="{{item.id}}" bindinput="dataChange"/>
+      <text wx:if="{{orderstatus}}">{{item.value.length>0?item.value:"无"}}</text>
+    </view>
+  </view>
+  <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='email'}}">
+    <view class="cusinput-label"><text class="name">{{item.name}}</text>:<text class="must" wx:if="{{item.require}}">*</text></view>
+    <view class="right-input flex-con">
+      <input type="text" wx:if="{{orderstatus==''}}" placeholder="{{item.placeholder?item.placeholder:'请输入'+item.name}}" value="{{item.value}}" data-id="{{item.id}}" bindinput="dataChange"/>
+      <text wx:if="{{orderstatus}}">{{item.value.length>0?item.value:"无"}}</text>
+    </view>
+  </view>
+  <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='date'}}">
+    <view class="cusinput-label"><text class="name">{{item.name}}</text>:<text class="must" wx:if="{{item.require}}">*</text></view>
+    <view class="right-input flex-con">
+      <picker mode="date" class="cus-input" wx:if="{{orderstatus==''}}" data-id="{{item.id}}" bindchange="dataChange">
+        <view class="picker">{{item.value?item.value:(item.placeholder?item.placeholder:'请选择日期')}}</view>
+        <image src="/images/icon_xiala_more.png" class="icon_xiala" mode="aspectFit"></image>
+      </picker>
+      <text wx:if="{{orderstatus}}">{{item.value.length>0?item.value:"无"}}</text>
+    </view>
+  </view>
+  <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='time'}}">
+    <view class="cusinput-label"><text class="name">{{item.name}}</text>:<text class="must" wx:if="{{item.require}}">*</text></view>
+    <view class="right-input flex-con">
+      <block wx:if="{{orderstatus==''}}">
+      <picker mode="date" class="cus-input border-b" data-id="{{item.id}}" data-type="dateval" bindchange="dataChange" wx:if="{{item.date}}">
+        <view class="picker">{{item.dateval?item.dateval:(item.placeholder?item.placeholder:'请选择日期')}}</view>
+        <image src="/images/icon_xiala_more.png" class="icon_xiala" mode="aspectFit"></image>
+      </picker>
+      <picker mode="time" class="cus-input" data-id="{{item.id}}" data-type="timeval" bindchange="dataChange">
+        <view class="picker"><block wx:if="{{item.date}}">{{item.timeval?item.timeval:(item.placeholder?item.placeholder:'请选择时间')}}</block><block wx:else>{{item.value?item.value:(item.placeholder?item.placeholder:'请选择时间')}}</block></view>
+        <image src="/images/icon_xiala_more.png" class="icon_xiala" mode="aspectFit"></image>
+      </picker>
+      </block>
+      <text wx:if="{{orderstatus}}">{{item.value.length>0?item.value:"无"}}</text>
+    </view>
+  </view>
+  <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='idcard'}}">
+    <view class="cusinput-label"><text class="name">{{item.name}}</text>:<text class="must" wx:if="{{item.require}}">*</text></view>
+    <view class="right-input flex-con">
+      <input type="idcard" wx:if="{{orderstatus==''}}" placeholder="{{item.placeholder?item.placeholder:'请输入'+item.name}}" value="{{item.value}}" data-id="{{item.id}}" bindinput="dataChange"/>
+      <text wx:if="{{orderstatus}}">{{item.value.length>0?item.value:"无"}}</text>
+    </view>
+  </view>
+  <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='mobile'}}">
+    <view class="cusinput-label"><text class="name">{{item.name}}</text>:<text class="must" wx:if="{{item.require}}">*</text></view>
+    <view class="right-input flex-con">
+      <input type="number" maxlength='11' wx:if="{{orderstatus==''}}" placeholder="{{item.placeholder?item.placeholder:'请输入'+item.name}}" value="{{item.value}}" data-id="{{item.id}}" bindinput="dataChange"/>
+      <text wx:if="{{orderstatus}}">{{item.value.length>0?item.value:"无"}}</text>
+    </view>
+  </view>
+  <view class="delivery-method border-b flex-wrap" wx:if="{{item.type=='image'}}">
+    <view class="cusinput-label"><text class="name">{{item.name}}</text>:<text class="must" wx:if="{{item.require}}">*</text></view>
+    <view class="right-input flex-con">
+      <block wx:if="{{orderstatus==''}}">
+      <view class="img-box" data-id="{{item.id}}" bindtap="chooseSingleImage">
+        <image src="{{item.img}}" mode="aspectFill" wx:if="{{item.value!=''}}"></image>
+        <image src="/images/icon_upload_img.png" class="add-img" mode="aspectFit" wx:if="{{item.value==''}}"></image>
+      </view>
+      <text class="tips" wx:if="{{item.value!=''}}">点击图片可更换图片</text>
+      </block>
+      <view class="img-box" wx:if="{{orderstatus}}" data-id="{{item.id}}" data-curimg="{{item.img}}" data-imgs="{{[item.img]}}" bindtap="peiviewImg">
+        <image src="{{item.img}}" mode="aspectFill" wx:if="{{item.value!=''}}"></image>
+      </view>
+    </view>
+  </view>
+
+    
+
+
+  </block>
+  
+  <!-- <view class="delivery-method flex-wrap">
+    买家留言：
+    <view class="right-input flex-con">
+      <input type="text" placeholder="点击给商家留言" bindinput="noteChange" hidden="{{orderstatus}}" />
+      <text wx:if="{{orderstatus}}">{{note.length>0?note:"无"}}</text>
+    </view>
+  </view> -->
+
+  <view class="delivery-method border-b flex-wrap" wx:if="{{wuye_id!=1&&jifen==0}}" >
+<view class="cusinput-label">
+<text class="name" style='width: 160rpx;'> 积分抵扣:</text>
+</view>
+<view class="right-input flex-con">
+<input data-id="0" placeholder="请填写要抵扣的积分" type='number' type="text" value="" bindinput="clickExp" >
+请填写要抵扣的积分
+</input>
+</view>
+
+</view>
+  <view class="delivery-method border-b flex-wrap"  wx:if="{{jifen==0&&wuye_id!=1}}" >
+<view class="cusinput-label">
+<text class="name" style='width: 160rpx;'> 可用积分:{{exp}}</text>
+</view>
+
+</view>
+
+
+  <!-- <view class="delivery-method border-b flex-wrap" wx:if="{{jifen==0}}" style='paading:26rpx 0；height: 70rpx;display:bolck;'>
+    可用积分{{exp}}：
+    <view class="right-input flex-con" style='box-sizing:border-box;padding-right:25rpx;overflow:hidden;'>
+      <input type="text" placeholder="请填写要抵扣的积分" bindinput="clickExp"  />
+      <text >积分：</text>
+    </view>
+  </view>  -->
+
+
+
+</view>
+<!-- <view class="info-item flex-wrap border-t payway-choose" wx:if="{{orderstatus}}">
+  支付方式
+  <view class="right-info flex-con">
+    <view>
+      {{payWay==1?'在线支付':'货到付款'}}
+    </view>
+  </view>
+</view> -->
+<view class="pay-choose">
+  <radio-group class="radio-group" bindchange="payRadioChange" wx:if="{{!orderstatus}}">
+     <block wx:key="" wx:for="{{payType}}" wx:for-item="pay">
+      <view class="flex-wrap border-t radio-wrap">
+        <view style="padding:12rpx 0;">
+          {{pay.typeNote}}
+          <view class="balance" wx:if="{{pay.type==3}}">可用余额
+            <text>￥{{pay.balance}}</text>
+            <block wx:if="{{pay.type==3&&pay.balance<=sumTotal}}"> (余额不足)
+              <view class="recharge-tip" bindtap="toRecharge"><image src="/images/icon_chongzhi.png" mode="aspectFit"></image></view>
+            </block> 
+          </view>
+        </view>
+        <label class="radio flex-con">
+          <!-- <text class="flex-con">{{pay.typeNote}}</text> -->
+          <radio value="{{pay.type}}" disabled="{{pay.type==3&&pay.balance<sumTotal}}" checked="{{payWay==pay.type}}" color="#2CC08C" />
+        </label>
+      </view>
+    </block>
+  </radio-group>
+</view>
+<!-- 技术支持 -->
+<view class="technical-support" data-onoff="{{supportOpen==1}}" wx:if="{{openWatermark==1}}" bindtap="toTechnicalPage">
+  <text>{{watermark}}v{{curVersion}}</text>
+  <image src="/images/icon-technical.png" mode="aspectFit" wx:if="{{supportOpen==1}}"></image>
+</view>
+<view class="bottom-zhanwei">
+  <view class="bottom-opera flex-wrap border-t" >
+    <view class="flex-con sumprice"  >
+      <text wx:if="{{wuye_id!=1}}">合计：</text>
+       <text wx:if="{{wuye_id==1}}">我们将尽快与您联系预约时间</text>
+      <text class="price" wx:if="{{wuye_id!=1}}" >￥{{sumTotal}}</text>
+      
+    </view>
+    <!-- <text class="buy-btn gray" wx:if="{{satisfySend>sumTotal&&expressWayId==1}}">{{satisfySend}}元起送</text>
+    <block wx:else>
+    <text class="buy-btn" hidden="{{orderstatus}}" catchtap="submitOrder">提交订单</text>
+    <text class="buy-btn" wx:if="{{orderstatus}}" catchtap="orderPay">去支付</text>  -->
+    <text class="buy-btn" hidden="{{orderstatus}}" wx:if="{{wuye_id!=1}}" catchtap="submitOrder">提交订单</text>
+     <text class="buy-btn" hidden="{{orderstatus}}" wx:if="{{wuye_id==1}}" catchtap="submitOrder">立即预约</text>
+  
+    <text class="buy-btn" wx:if="{{orderstatus && wuye_id!=1}}" catchtap="orderPay">去支付</text> 
+    <!-- </block> -->
+  </view>
+</view>
+
+<!-- 优惠促销弹出层 -->
+<view class="modal-mask fade_in" wx:if="{{isShowModal}}"></view>
+<view class="modal-content" wx:if="{{isShowModal}}">
+  <view class="modal-title border-b">
+    <text wx:if="{{curChooseType=='coupon'}}">选择优惠券</text>
+    <text wx:if="{{curChooseType=='promotion'}}">选择促销优惠</text>
+    <image src="/images/icon_close.png" class="close" mode="aspectFit" bindtap="hideModal"></image>
+  </view>
+  <view class="main-content coupon" wx:if="{{curChooseType=='coupon'}}">
+    <view class="list-wrap">
+       <block wx:key="" wx:for="{{orderInfo.coupon}}" wx:for-item="coupon">
+        <view class="list-item flex-wrap border-b" data-coupon="{{coupon}}" bindtap="toggleCoupon">
+          <image src="/images/icon_nocheck.png" wx:if="{{curCouponId!=coupon.id}}" class="checkbox" mode="aspectFit"></image>
+          <image src="/images/icon_checked.png" wx:if="{{curCouponId==coupon.id}}" class="checkbox" mode="aspectFit"></image>
+          <view class="flex-con">
+            <text class="name">{{coupon.name}}</text>
+            <text class="desc">
+              <block wx:if="{{coupon.limit==0}}">无使用限制</block>
+              <block wx:if="{{coupon.limit>0}}">满{{coupon.limit}}可用</block>,立减{{coupon.value}}元</text>
+          </view>
+          <text class="tag-tip" >-￥{{coupon.value}}</text>
+        </view>
+      </block>
+    </view>
+    <view class="confirm-btn" catchtap="confirmChooseCoupon">确定</view>
+  </view>
+  <view class="main-content promotion" wx:if="{{curChooseType=='promotion'}}">
+    <view class="list-wrap">
+       <block wx:key="" wx:for="{{orderInfo.fullAct}}" wx:for-item="full">
+        <view class="list-item flex-wrap border-b" data-promotion="{{full}}" bindtap="togglePromotion">
+          <image src="/images/icon_nocheck.png" wx:if="{{curPromotionId!=full.id}}" class="checkbox" mode="aspectFit"></image>
+          <image src="/images/icon_checked.png" wx:if="{{curPromotionId==full.id}}" class="checkbox" mode="aspectFit"></image>
+          <text class="flex-con">{{full.name}}</text>
+          <text class="tag-tip">{{full.desc}}</text>
+        </view>
+      </block>
+    </view>
+    <view class="confirm-btn" bindtap="confirmChoosePromotion">确定</view>
+  </view>
+</view>
+<view class="get-userinfo-modal" wx:if="{{tip_onshow==1}}"  >
+    <view class="get-userinfo">
+      <view class="label-title">柒個秋天温馨提示</view>
+      <view class="tipx-txt">当前小区:{{xq_info.asc_name}}</view>
+      
+      <view class="flex-wrap border-t" style="padding:10rpx 0;">
+       <view  class="btn flex-con border-r" bindtap="selectArea">去选择小区</view>
+        <view  class="btn flex-con confirm-btn border-r">确定
+          <button   bindtap='on_tip_onshow' ></button>
+        </view>
+        
+         <view wx:if="{{dingwei==0}}" class="btn flex-con confirm-btn">打开定位
+          <button  open-type='openSetting' ></button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+<view class="get-userinfo-modal" wx:if="{{pay_onshow==1}}"  >
+    <view class="get-userinfo">
+      <view class="label-title">柒個秋天温馨提示</view>
+      <view class="tipx-txt">您已提交订单.客服将尽快与您联系</view>
+      
+      <view class="flex-wrap border-t" style="padding:10rpx 0;">
+      
+        <view  class="btn flex-con confirm-btn border-r">确定
+          <button   bindtap='on_pay_onshow' ></button>
+        </view>
+
+      </view>
+    </view>
+  </view>
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>
+</form-container> 

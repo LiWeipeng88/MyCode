@@ -1,0 +1,71 @@
+/* subpages/Goodcount/Goodcount.wxss */
+.good-infor{
+  padding:30rpx 20rpx;
+  background-color:#fff;
+  margin-bottom: 20rpx;
+}
+.good-infor .cover{
+  width:140rpx;
+  height:140rpx;
+}
+.good-infor .cover image{
+  display: block;
+  width:100%;
+  height:100%;
+  border-radius:10rpx;
+}
+.good-infor .infor-wrap{
+  padding-left:20rpx;
+}
+.good-infor .infor-wrap .name{
+  color:#333;
+  height:80rpx;
+  line-height:40rpx;
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  word-break:break-all;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+}
+.good-infor .infor-wrap .brief{
+  max-width:550rpx;
+  color:#999;
+  font-size:26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 10rpx;
+}
+
+.history-wrap{
+  padding:0 20rpx 20rpx;
+  background-color:#fff;
+}
+.history-wrap .fenlei{
+  padding: 30rpx 0;
+  color:#666;
+  font-size:30rpx;
+  text-align: center;
+}
+.history-wrap .history-item{
+  padding:30rpx 0;
+  text-align: center;
+  font-size:28rpx;
+  color:#333;
+}
+.history-wrap .history-item .num{
+  color:#999;
+  vertical-align: middle;
+}
+.history-wrap .history-item:nth-of-type(2n+1){
+  background-color:#F8F8F8;
+}
+.history-wrap .history-item .time{
+  color:#333;
+  padding: 0 15rpx;
+}
+.history-wrap .history-item .money{
+  color:#FF880E;
+  font-size:32rpx;
+}

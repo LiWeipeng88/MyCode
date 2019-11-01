@@ -1,0 +1,27 @@
+<!--subpages/businessDaily/businessDaily.wxml-->
+<view class="Daily-infor">
+  <view class="money">￥{{chartData.money}}</view>
+  <view class="desc">最近7天的营业总额</view>
+  <view class="cavans-wrap">
+    <canvas class="canvas" style="width:{{cavasW}}px;height:{{cavasH}}px;" canvas-id="chartArea"></canvas>
+  </view>
+</view>
+<view class="history-wrap" wx:if="{{historyList.length>0}}">
+  <view class="title">历史营业状态</view>
+  <view class="fenlei flex-wrap">
+    <view class="desc flex-con">日期</view>
+    <view class="desc flex-con">营业额(元)</view>
+    <!-- <view class="desc flex-con">退款(元)</view> -->
+    <view class="desc flex-con">明细</view>
+  </view>
+  <view class="history-list">
+    <block wx:key="" wx:for="{{historyList}}" wx:for-item="history">
+      <view class="history-item flex-wrap" data-day="{{history.date}}" bindtap="toDailyDetail">
+        <view class="time flex-con">{{history.date}}</view>
+        <view class="money flex-con">{{history.money}}</view>
+        <!-- <view class="money flex-con">0</view>  -->
+        <view class="btn flex-con">查看</view> 
+      </view>
+    </block>
+  </view>
+</view>

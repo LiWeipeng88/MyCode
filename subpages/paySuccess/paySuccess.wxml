@@ -1,0 +1,71 @@
+<!--subpages/paySuccess/paySuccess.wxml-->
+<!-- <view class="order_tid">
+  <view class="order_tidd">订单号:93030302515478136</view><view class="order_time" >下单时间: 2020-12-31 10:10:1</view> 
+</view> -->
+<view class="main-content" wx:if="{{fx==2}}">
+  <view class="img">
+    <image src="/images/zw_zf.png" mode="aspectFit"></image>
+  </view>
+  <view class="desc">订单支付成功</view>
+  <view class="btn-wrap flex-wrap">
+    <view class="flex-con">
+      <view class="btn look-btn" bindtap="lookOrder">
+        查看订单
+      </view>
+    </view>
+     <view class="flex-con">
+      <!-- <view class="btn look-btn" style='color:#2CC08C' bindtap="lookOrder">
+        {{idd}}
+      </view> -->
+    </view>
+  </view>
+</view>
+
+<view class="main-content" >
+  <view class="img">
+    <image src="{{goods['0']['arr']['2']}}" mode="aspectFit"></image>
+  </view>
+  <view class="desc" style='margin-top:10px;'>会员:{{goods['0']['arr']['3']}}</view>
+  <view class="desc" style='margin-top:10px;' >所属小区:{{goods['0']['arr']['1']}}</view>
+  <view wx:for="{{goods}}">
+  <view bindtap='go_goods' data-id="{{item.to_g_id}}" data-wuye_id="{{item.arr.wuye_id}}" data-aid="{{item.to_se_aid}}" style='width:96%;height:60px;border-radius:21px;margin-left:6px;background:#efe;margin-top:28px;'>
+    <image style='width:50px;height:50px;float:left;margin-top:4px;' src="{{item.to_pic}}"></image>
+    <view style='margin-top:21px;float:left;font-size:14px;margin-left:10px;margin-left:5px;color:#999;'><text>{{item.to_title}}</text></view>
+    <view style='margin-top:21px;float:left;font-size:14px;margin-left:4px;color:#2CC08C;'><text>*{{item.to_num}}件</text> </view>
+    <view style='margin-top:21px;float:left;font-size:14px;margin-left:4px;color:#FF7F12;'><text>￥{{item.to_price}}</text> </view>
+    <view style='margin-top:18px;float:right;font-size:16px;margin-right:13px;color:#2cc08c;border:1px solid;border-radius:6px;margin-left:6px;'><text>我也想要</text> </view>
+    </view>
+  </view>
+</view>
+<!-- 
+<view class="share">
+<view class="title">晒单宣言：</view>
+  <radio-group class="share_g" bindchange="radiochange">
+      <radio width="50px" height="50px" checked='true' value="0" class="group_g"><text>我参团 我光荣</text></radio>
+      <radio width="50px" height="50px" class="group_g" value="1" ><text>我参团 我骄傲</text></radio>
+      <radio width="50px" height="50px" class="group_g" value="2" ><text>一人参团，全村光荣</text></radio>
+      <radio width="50px" height="50px" class="group_g" value="3" ><text>快到团里来</text></radio>
+     
+      
+  </radio-group>
+
+</view> -->
+
+ <view class="flex-con" >
+    <!-- backActive -->
+      <view class="btn share-btn" bindtap="">
+       
+        <button open-type="share">好东西我要分享</button>
+      </view>
+    </view>
+  <view class="flex-con" style='text-align:center;margin-top:10rpx;' >
+    <!-- backActive -->
+      <view class="btn share-btn" bindtap="">
+       
+        <text wx:if="{{tp_jifen==2}}">分享可获得{{exp}}个积分</text>
+      </view>
+    </view>
+<view class="back-index" bindtap="backIndex" >
+  <text>回到首页</text>
+  <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+</view>

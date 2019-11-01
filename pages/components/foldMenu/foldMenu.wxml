@@ -1,0 +1,33 @@
+<block wx:if="{{(isIndex==0&&menuAllShow==1)||(isIndex==1&&suspensionMenu.length>0)}}">
+  <!-- 显示更多菜单 -->
+  <view class="addmenu {{isShowmenu?'is-active':''}}" style="left:{{left}}px;top:{{top}}px;background-color:{{navColor}};" bindtap="_moremenu_toggleMenu">
+    <text class="line"></text>
+    <text class="line"></text>
+    <text class="line"></text>
+  </view>
+  <view class="more-menu-mask fade_in" catchtouchstart="_catchtouchstart" wx:if="{{isShowmenu}}" bindtap="_moremenu_toggleMenu"></view>
+  <view class="more-menu {{isShowmenu?'show':''}}">
+    <scroll-view scroll-y>
+      <view class="menu-item border-b" data-type="index" bindtap="_moremenu_menuOpera" wx:if="{{!isIndex}}">
+        <image class="fade_in" src="/images/icon_sy.png" mode="aspectFit"></image>
+        <text>返回首页</text>
+      </view>
+       <block wx:key="" wx:for="{{suspensionMenu}}" wx:for-item="menu">
+        <view class="menu-item border-b" data-type="{{menu.type}}" data-url="{{menu.link}}" data-mobile="{{mobile}}" bindtap="_moremenu_menuOpera">
+          <block wx:if="{{menu.type=='101'}}">
+            <button class="kefu-btn" open-type="contact" session-from="{{sessionForm}}" wx:if="{{customerMobile==0||(customerMobile==1&&contactPhone!='')}}" bindcontact="contactRecord"> </button>
+            <button class="kefu-btn" open-type="getPhoneNumber" wx:if="{{customerMobile==1&&contactPhone==''}}" bindgetphonenumber="getPhoneNumber"> </button> 
+          </block>
+          <block wx:if="{{menu.type=='106'}}">
+            <navigator class="kefu-btn" target="miniProgram" app-id="{{menu.link}}" open-type="navigate" />
+          </block>
+          <image class="fade_in" src="{{menu.imgsrc}}" mode="aspectFit"></image>
+          <text>{{menu.title}}</text>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</block>
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>

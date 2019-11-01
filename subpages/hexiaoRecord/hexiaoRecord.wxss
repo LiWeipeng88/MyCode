@@ -1,0 +1,27 @@
+/* subpages/hexiaoRecord/hexiaoRecord.wxss */
+.record-list{
+  padding:20rpx;
+}
+.record-list .record-item{
+  padding:0 20rpx;
+  background-color:#fff;
+  border-radius:10rpx;
+  margin-bottom:20rpx;
+  color:#999;
+  font-size:26rpx;
+}
+.record-list .record-item .tid-num{
+  padding:20rpx 0;
+}
+.record-item .good-wrap{
+  background-color:#f9f9f9;
+  padding:20rpx;
+  border-radius:10rpx;
+  color:#666;
+  font-size:28rpx;
+  margin-top:10rpx;
+}
+.record-item .time{
+  text-align: right;
+  padding:20rpx 0;
+}

@@ -1,0 +1,141 @@
+/* subpages/Activityorder/Activityorder.wxss */
+.search-tab-wrap{
+  padding-top:214rpx;
+}
+.search-tab{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+}
+.search-wrap{
+  padding:20rpx 0;
+  background-color:#fff;
+}
+.search-wrap .search-box{
+  padding:10rpx 20rpx;
+  margin-left:20rpx;
+  background-color:#F9F9F9;
+  border-radius:35rpx;
+}
+.search-wrap .search-box image{
+  display: block;
+  width:30rpx;
+  height:30rpx;
+  margin-right: 20rpx;
+}
+.search-wrap .search-box input{
+  display: block;
+  width:100%;
+  padding:0;
+}
+.search-wrap .search-btn{
+  padding:0 20rpx;
+  color:#666;
+  font-size:32rpx;
+}
+.coupon-tab{
+  letter-spacing: 1rpx;
+  background-color:#fff;
+}
+.coupon-tab .tab-item{
+  height:100rpx;
+  line-height:100rpx;
+  text-align: center;
+  color:#666;
+  box-sizing:border-box;
+  position:relative;
+}
+.coupon-tab .tab-item.active{
+  color:#2FCD98;
+}
+.coupon-tab .tab-item.active:after{
+  content:'';
+  width:20%;
+  height:5rpx;
+  background-color:#2FCD98;
+  position:absolute;
+  left:40%;
+  top:95rpx;
+}
+.order-list{
+  padding:20rpx;
+}
+.order-list .order-item{
+  background-color:#fff;
+  border-radius:15rpx;
+  box-sizing: border-box;
+  box-shadow: 0  0 10rpx #f5f5f5;
+  padding:20rpx;
+  letter-spacing: 1rpx;
+  margin-bottom: 20rpx;
+}
+.order-list .order-item .tid-status{
+  padding-bottom:20rpx;
+  color:#999;
+  font-size:28rpx;
+}
+.order-list .order-item .tid-status .status{
+  font-size:30rpx;
+  color:#FF8519;
+}
+.order-list .peo-infor .item{
+  padding:10rpx 0;
+  color:#333;
+  font-size:30rpx;
+}
+.order-list .peo-infor .item .desc{
+  color:#999;
+  min-width:150rpx;
+}
+.order-list .good-wrap{
+  background-color:#f9f9f9;
+  padding:20rpx;
+  border-radius:10rpx;
+  color:#333;
+  font-size:30rpx;
+  margin-top:10rpx;
+}
+.order-list .order-item .total-money{
+  font-size:26rpx;
+  color:#999;
+  padding: 20rpx;
+  text-align: right;
+}
+.order-list .order-item .total-money text{
+  font-size:30rpx;
+  color:#333;
+}
+.order-list .order-item  .btn-wrap{
+  text-align: right;
+}
+.order-list .order-item  .btn-wrap .btn{
+  display: inline-block;
+  padding:10rpx 20rpx;
+  font-size:26rpx;
+  color:#999;
+  border-radius:30rpx;
+  margin-left:30rpx;
+  border:1rpx solid #999;
+} 
+.order-list .order-item  .btn-wrap .btn.blue-btn{
+  color:#2CC08C;
+  border:1rpx solid #2CC08C;
+}
+
+/* 无参与活动 */
+.no-activity{
+  padding-top:300rpx;
+  text-align: center;
+  letter-spacing: 1rpx;
+}
+.no-activity image{
+  display: block;
+  width:180rpx;
+  height:210rpx;
+  margin:0 auto 10rpx;
+}
+.no-activity  text{
+  color:#999;
+  font-size:30rpx;
+}

@@ -1,0 +1,363 @@
+<form-container>
+  <!--折叠菜单  -->
+  <fold-menu></fold-menu>
+  <import src="../../wxParse/wxParse.wxml" />
+  <view class="{{fixedShow?'fixed':''}}">
+    <view class="no-data" wx:if="{{articleInfo.length<=0}}">
+      <image src="../../images/no-data.png" mode="aspectFit"></image>
+      <text>暂无相应内容哦~</text>
+    </view>
+    <block wx:else>
+      <!-- 非付费阅读 -->
+      <block wx:if="{{isPay==0}}">
+        <!-- <scroll-view scroll-y scroll-with-animation="{{true}}" scroll-into-view="{{intoview}}" style="max-height:100%;box-sizing:border-box;" wx:if="{{articleInfo}}"> -->
+        <view id="topPart">
+          <!-- 视频 -->
+          <view class="detail-video-box" wx:if="{{articleInfo.video}}">
+            <video id="myVideo" src="{{articleInfo.video}}" enable-danmu danmu-btn controls bindplay='playVideo'></video>
+          </view>
+          <view class="detail-con">
+            <view class="title">{{articleInfo.title}}</view>
+            <view class="fu-title">
+              <text class="time">{{articleInfo.time}}</text>
+              <text class="name">{{articleInfo.from?articleInfo.from:articleInfo.shopName}}</text>
+              <!-- <view class="scan-num">
+                <image src="/images/newsimg/icon_brwse1.png" mode="aspectFit"></image>
+                <text>{{articleInfo.showNum}}</text>
+              </view> -->
+            </view>
+            <!-- 音乐组件 -->
+            <view class="music-box-wrap" wx:if="{{articleInfo.musicUrl!=''}}">
+              <view class="music-box">
+                <view class="music-name flex-wrap">
+                  <view class="play-btn {{isPlay?'play':''}}" bindtap="togglePlay">
+                    <image src="/images/icon_green_play.png" mode="aspectFit"></image>
+                    <view class="music-symbol">
+                      <text></text>
+                      <text></text>
+                      <text></text>
+                      <text></text>
+                      <text></text>
+                    </view>
+                  </view>
+                  <view class="flex-con">
+                    <view class="name">{{articleInfo.title}}</view>
+                    <view class="music-progress-wrap">
+                      <slider bindchange="musicTimeChange" activeColor="#09bb07" backgroundColor="#ebebeb" block-size="{{15}}" block-color="#09bb07" value="{{curTimeStep}}" max="{{sumPlayTime}}" disabled="{{playProgressDis}}" />
+                      <!-- <view class="music-progress">
+                  <view class="past-time-progress" style="width:{{playPercent}}%"><view class="dot"><text></text></view></view> 
+                </view> -->
+                      <view class="time-show">
+                        <text class="past-time">{{curPlaytime}}</text>
+                        <text class="sum-time">{{durationTime}}</text>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+
+              </view>
+            </view>
+            <view class="wxParse">
+              <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+            </view>
+            <view class="scannum">阅读 {{articleInfo.showNum}}</view>
+            <view class="zan-avatar-wrap" wx:if="{{likeAvatars.length>0}}">
+              <view class="zan-avatar">
+                <block wx:key="" wx:for="{{likeAvatars}}">
+                  <image src="{{item.avatar}}" wx:if="{{index<8}}" class="avatar" mode="aspectFill"></image>
+                </block>
+              </view>
+              <view class="zan-tip">{{articleInfo.likeNumTrue>8?'等':''}}{{articleInfo.likeNum}}人赞过</view>
+            </view>
+          </view>
+          <!-- 推荐商品 -->
+          <view class="recommend-good" wx:if="{{articleInfo.goodsInfo.length>0}}">
+            <!-- <view class="recommend-title">推荐商品</view>  -->
+            <scroll-view class="style{{goodStyle}}" scroll-x="{{goodStyle==3}}" >
+              <block wx:key="" wx:for="{{articleInfo.goodsInfo}}" wx:for-item="good">
+              <view class="good-item" data-id="{{good.gid}}" bindtap="goodDetail">
+                <image src="{{good.cover}}" mode="aspectFill"></image>
+                <view class="good-intro">
+                  <view class="good-name">{{good.name}}</view>
+                  <view class="good-price">￥<text>{{good.price}}</text></view>
+                </view>
+              </view>
+              </block>
+            </scroll-view>
+          </view>
+          <!-- 相关推荐 -->
+          <view class="related-article" wx:if="{{articleInfo.relatedInfo.length>0}}">
+            <view class="aricle-label">相关推荐</view>
+            <view class="article-list">
+              <block wx:key="" wx:for="{{articleInfo.relatedInfo}}">
+                <view class="article-item flex-wrap border-b" data-id="{{item.id}}" bindtap="toInfodetail">
+                  <image src="{{item.cover}}" class="article-img" mode="aspectFill"></image>
+                  <view class="article-intro flex-con">
+                    <view class="article-title">{{item.title}}</view>
+                    <view class="article-scan">
+                      <image src="/images/newsimg/icon_yd.png" mode="aspectFit"></image>
+                      <text>{{item.showNum}}</text>
+                    </view>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+          <ad unit-id="{{adInfo.informationDetailAdId}}" wx:if="{{adInfo.informationDetailAdOpen==1&&adInfo.informationDetailAdId!=''}}" style="margin:16rpx auto;"></ad>
+          <!-- 赞赏支持 -->
+          <view class="admire-area" wx:if="{{articleInfo.openReward==1}}">
+            <view class="admire-btn" bindtap="showAdmireModal">赞赏支持</view>
+            <view class="admire-list" wx:if="{{admireCount!=0}}" bindtap="showAdmireListModal">
+              <view class="admire-avatar">
+                <block wx:key="" wx:for="{{admireList}}">
+                  <image src="{{item.avatar}}" wx:if="{{index<10}}" class="avatar" mode="aspectFill"></image>
+                </block>
+              </view>
+              <view class="admire-tip">{{admireList[0].nickname}}等{{admireCount}}人赞赏过</view>
+            </view>
+          </view>
+        </view>
+        <view class="comment-wrap" id="comment">
+          <view class="comment-list" wx:if="{{commentList.length>0}}">
+            <view class="comment-title">热门评论({{articleInfo.commentNum}})</view>
+            <block wx:key="" wx:for="{{commentList}}" wx:for-item="comment">
+              <view class="comment-item flex-wrap">
+                <image src="{{comment.avatar}}" class="avatar fade_in" mode="aspectFit"></image>
+                <view class="other-intro flex-con">
+                  <view class="user-info flex-wrap">
+                    <text class="name">{{comment.nickname}}</text>
+                    <!-- 点赞相关 -->
+                    <!-- <view class="dianzan flex-con">
+                  <image src="/images/newsimg/icon_dz.png" mode="aspectFit"></image>
+                  <image src="/images/icon_dz_d.png" mode="aspectFit"></image> 
+                  <text>253</text>
+                </view> -->
+                  </view>
+                  <view class="comment-txt" data-mid="{{comment.mid}}" data-cid="{{comment.id}}" catchtap="showCommentmodal">{{comment.comment}}</view>
+                  <view class="message-wrap" wx:if="{{comment.replyList.length>0}}">
+                    <view class="message-info" wx:if="{{comment.replyList.length>0}}">
+                      <block wx:key="" wx:for="{{comment.replyList}}" wx:for-item="reply">
+                        <view class="message-txt" data-id="{{comment.id}}" data-mid="{{reply.mid}}" data-cid="{{comment.id}}" data-nickname="{{reply.nickname}}" catchtap="showCommentmodal">
+                          <text class="nickname"><text class="admin-tag" wx:if="{{reply.mark&&reply.mark.length>0}}">{{reply.mark}}</text>{{reply.nickname}}</text>
+                          <block wx:if="{{reply.replyMid.length>0}}">
+                            <text style="padding:0 6rpx;">回复</text>
+                            <text class="nickname"> <text class="admin-tag" wx:if="{{reply.replyMark&&reply.replyMark.length>0}}">{{reply.replyMark}}</text>{{reply.replyNickname}}</text>
+                          </block>
+                          <block><text class="mao">：</text></block> 
+                          <text style="display:inline;">{{reply.comment}}</text>
+                        </view>
+                      </block>
+                    </view>
+                    <view class="more-tip" wx:if="{{reply.commentNum.length>20}}">
+                      <image src="/images/icon_more_tip.png" mode="aspectFit"></image>
+                    </view>
+                  </view>
+                  <view class="comment-time">{{comment.time}}</view>
+                </view>
+              </view>
+            </block>
+          </view>
+          <view class="loading-tip" wx:if="{{showLoading}}">
+            <view class="icon_load">
+              <view id="floatingBarsG">
+                <view class="blockG" id="rotateG_01"></view>
+                <view class="blockG" id="rotateG_02"></view>
+                <view class="blockG" id="rotateG_03"></view>
+                <view class="blockG" id="rotateG_04"></view>
+                <view class="blockG" id="rotateG_05"></view>
+                <view class="blockG" id="rotateG_06"></view>
+                <view class="blockG" id="rotateG_07"></view>
+                <view class="blockG" id="rotateG_08"></view>
+              </view>
+            </view>
+            <text>努力加载中...</text>
+          </view>
+          <view class="nomore-tip" wx:if="{{noMoretip&&commentList.length>0}}">没有更多数据了</view>
+          <view class="no-comment-tip" wx:if="{{commentList.length<=0}}">暂无评论，快来抢沙发~</view>
+        </view>
+        <!-- </scroll-view> -->
+        <!--技术支持-->
+        <view class="technical-support" data-onoff="{{articleInfo.supportOpen==1}}" wx:if="{{articleInfo.openWatermark==1}}" bindtap="toTechnicalPage">
+          <image src="{{watermarkLogo}}" class="company-logo" mode="aspectFit" wx:if="{{watermarkLogo}}"></image>
+    <text>{{watermark}}v{{curVersion}}</text>
+          <view class="make-applet" wx:if="{{articleInfo.supportOpen==1}}">做一样的小程序</view>
+        </view>
+        <!-- 底部操作 -->
+        <view class="bottom-zhanwei">
+          <view class="bottom-opera flex-wrap border-t">
+            <view class="opera-icon backindex" bindtap="backIndex">
+              <image src="/images/newsimg/icon_index.png" mode="aspectFit"></image>
+              <view>首页</view>
+            </view>
+            <view class="flex-con">
+              <view class="pl-tip flex-wrap">
+                <image src="/images/newsimg/icon_xpl.png" mode="aspectFit"></image>
+                <view class="input-box flex-con">
+                  <text class="input" catchtap="showCommentmodal">写评论...</text>
+                  <!-- <input confirm-type="send" cursor-spacing="20" placeholder="填写优质评论" value="{{commentTxt}}" bindinput="commentChange" bindconfirm="submitComment"></input> -->
+                </view>
+              </view>
+            </view>
+            <!-- <view class="opera-icon" bindtap="submitCollection">
+              <image src="/images/newsimg/icon_shoucang_d.png" class="pulse {{articleInfo.isCollection==1?'animated':''}}" mode="aspectFit" wx:if="{{articleInfo.isCollection==1}}"></image>
+              <image src="/images/newsimg/icon_shoucang.png" class="pulse {{articleInfo.isCollection==0?'animated':''}}" mode="aspectFit" wx:else></image>
+              <text class="txt">收藏</text>
+            </view>  -->
+            <view class="opera-icon" bindtap="submitLike">
+              <text class="num" wx:if="{{articleInfo.likeNum!=0}}">{{articleInfo.likeNum}}</text>
+              <image src="/images/newsimg/icon_xqdz_d.png" class="pulse {{articleInfo.isLike==1?'animated':''}}" mode="aspectFit" wx:if="{{articleInfo.isLike==1}}"></image>
+              <image src="/images/newsimg/icon_xqdz.png" class="pulse {{articleInfo.isLike==0?'animated':''}}" mode="aspectFit" wx:else></image>
+              <text class="txt">点赞</text>
+            </view>
+               <!-- catchtap="showSharemodal" -->
+            <view class="opera-icon share-btn">
+              <text class="num" wx:if="{{articleInfo.shareNum!=0}}">{{articleInfo.shareNum}}</text>
+               <button open-type="share"></button> 
+              <image src="/images/newsimg/icon_xqfx.png" mode="aspectFit"></image>
+              <text class="txt">分享</text>
+            </view>
+          </view>
+        </view>
+        <!-- 评论弹出层 -->
+        <view class="comment-modal-mask fade_in" wx:if="{{isShowcommentmodal}}" bindtap="hideCommentmodal"></view>
+        <view class="comment-modal-con fade_in" wx:if="{{isShowcommentmodal}}">
+          <!-- <textarea auto-focus="{{isShowcommentmodal}}" placeholder="说点儿什么吧" show-confirm-bar="{{false}}" fixed="true" cursor-spacing="50" confirm-type="发送" value="{{commentTxt}}" bindinput="commentChange" bindconfirm="submitComment"></textarea>-->
+          <!-- <view class="send-btn" catchtap="submitComment">发送</view> -->
+          <input confirm-type="send" auto-focus="{{isShowcommentmodal}}" cursor-spacing="10" placeholder="说点儿什么吧..." value="{{commentTxt}}" bindinput="commentChange" bindconfirm="submitComment"></input>
+        </view>
+      </block>
+      <!-- 付费阅读 -->
+      <block wx:if="{{isPay==1}}">
+        <view class="pay-show-tip">
+          <view class="detail-con">
+            <view class="title">{{articleInfo.title}}</view>
+            <view class="fu-title">
+              <text class="time">{{articleInfo.time}}</text>
+              <text class="name">{{articleInfo.shopName}}</text>
+            </view>
+          </view>
+          <view class="charge-tip">
+            本篇收费
+            <text class="price">￥{{articleInfo.price}}</text>
+            <text class="tip">(建议开通专属会员免费阅读)</text>
+          </view>
+          <view class="pay-tips">
+            <image src="/images/newsimg/info-pay-tip.png"></image>
+            <text>本页面为付费阅览，您的打赏是我们更新的最大动力</text>
+          </view>
+        </view>
+        <!--技术支持-->
+        <view class="technical-support" data-onoff="{{articleInfo.supportOpen==1}}" wx:if="{{articleInfo.openWatermark==1}}" bindtap="toTechnicalPage">
+          <image src="{{watermarkLogo}}" class="company-logo" mode="aspectFit" wx:if="{{watermarkLogo}}"></image>
+    <text>{{watermark}}v{{curVersion}}</text>
+          <view class="make-applet" wx:if="{{articleInfo.supportOpen==1}}">做一样的小程序</view>
+        </view>
+        <view class="bottom-zhanwei" style="height:110rpx;">
+          <view class="bottom-opera border-t" style="height:110rpx;">
+            <view class="pay-bottom-opera flex-wrap">
+              <view class="flex-con">
+                <view class="cus-btn cus-btn-outline" data-id="{{articleInfo.id}}" data-type="single" bindtap='paySingleread'>支付
+                  <text>￥{{articleInfo.price}}</text>
+                </view>
+              </view>
+              <view class="flex-con">
+                <view class="cus-btn" bindtap="openPayread">开通专属会员</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </block>
+  </view>
+  <!-- 赞赏弹出层 -->
+  <view class="admire-modal-mask fade_in" wx:if="{{isShowadmire}}" bindtap="hideModal"></view>
+  <view class="admire-modal-con fade_in" wx:if="{{isShowadmire}}">
+    <view class="close-btn" bindtap="hideModal">
+      <image src="/images/newsimg/icon_close.png" mode="aspectFit"></image>
+    </view>
+    <view class="admire-con">
+      <image src="{{articleInfo.shopLogo}}" class="shop-logo" mode="aspectFill"></image>
+      <text class="admire-tips">点赞是美意，打赏是鼓励</text>
+      <view class="admire-input border-b">
+        <text>￥</text>
+        <input type="digit" placeholder="请输入金额" value="{{admireVal}}" bindinput="admireValChange"></input>
+      </view>
+      <view class="paytype-wrap" wx:if="{{payType.length>1}}">
+        <radio-group class="radio-group" bindchange="payRadioChange" wx:if="{{!orderstatus}}">
+          <view class="radio-wrap">
+            <block wx:key="" wx:for="{{payType}}" wx:for-item="pay">
+              <label class="radio" wx:if="{{pay.type!=2}}">
+                <radio value="{{pay.type}}" disabled="{{pay.type==3&&pay.balance<admireVal}}" checked="{{payWay==pay.type}}" color="#fdb052" />
+                <view class="typenote">{{pay.typeNote}}
+                  <text wx:if="{{pay.type==3}}">({{pay.balance}})</text>
+                </view>
+              </label>
+            </block>
+          </view>
+        </radio-group>
+      </view>
+      <view class="admire-btn {{admireVal>0?'':'gray'}}" bindtap="confirmAdmire">赞赏支持</view>
+    </view>
+  </view>
+  <!-- 赞赏列表 -->
+  <view class="admire-modal-mask fade_in" wx:if="{{isShowadmireList}}" bindtap="hideModal"></view>
+  <view class="admire-modal-list" wx:if="{{isShowadmireList}}">
+    <view class="admire-title border-b">
+      <text class="close" bindtap="hideModal">关闭</text>
+    </view>
+    <scroll-view class="admire-list" scroll-y>
+      <block wx:key="" wx:for="{{admireList}}">
+        <view class="admire-item flex-wrap border-b">
+          <image src="{{item.avatar}}" class="avatar" mode="aspectFill"></image>
+          <view class="admire-user">
+            <text class="user-name">{{item.nickname}}</text>
+            <text class="time">{{item.time}}</text>
+          </view>
+        </view>
+      </block>
+      <view class="load-more" wx:if="{{awardIsmore&&admireList.length>0}}" catchtap="requestAdmirelist">点击加载更多</view>
+      <view class="no-more" wx:if="{{!awardIsmore&&admireList.length>0}}">没有更多啦~</view>
+    </scroll-view>
+  </view>
+    <!-- 分享弹出层 -->
+<view class="share-modal-mask fade_in" wx:if="{{isShowshare}}" catchtap="hideSharemodal"></view>
+<view class="share-modal fadeInUp" wx:if="{{isShowshare}}">
+  <view class="share-con">
+    <view class="share-style">
+      <view class="style-item">
+        <button open-type="share"></button>
+        <image src="/images/bargain/icon_share1.png" mode="aspectFit"></image>
+        <text>发送给朋友</text>
+      </view>
+      <view class="style-item" data-id="{{goodDetail.id}}" bindtap="showPoster">
+        <image src="/images/bargain/icon_share2.png" mode="aspectFit"></image>
+        <text>生成海报分享</text>
+      </view>
+    </view>
+    <view class="cancel-btn border-t" catchtap="hideSharemodal">取消分享</view>
+  </view>
+</view>
+<!-- 海报弹出层 -->
+<view class="poster-modal-mask" hidden="{{!isShowposter}}" catchtap="hidePoster"></view>
+<view class="poster-modal fadeInUp" hidden="{{!isShowposter}}">
+  <view class="close-btn" catchtap="hidePoster"><image src="/images/icon_close.png" mode="aspectFit"></image></view>
+  <view class="poster-con">
+    <view class="empty_tip" wx:if="{{isDrawfinish==false}}">
+      <image src="/images/empty_img.png"></image>
+      <text>{{tips?tips:'暂无相关海报'}}~</text>
+    </view> 
+    <view class="tips" wx:elif="{{!isDrawfinish}}">海报绘制中...</view>
+    <canvas wx:elif="{{isDrawfinish}}" canvas-id="myCanvas" class="pic_con" style="width:80%;height:{{canvasH}}px;background-color:#fff;margin:0 auto;"></canvas>
+    <view class="opera-box">
+      <view class="btn-box bg-orange" bindtap="saveImage">
+        <button type="primary"></button>
+        <text>保存图片</text>
+      </view>
+    </view>
+  </view>
+</view> 
+  <!--错误提示-->
+  <view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+    {{errorTip.text}}
+  </view>
+</form-container>

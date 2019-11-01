@@ -1,0 +1,40 @@
+<!--subpages/Activitycount/Activitycount.wxml-->
+<view class="good-infor flex-wrap">
+  <view class="cover">
+    <image src="{{detailData.activity.cover}}" mode="aspectFit"></image>
+  </view>
+  <view class="infor-wrap flex-con">
+    <view class="name">
+      {{detailData.activity.title}}
+    </view>
+    <view class="brief">{{detailData.activity.desc}}</view>
+  </view>
+</view>
+<view class="infor-list">
+  <view class="infor-item border-bottom">
+    <view class="num">{{detailData.info.goodsFee}}</view>
+    <view class="desc">总营业额(元)</view>
+    <view class="desc ps">(含配送费)</view>
+  </view>
+  <view class="infor-item border-bottom">
+    <view class="num">{{detailData.info.postFee}}</view>
+    <view class="desc">总配送费(元)</view>
+  </view>
+  <view class="infor-item border-bottom">
+    <view class="num">{{detailData.info.refund}}</view>
+    <view class="desc">退款金额(元)</view>
+  </view>
+  <view class="infor-item">
+    <view class="num">{{detailData.info.tradeNum}}</view>
+    <view class="desc">订单总量(单)</view>
+  </view>
+  <view class="infor-item">
+    <view class="num">{{detailData.info.goodsNum}}</view>
+    <view class="desc">商品总量(件)</view>
+  </view>
+  <view class="infor-item">
+    <!-- <view class="num">99</view>
+    <view class="desc">总配送费(元)</view> -->
+  </view>
+</view>
+<view class="reset-btn" bindtap="toActivityorder">订单明细</view>

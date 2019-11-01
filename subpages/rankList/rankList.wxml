@@ -1,0 +1,22 @@
+<!--subpages/rankList/rankList.wxml-->
+<view class="rank-wrap" wx:if="{{rankList.length>0}}">
+  <view class="rank-list">
+    <block wx:key="" wx:for="{{rankList}}">
+      <view class="rank-item flex-wrap border-b">
+        <view class="num">
+          <image wx:if="{{item.rank==1}}" src="/images/icon_ph1.png" mode="aspectFit"></image>
+          <image wx:if="{{item.rank==2}}" src="/images/icon_ph2.png" mode="aspectFit"></image>
+          <image wx:if="{{item.rank==3}}" src="/images/icon_ph3.png" mode="aspectFit"></image>
+          <view class="label" wx:if="{{item.rank>3}}">{{item.rank}}</view>
+        </view>
+        <view class="name flex-con">{{item.name}}</view>
+        <view class="money">{{item.total}}</view>
+      </view>
+    </block> 
+  </view>
+  <view class="notice">仅展示前20名小区</view>
+</view>
+<view class="no-data" wx:if="{{rankList.length<=0}}">
+  <image src="/images/zw_order.png" mode="aspectFit"></image>
+  <text>暂无相关内容</text>
+</view>

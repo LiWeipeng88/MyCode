@@ -1,0 +1,24 @@
+.main-info-show { background-color: #FAFAFA; width: 100%; display: table; }
+.main-info-show .info-item { display: table-cell; width: 1000rpx; padding: 25rpx 10rpx; text-align: center; }
+.main-info-show .info-item text { display: block; line-height: 1.6; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; max-height: 180rpx; }
+.main-info-show .info-item text.money { font-size: 32rpx; }
+.info-opera-wrap { margin-bottom: 16rpx; }
+.info-item-show { padding: 18rpx 25rpx; background-color: #fff; }
+.info-item-show .left-label { line-height: 1.8; font-size: 32rpx; }
+.info-item-show .left-icon { height: 56rpx; width: 56rpx; display: block; margin-right: 10rpx; }
+.info-item-show .right-enter { font-size: 0; }
+.info-item-show .right-enter input { font-size: 28rpx; border-radius: 8rpx; border: 1px solid #DEDEDE; padding: 10rpx 20rpx; height: 80rpx; box-sizing: border-box; background-color: #fff; }
+.info-item-show .right-enter text { font-size: 26rpx; display: inline-block; vertical-align: middle; color: #999; margin-right: 8rpx; }
+.info-item-show .right-enter .icon-more { height: 40rpx; width: 40rpx; display: inline-block; vertical-align: middle; }
+.info-item-show .right-enter .icon-more-enter { height: 32rpx; width: 40rpx; display: inline-block; vertical-align: middle; }
+.info-item .second-item { height: 0; overflow: hidden; transition: height 0.5s; background-color: #FAFAFA; padding: 10rpx 0; display: none; }
+.info-item .second-item.show { height: auto; display: block; }
+.info-item .second-item .info-item-show { padding: 10rpx 30rpx; background-color: #FAFAFA;align-items: flex-start; }
+.second-item .info-item-show .left-label { width: 160rpx; font-size: 28rpx; padding-left: 30rpx;line-height: 80rpx;align-items:flex-start; }
+.second-item .tips { color: #FF3838; padding: 10rpx 30rpx; font-size: 26rpx; }
+.second-item .confirm-btn { height: 80rpx; line-height: 80rpx; width: 60%; margin: 0 auto; text-align: center; border-radius: 8rpx; background-color: #FF343F; color: #fff; margin-bottom: 20rpx; margin-top: 20rpx; }
+.second-item picker { line-height: 80rpx; font-size: 28rpx; border-radius: 8rpx; border: 1px solid #DEDEDE; padding: 10rpx 20rpx; height: 80rpx; box-sizing: border-box; background-color: #fff; position: relative; }
+.second-item picker .picker { line-height: 58rpx; color: #333; }
+.second-item picker .picker.gray { color: #888; }
+.second-item picker image { position: absolute; top: 24rpx; right: 12rpx; height: 32rpx; width: 32rpx; transform: rotate(90deg); }
+.withdraw-tips { font-size: 26rpx; color: #999; max-width: 92%; padding: 15rpx 0; text-align: left; margin: 0 auto; }

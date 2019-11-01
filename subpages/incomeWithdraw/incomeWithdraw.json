@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "申请提现",
+  "usingComponents": {
+    "form-container": "/pages/components/form-container/form-container"
+  }
+}

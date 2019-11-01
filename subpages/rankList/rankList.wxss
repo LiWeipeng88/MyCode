@@ -1,0 +1,49 @@
+/* subpages/rankList/rankList.wxss */
+.rank-wrap{
+  background-color:#fff;
+}
+.rank-wrap .rank-list{
+  padding:0 20rpx;
+}
+.rank-wrap .rank-list .rank-item{
+  padding:25rpx 0;
+}
+.rank-wrap .rank-list .rank-item .num image{
+  display: block;
+  width:48rpx;
+  height:56rpx;
+}
+.rank-wrap .rank-list .rank-item .num .label{
+  width:40rpx;
+  height:40rpx;
+  line-height:40rpx;
+  text-align: center;
+  color:#fff;
+  font-size:24rpx;
+  border-radius:50%;
+  margin:0 auto;
+  background-color:#E4E4E4;
+}
+.rank-wrap .rank-list .rank-item .name{
+  color:#333;
+  padding:0 20rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.rank-wrap .rank-list .rank-item .money{
+  color:#FF913E;
+  font-size:32rpx;
+}
+.rank-wrap .notice{
+  text-align: center;
+  color:#999;
+  font-size:24rpx;
+  padding: 20rpx 0;
+  letter-spacing: 1rpx;
+}
+.no-data image{
+  display: block;
+  width:180rpx;
+  height:210rpx;
+}

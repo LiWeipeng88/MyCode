@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "社区信息",
+  "usingComponents": {
+    "form-container": "/pages/components/form-container/form-container"
+  }
+}

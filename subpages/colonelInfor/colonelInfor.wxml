@@ -1,0 +1,37 @@
+<!--subpages/colonelInfor/colonelInfor.wxml-->
+<view class="no-data" wx:if="{{detailInfor==''}}">
+    <view class="content">
+        <image src="/images/icon_tdw.png" mode="aspectFit"></image>
+        <view class="desc">暂无选择小区</view>
+        <view class="btn" bindtap="selectArea">选择小区</view>
+    </view>
+</view>
+<view class="colonel-infor" wx:if="{{detailInfor!=''}}">
+  <view class="infor-wrap">
+    <view class="infor-box flex-wrap1">
+      <view class="name-wrap flex-con">
+        <view class="name">{{detailInfor.leader}}</view>
+        <view class="desc">团长</view>
+      </view>
+      <view class="code-wrap">
+        <image class="code-img"  src="{{detailInfor.qrcode}}" data-curimg="{{detailInfor.qrcode}}"  bindtap="peiviewImg"></image>
+        <!-- <view class="desc">点击图片然后识别二维码</view>
+        <view class="desc">联系团长</view> -->
+      </view>
+    </view>
+  </view> 
+  <view class="infor-list">
+    <!--<view class="infor-item flex-wrap border-b">
+      <view class="desc">电话</view>
+      <view class="con flex-con" bindtap='callphone' data-phone="{{detailInfor.mobile}}" >{{detailInfor.mobile}}</view>
+    </view>-->
+    <view class="infor-item flex-wrap1 border-b">
+      <view class="desc">小区</view>
+      <view class="con flex-con">{{detailInfor.community}}</view>
+    </view>
+    <view class="infor-item flex-wrap1">
+      <view class="desc">地址</view>
+      <view class="con flex-con">{{detailInfor.address}}</view>
+    </view>
+  </view>
+</view>

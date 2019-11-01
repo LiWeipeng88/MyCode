@@ -1,0 +1,69 @@
+/* subpages/couponList/couponList.wxss */
+.no-data image{width:210rpx;height:180rpx;}
+.coupon-list{
+  padding:20rpx 1rpx;
+}
+.coupon-list .coupon-item{
+  width:748rpx;
+  height:272rpx;
+  position:relative;
+}
+.coupon-list .coupon-item .label-icon{
+  display: block;
+  width:120rpx;
+  height:120rpx;
+  position:absolute;
+  right: 40rpx;
+  top:35rpx;
+}
+.coupon-list .coupon-item .bg{
+  display: block;
+  width:100%;
+  height:100%;
+}
+.coupon-list .coupon-item .coupon-infor{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  padding: 20rpx 40rpx;
+}
+.coupon-list .coupon-infor .money-wrap{
+  color:#333;
+  font-size:32rpx;
+  height:150rpx;
+}
+.coupon-list .coupon-infor .money-wrap .money{
+  color:#2FCD98;
+  font-size:50rpx;
+  font-weight: bold;
+}
+.coupon-list .coupon-infor .money-wrap .money text{
+  font-size:26rpx;
+}
+.coupon-list .coupon-infor .money-wrap .desc{
+  padding:0 20rpx;
+}
+.coupon-list .coupon-infor .btn-wrap{
+  background-color:#2FCD98;
+  padding:10rpx 25rpx;
+  text-align: center;
+  color:#fff;
+  border-radius:30rpx;
+  font-size:26rpx;
+  box-shadow: 0 0 10rpx #2FCD98;
+}
+.coupon-list .coupon-infor .time{
+  font-size:26rpx;
+  color:#999;
+  line-height:80rpx;
+}
+.use-btn{
+  box-sizing:border-box;
+  border:1rpx solid #2FCD98;
+  padding:5rpx 20rpx;
+  font-size:26rpx;
+  color:#2FCD98;
+  border-radius:22rpx;
+}

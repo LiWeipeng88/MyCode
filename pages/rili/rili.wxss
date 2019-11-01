@@ -1,0 +1,260 @@
+/* pages/dateSelect/dateSelect.wxss */
+page{
+  border:0;
+}
+.contaiter{
+  background-color: #d54e2f;
+  height: 100%;
+}
+.date-day {
+display: flex;
+margin: 5rpx 9.8rpx;
+text-align: center;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+.date-day.bgitem {
+background-color: #f8d453;
+}
+.date-day.active {
+/* background: #2cd5ab; */
+background-image: url('https://ww.cry7.cn/getgoods/red1.png');
+background-position: 16rpx 16rpx;
+/* color: #fff; */
+/* background-color: #fc2f04; */
+background-size: 50rpx 50rpx;
+background-repeat: no-repeat;
+/* border: 1px solid #eb5254; */
+/* border-radius: 50%; */
+}
+.date-day.unavailable {
+color: #fff;
+}
+.date-week {
+display: flex;
+justify-content: center;
+align-content: center;
+margin: 8rpx 7rpx;
+font-weight: bold;
+-webkit-font-weight: bold;
+}
+.week {
+color: #2cd5ab;
+}
+.row {
+display: flex;
+flex-direction: row;
+margin: 20rpx;
+border-radius: 20rpx;
+}
+.item-days {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+font-size: 35rpx;
+}
+.item-days text{
+ font-size: 24rpx;
+}
+/* .item-days text{
+  color: #666;
+} */
+.amount{
+ font-size: 30rpx;
+}
+.bgwhite {
+ background-color: #2cd5ab;
+}
+  
+.date-year-month {
+ text-align: center;
+ color: #fff;
+ font-size: 35rpx;
+ height: 100rpx;
+ line-height: 100rpx;
+ display: flex;
+ font-weight: bold;
+ justify-content: center;
+ align-items: center;
+}
+.date-year-month text{
+  color: #f8d453;
+  font-size: 40rpx;
+  font-weight: bold;
+  margin: 0rpx 6rpx;
+}
+.date-year-month image{
+ height: 50rpx;
+ width: 50rpx;
+ margin: 0 100rpx;
+}
+.count{
+ margin: 20rpx;
+ padding: 30rpx;
+ display: flex;
+ text-align: center;
+ border-radius: 10px;
+ flex-direction: column;
+ justify-content: center;
+ background-color: #2cd5ab;
+ align-items: center;
+ position: relative;
+}
+ .count text{
+   color: #fff;
+ }
+.count .number{
+ color: red;
+ font-size: 30rpx;
+ background-color: #fff;
+ width: 80rpx;
+ height: 80rpx;
+ border-radius: 50%;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ margin: 10rpx;
+}
+.count .daynumber{
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+}
+ 
+.count .daynumber .day{
+ margin-top: 30rpx;
+}
+ 
+.count text{
+ margin: 10rpx;
+}
+.count .qiandao{
+  position: absolute;
+  width: 160rpx;
+  height: 60rpx;
+  background-color: #fc2f04;
+  font-size: 26rpx;
+  border-radius: 40rpx;
+  line-height: 60rpx;
+  color: #fff;
+  top: 0rpx;
+}
+.count .fenxiang{
+  position: absolute;
+  width: 274rpx;
+  height: 60rpx;
+  background-color: #fc2f04;
+  font-size: 26rpx;
+  border-radius: 40rpx;
+  line-height: 60rpx;
+  color: #fff;
+  top: 0rpx;
+  
+}
+.SurplusDay{
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: bold
+}
+.dispaly{
+  display: none
+}
+.guize{
+  margin-top: 86rpx;
+
+}
+.guize text{
+  display: block;
+  text-align:left;
+  font-size: 24rpx;
+}
+/* 商品列表 */
+.goodsList{
+  display: flex;
+   margin: 20rpx;
+ border-radius: 10px;
+ background-color: #fff;
+ height:228rpx;
+
+}
+.goodsList .goodsImg{
+  flex: 1;
+  margin-left: 10rpx;
+  margin-top: 4rpx;
+}
+.goodsList .goodsImg image{
+  width: 200rpx;
+  height: 200rpx;
+}
+.goodsList .goodsInfo{
+  flex: 2;
+  position: relative;
+}
+.goodsList .goodsInfo .goodsTitle{
+  padding-top: 14rpx;
+  font-weight: bold;
+  color: #242424;
+  font-size: 30rpx;
+}
+.goodsList .goodsInfo .goodsTitle .dati text{
+  font-weight: normal;
+  color: #666;
+  font-size: 22rpx;
+  padding-top: 10rpx;
+}
+.goodsList .goodsInfo .goodsText .newPrice{
+  font-weight: normal;
+  color: #2cd5ab;
+  font-size: 22rpx;
+  padding-top: 36rpx;
+}
+.goodsList .goodsInfo .goodsText .newPrice text{
+  font-weight: bold;
+  color: #2cd5ab;
+  font-size: 36rpx;
+}
+.goodsList .goodsInfo .goodsText .oldPrice{
+  font-weight: normal;
+  color: #999;
+  font-size: 20rpx;
+  margin-top: 12rpx;
+}
+.goodsList .goodsInfo .goodsText .oldPrice text{
+  text-decoration: line-through;
+  color: #999;
+  text-decoration-color: #999;
+}
+.goodsList .goodsInfo .goodsText .goodsTime{
+  margin-top: 4rpx;
+  width: 164rpx;
+  height: 30rpx;
+  border-radius: 15rpx;
+  position: relative;
+}
+.goodsList .goodsInfo .goodsText .goodsTime .goodsTimeText{
+  color: #2cd5ab;
+  width: 100rpx;
+  display: block;
+  height: 30rpx;
+  text-align: center;
+  font-size: 20rpx;
+  line-height: 30rpx;
+}
+.goodsList .goodsInfo .goodsText .goodsTime .goodsTimeData{
+  width: 320rpx;
+  height: 50rpx;
+  background: #2cd5ab;
+  text-align: center;
+  display: block;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 50rpx;
+  position: absolute;
+  top: 20rpx;
+  right: -155rpx;
+  border-radius: 15rpx;
+  margin: 0;
+}

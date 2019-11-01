@@ -1,0 +1,15 @@
+page { border: none; }
+
+/* 提示 */
+.show-tip { padding: 0 25rpx; height: 90rpx; line-height: 90rpx; background-color: #FFF1CC; color: #C18319; }
+.show-tip .close { position: absolute; top: 0; right: 0; height: 90rpx; width: 90rpx; line-height: 90rpx; color: #767676; font-size: 40rpx; text-align: center; }
+.record-list { margin-top: 16rpx; }
+.record-item { margin-bottom: 16rpx; padding: 0 20rpx; font-size: 32rpx; background-color: #fff; box-shadow: 1px 1px 3px #eee; }
+.record-item .flex-wrap>text { height: 85rpx; line-height: 85rpx; }
+.record-item .income-source { color: #f08a23; max-width: 400rpx; text-align: right; padding: 10rpx; font-size: 28rpx; }
+.record-item .income-source.green { color: #00AF34; }
+.record-item .income-source.red { color: red; }
+.record-item .income-source text { color: #999; }
+.record-item .time { color: #999; font-size: 28rpx; }
+.record-item .income { color: #e84948; }
+.record-item .income text { font-weight: bold; font-size: 32rpx; }

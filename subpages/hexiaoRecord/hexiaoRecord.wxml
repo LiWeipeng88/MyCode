@@ -1,0 +1,48 @@
+<!--subpages/hexiaoRecord/hexiaoRecord.wxml-->
+<view class="record-list" wx:if="{{recordList.length>0}}">
+  <block wx:key="" wx:for="{{recordList}}" wx:for-item="record">
+    <view class="record-item">
+      <view class="tid-num">
+        <view class="tid">
+          订单编号：{{record.tid}}
+        </view>
+      </view>
+      <view class="good-wrap">
+        <block wx:key="" wx:for="{{record.goods}}" wx:for-item="good">
+          <view class="good-item flex-wrap">
+            <view class="name flex-con">{{good.name}}</view>
+            <view class="money">x {{good.num}}</view>
+          </view>
+        </block>
+      </view>
+      <view class="time">
+        核销时间：{{record.time}}
+      </view>
+    </view>
+  </block>
+</view>
+<view class="no-data" wx:if="{{recordList.length<=0}}">
+  <image src="/images/empty_img.png" mode="aspectFit"></image>
+  <text>暂无相关记录~</text>
+</view>
+<!--上拉加载提示-->
+<view class="loading-tip" wx:if="{{showLoading}}">
+  <view class="icon_load">
+    <view id="floatingBarsG">
+      <view class="blockG" id="rotateG_01"></view>
+      <view class="blockG" id="rotateG_02"></view>
+      <view class="blockG" id="rotateG_03"></view>
+      <view class="blockG" id="rotateG_04"></view>
+      <view class="blockG" id="rotateG_05"></view>
+      <view class="blockG" id="rotateG_06"></view>
+      <view class="blockG" id="rotateG_07"></view>
+      <view class="blockG" id="rotateG_08"></view>
+    </view>
+  </view>
+  <text>努力加载中...</text>
+</view> 
+<view class="nomore-tip" wx:if="{{noMoretip}}">没有更多数据了</view> 
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>

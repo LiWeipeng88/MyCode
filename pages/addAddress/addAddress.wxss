@@ -1,0 +1,16 @@
+.add-address-wrap { padding-left: 25rpx; background-color: #fff; border-bottom: 1px solid #eee; }
+.address-item { padding: 25rpx 25rpx 25rpx 0; }
+.address-item>text { width: 140rpx; }
+.address-item .right-input input, .address-item .right-input text { padding: 0 20rpx; font-size: 30rpx; }
+.choose-address-tip { color: #666; }
+.icon-choose-address { height: 40rpx; width: 40rpx; margin-right: 25rpx; }
+.btn-area { padding: 30rpx 25rpx; }
+.btn-area .save-btn { background-color: #2FCD98; border: 1px solid #2FCD98; text-align: center; color: #fff; border-radius: 3px; padding: 23rpx 0; font-size: 32rpx; }
+.btn-area .delete-btn { background-color: #fff; border: 1px solid #E7E7E7; text-align: center; border-radius: 3px; padding: 23rpx 0; font-size: 32rpx; margin-top: 20rpx; color: #333; }
+.citypickers { position: fixed; height: 100%; width: 100%; min-height: 100%; background-color: red; }
+.citybody { position: fixed; bottom: 0px; }
+.cityheader { position: absolute; top: 0px; width: 100%; z-index: 4; background-color: #fff; }
+.city-cancel { float: left; margin: 20rpx; color: #818181; }
+.city-true { float: right; margin: 20rpx; color: #2FB42E }
+picker-view-column { text-align: center; }
+.section .picker { background-color: #fff; border-bottom: 1px #d9d9d9 solid; border-top: 1px #d9d9d9 solid; padding: 20rpx; }

@@ -1,0 +1,39 @@
+<!--折叠菜单  -->
+<fold-menu></fold-menu>
+<!-- <view class="show-tip" wx:if="{{isShowtip}}">只显示已完成订单的分享收入<text class="close" bindtap="closeShowtip">×</text>
+</view> -->
+<view class="record-list">
+     <block wx:key="" wx:for="{{withdrawList}}" wx:for-item="withdraw">
+        <view class="record-item">
+            <view class="flex-wrap border-b">
+                <text class="flex-con">{{withdraw.type}}</text>
+                <view class='income-source {{withdraw.statusCode==1?"green":""}} {{withdraw.statusCode==2?"red":""}}'>{{withdraw.status}}<text wx:if="{{withdraw.statusCode==2}}">({{withdraw.statusNote}})</text></view>
+            </view>
+            <view class="flex-wrap">
+                <text class="time flex-con">{{withdraw.time}}</text>
+                <view class="income">- <text>{{withdraw.money}}</text></view>
+            </view>
+        </view>
+    </block>
+</view>
+<view class="loading-tip" wx:if="{{showLoading}}">
+  <view class="icon_load">
+    <view id="floatingBarsG">
+      <view class="blockG" id="rotateG_01"></view>
+      <view class="blockG" id="rotateG_02"></view>
+      <view class="blockG" id="rotateG_03"></view>
+      <view class="blockG" id="rotateG_04"></view>
+      <view class="blockG" id="rotateG_05"></view>
+      <view class="blockG" id="rotateG_06"></view>
+      <view class="blockG" id="rotateG_07"></view>
+      <view class="blockG" id="rotateG_08"></view>
+    </view>
+  </view>
+  <text>努力加载中...</text>
+</view>
+ <view class="nomore-tip" wx:if="{{noMoretip&&withdrawList.length>0}}">没有更多数据了</view> 
+<!-- 数据为空提示 -->
+<view class="empty_tip" wx:if="{{withdrawList.length<=0}}">
+    <image src="/images/empty_img.png"></image>
+    <text>暂无提现记录~</text>
+</view>

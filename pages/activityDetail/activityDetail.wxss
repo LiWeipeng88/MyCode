@@ -1,0 +1,459 @@
+/* subpages/activityDetail/activityDetail.wxss */
+.notice-wrap{
+  max-width:500rpx;
+  background-color:rgba(0,0,0,0.7);
+  color:#fff;
+  padding:10rpx 20rpx;
+  border-radius:27rpx;
+  font-size:26rpx;
+  position:fixed;
+  top:100rpx;
+  left:20rpx;
+  z-index: 10
+}
+.pic_info image{
+  width: 50rpx;
+  height:50rpx;
+  border-radius: 50%;
+}
+.pic_info{
+
+  font-size: 32rpx;
+  
+}
+.button_m{
+  color:#fff;
+  /* float:right; */
+  background: rgb(44,192,140);
+  width: 153rpx;
+  height: 57rpx;
+  line-height: 57rpx;
+  text-align: center;
+  border-radius: 16rpx;
+  position: absolute;
+  right: 0px;
+  bottom: 5px;
+}
+.left_r{
+  float:left;
+width:100%;
+margin-top:15rpx;
+
+}
+.img_s{
+
+ float:left;
+margin-left:25rpx;
+
+}
+.img_i{
+
+ float:left;
+margin-left:25rpx;
+font-size: 11px;
+
+}
+.nickname{
+  float: left;
+ font-size:12px;
+
+margin-left:43rpx;
+
+}
+.left_p{
+  margin-right:71rpx;
+  float:right;
+  font-size: 11px
+
+}
+
+.left_x{
+margin-right:34rpx;
+float:right;
+font-size:11px;
+clear:both;
+
+
+
+
+}
+.user-avatar-box{padding:10rpx 0 10rpx 10rpx;margin-left:25rpx;}
+.user-avatar-box .user-avatar{height: 50rpx;width: 50rpx;margin-left: -10rpx;display: block;border:2rpx solid #fff;border-radius: 50%;}
+.notice-wrap.amation{
+  animation: memberShow 5s;
+  -moz-animation: memberShow 5s;	/* Firefox */
+  -webkit-animation: memberShow 5s;	/* Safari 和 Chrome */
+  -o-animation: memberShow 5s;
+}
+.notice-wrap .avatar{
+  width:35rpx;
+  height:35rpx;
+  margin-right:10rpx;
+}
+.notice-wrap .avatar image{
+  display: block;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+}
+.notice-wrap .infor text{
+  vertical-align: middle;
+}
+.notice-wrap .infor text.name{
+  display: inline-block;
+  max-width:300rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.noGood{
+  color:#fff;
+  background-color:#B2B2B2;
+  padding:8rpx 16rpx;
+  border-radius:6rpx;
+  font-size:26rpx;
+}
+page{background-color:#fff;}
+.peo-infor{
+  padding:20rpx;
+}
+.peo-infor .avatar{
+  width:90rpx;
+  height:90rpx;
+  margin-right:10rpx;
+}
+.peo-infor .avatar image{
+  display: block;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+}
+.peo-infor .nickname{
+  color:#111;
+  font-size:30rpx;
+}
+.peo-infor .time{
+  color:#999;
+  font-size:26rpx;
+}
+.peo-infor .phone-icon{
+  width:70rpx;
+  height:70rpx; 
+}
+.peo-infor .phone-icon image{
+  display: block;
+  width:100%;
+  height:100%;
+}
+.time-wrap{
+  color:#666;
+  font-size:34rpx;
+  background-color:#f8f8f8;
+  width:710rpx;
+  text-align:center;
+  padding:25rpx 0;
+  border-radius:20rpx;
+  margin:0 auto;
+}
+.time-wrap .desc{
+  color:#333;
+}
+.detail-wrap{
+  padding:20rpx;
+}
+.detail-wrap .name{
+  color:#111;
+  font-size:32rpx;
+  letter-spacing: 1rpx;
+}
+.detail-wrap .brief{
+  font-size:26rpx;
+  color:#999;
+  margin-top:5rpx;
+}
+.detail-wrap .goods-img{margin-top:15rpx;}
+.detail-wrap .goods-img .img-box{display:inline-block;width:223rpx;height:223rpx;border-radius:10rpx;margin-right:20.5rpx;margin-bottom:15rpx;}
+.detail-wrap .goods-img .img-box:nth-of-type(3n){margin-right:0;}
+.detail-wrap .goods-img .img-box image{display:block;width:100%;height:100%;}
+
+.goods-wrap .title{
+  color:#111;
+  font-weight: bold;
+  font-size:32rpx;
+  letter-spacing: 1rpx;
+  text-align: center;
+  margin:30rpx 0 50rpx;
+}
+.goods-wrap .title text{
+  position:relative;
+}
+.goods-wrap .title text:after{
+  content:'';
+  width:50%;
+  height:8rpx;
+  background-color:#2CC08C; /*FF7800*/
+  position:absolute;
+  left:25%;
+  top:50rpx;
+}
+.goods-wrap .good-list{
+  padding:0 20rpx;
+}
+.goods-wrap .good-item{
+  padding:20rpx;
+  box-sizing: border-box;
+  border-radius:4rpx;
+  box-shadow: 0 0 10rpx #dedede;
+  margin-bottom:20rpx;
+  position: relative;
+}
+.goods-wrap .good-item .cover{
+  width:180rpx;
+  height:180rpx;
+  margin-right:20rpx;
+  position:relative;
+}
+.goods-wrap .good-item .cover .zhezhao{background:rgba(0,0,0,0.3);position:absolute;top:0;left:0;right:0;bottom:0;}
+.goods-wrap .good-item .cover image{
+  display: block;
+  width:100%;
+  height:100%;
+}
+.goods-wrap .good-item .name{
+  height:60rpx;
+  font-size:30rpx;
+  line-height:28rpx;
+  display: -webkit-box !important; 
+  overflow: hidden;
+  text-overflow:ellipsis;
+  word-break:break-all;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+}
+.goods-wrap .good-item .price{
+position: absolute;
+top: 13px;
+right: 0px;
+width:180rpx;
+height:47rpx;
+font-weight: bold ;
+/* border:1px solid rgb(49,192,140); */
+text-align:center;
+border-radius:24rpx;
+color:#FF7800;
+}
+
+.goods-wrap .good-item .infor-wrap{
+  font-size:30rpx;
+  color:#333;
+  letter-spacing: 1rpx;
+}
+.goods-wrap .good-item .money-wrap{
+  font-size:26rpx;
+  color:#999;
+  margin-bottom:10rpx;
+}
+.goods-wrap .good-item .money{
+  font-size:32rpx;
+  color:#FF7800;
+  margin-right:20rpx;
+}
+.goods-wrap .good-item .money .label{
+  font-size:24rpx;
+  color:#2CC08C;
+  border:1rpx solid #2CC08C;
+  padding:5rpx 10rpx;
+  border-radius:20rpx;
+  position:relative;
+  top:-4rpx;
+}
+.goods-wrap .good-item .shop-money{
+  color:#999;
+  font-size:24rpx;
+}
+.goods-wrap .good-item .add-sub .btn{
+  display: inline-block;
+  width:100rpx;
+  height:70rpx;
+  line-height:70rpx;
+  text-align: center;
+  background-color:#F0F0F0;
+  color:#666;
+  border-radius:4rpx;
+}
+.goods-wrap .good-item .add-sub .num{
+  padding:0 20rpx;
+  color:#111;
+  font-weight:bold;
+}
+/*商品列表样式2  */
+.pic-good-item{
+  border:1px solid #eee;
+  margin-bottom: 20rpx;
+}
+.pic-good-item .name{
+  color:#111;
+  font-size:30rpx;
+  letter-spacing: 1rpx;
+  font-weight: bold;
+}
+.pic-good-item .brief{
+  font-size:24rpx;
+  color:#333;
+  margin-top:5rpx;
+}
+.pic-good-item .good-price{padding: 25rpx 20rpx;}
+.pic-good-item .now-price{font-size: 36rpx;color: #da335b;}
+.pic-good-item .ori-price{font-size:28rpx;color: #666;}
+.pic-good-item .goods-img{margin-top:5rpx;}
+.pic-good-item .goods-img .img-box{display:inline-block;width:215rpx;height:215rpx;margin-right:15rpx;margin-bottom:15rpx;position:relative;}
+.pic-good-item .goods-img .img-box .zhezhao{background:rgba(0,0,0,0.3);position:absolute;top:0;left:0;right:0;bottom:0;}
+.pic-good-item .goods-img .img-box:nth-of-type(3n){margin-right:0;}
+.pic-good-item .goods-img .img-box image{display:block;width:100%;height:100%;}
+.pic-good-item .add-sub{text-align: right;}
+.pic-good-item .add-sub .btn{
+  display: inline-block;
+  width:50rpx;
+  height:40rpx;
+  line-height:40rpx;
+  text-align: center;
+  background-color:#fff;
+  border:1px solid #eee;
+  color:#666;
+  border-radius:4rpx;
+}
+.pic-good-item .add-sub .btn.gray{
+  background-color: #f5f4f9;
+  border-color:#f5f4f9; 
+  color: #999;
+}
+.pic-good-item .add-sub .num{
+  padding:0 20rpx;
+  color:#111;
+  font-weight:bold;
+}
+.pic-good-item .sale-num{font-size:28rpx;color: #666;text-align: center;}
+.borw{margin-left:20rpx;padding-left:20rpx;}
+
+.bottom-zhanwei{
+  padding-top:120rpx;
+}
+.bottom-opreation{
+  height:100rpx;
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:100;
+  background-color:#fff;
+}
+.bottom-opreation .btn{
+  padding:0 40rpx;
+  color:#999;
+  text-align: center;
+  font-size:24rpx;
+  position: relative;
+  margin-top:10rpx;
+}
+.bottom-opreation .btn button{
+  position: absolute; 
+  left: 0; 
+  top: 0; 
+  height: 100%; 
+  width: 100%; 
+  margin: 0; 
+  opacity: 0;  
+  z-index: 2;
+}
+.bottom-opreation .btn .icon{
+  width:35rpx;
+  height:35rpx;
+  margin:0 auto 5rpx;
+  position:relative;
+}
+.bottom-opreation .btn .icon image{
+  display: block;
+  width:100%;
+  height:100%;
+}
+.bottom-opreation .btn .num{
+  width:35rpx;
+  height:35rpx;
+  text-align: center;
+  line-height:35rpx;
+  color:#fff;
+  font-size:22rpx;
+  background-color:#FF7800;
+  border-radius:50%;
+  position:absolute;
+  top:-10rpx;
+  right:-15rpx;
+}
+.bottom-opreation .buy-btn{
+  text-align: center;
+  height:100rpx;
+  line-height:100rpx;
+  font-size:32rpx;
+  letter-spacing: 2rpx;
+  color:#fff;
+  background-color:#2CC08C;
+}
+.bottom-opreation .buy-btn.grey-bth{
+  text-align: center;
+  height:100rpx;
+  line-height:100rpx;
+  font-size:28rpx;
+  letter-spacing: 2rpx;
+  color:#fff;
+  background-color:#cacaca;
+}
+
+.share-btn{
+  width:100rpx;
+  height:100rpx;
+  text-align: center;
+  font-size:28rpx;
+  color:#fff;
+  background-color:#2CC08C;
+  border-radius:50%;
+  position:fixed;
+  left:20rpx;
+  bottom:160rpx;
+}
+.share-btn text{
+  display:block;
+  width:80rpx;
+  margin:20rpx auto;
+  line-height:30rpx;
+}
+.share-btn button{
+  position: absolute; 
+  left: 0; 
+  top: 0; 
+  height: 100%; 
+  width: 100%; 
+  margin: 0; 
+  opacity: 0;  
+  z-index: 2;
+}
+
+
+@keyframes memberShow
+{
+0% {opacity:0.6;}
+50% {opacity:1;}
+100% {opacity:0;}
+}
+
+@-webkit-keyframes memberShow
+{
+0% {opacity:0.6;}
+50% {opacity:1;}
+100% {opacity:0;}
+}
+/* @-moz-keyframes memberShow
+{
+from {opacity:1;}
+to {opacity:0;}
+} */
+

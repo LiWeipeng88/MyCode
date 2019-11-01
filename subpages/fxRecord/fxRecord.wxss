@@ -1,0 +1,25 @@
+/* subpages/fxRecord/fxRecord.wxss */
+.no-data image{
+  width:180rpx;
+  height:210rpx;
+}
+.record-list{
+  background-color:#fff;
+  padding:0 20rpx;
+}
+.record-list .record-item{
+  height:80rpx;
+  line-height:80rpx;
+  padding:30rpx 0;
+  box-sizing:border-box;
+}
+.record-list .record-item:last-child.border-b:after { height: 0; }
+.record-list .record-item:last-child .border-b:after { height: 0; }
+.record-list .record-item .time{
+  color:#999;
+  font-size:28rpx;
+}
+.record-list .record-item .money{
+  color:#333;
+  font-size:32rpx;
+}

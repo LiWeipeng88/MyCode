@@ -1,0 +1,66 @@
+<!--subpages/searchHexiao/searchHexiao.wxml-->
+<view class="order-list">
+  <view class="order-item">
+      <view class="tid-status flex-wrap">
+        <view class="tid-num flex-con">
+          订单编号：{{orderDetail.tid}}
+        </view>
+        <view class="status">{{orderDetail.statusNote}}</view>
+      </view>
+      <view class="peo-infor" wx:if="{{orderDetail.postType==1}}">
+        <view class="item flex-wrap">
+          <view class="desc flex-con">配送类型</view>
+          <view class="con">{{orderDetail.postTypeNote}}</view>
+        </view>
+        <view class="item flex-wrap"> 
+          <view class="desc flex-con">联系人</view>
+          <view class="con">{{orderDetail.address.consignee}}</view>
+        </view>
+        <view class="item flex-wrap">
+          <view class="desc flex-con">联系电话</view>
+          <view class="con">{{orderDetail.address.phone}}</view>
+        </view>
+        <view class="item flex-wrap">
+          <view class="desc flex-con">配送地址</view>
+          <view class="con">{{orderDetail.address.address}}</view>
+        </view>
+      </view>
+      <view class="peo-infor" wx:if="{{orderDetail.postType==2}}">
+        <view class="item flex-wrap">
+          <view class="desc flex-con">配送类型</view>
+          <view class="con">{{orderDetail.postTypeNote}}</view>
+        </view>
+        <view class="item flex-wrap">
+          <view class="desc flex-con">联系人</view>
+          <view class="con">{{orderDetail.receiverName}}</view>
+        </view>
+        <view class="item flex-wrap">
+          <view class="desc flex-con">联系电话</view>
+          <view class="con">{{orderDetail.receiverPhone}}</view>
+        </view>
+      </view>
+      <view class="good-wrap">
+        <block wx:key="" wx:for="{{orderDetail.goods}}" wx:for-item="good">
+          <view class="good-item flex-wrap">
+            <view class="name flex-con">{{good.name}}</view>
+            <view class="money">x {{good.num}}</view>
+          </view>
+        </block>
+      </view>
+      <view class="total-money">
+        共1件商品 合计：<text>￥{{orderDetail.total}}</text>
+      </view>
+      <view class="btn-wrap">
+        <view class="btn" wx:if="{{orderDetail.status==3||orderDetail.status==4||orderDetail.status==5}}" data-tid="{{orderDetail.tid}}" catchtap="refundMoney">退款</view>
+        <view class="btn blue-btn" wx:if="{{orderDetail.status==3}}" data-tid="{{orderDetail.tid}}" bindtap="confirmVerify">确认核销</view>
+      </view>
+    </view>
+</view>
+<view class="no-activity" wx:if="{{activityList.length<=0}}">
+  <image src="/images/zw_order.png" mode="aspectFit"></image>
+  <text>暂无相关内容</text>
+</view> 
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>

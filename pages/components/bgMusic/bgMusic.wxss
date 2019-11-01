@@ -1,0 +1,90 @@
+/* 音乐播放 */
+.music-btn{
+  height: 90rpx;
+  width: 90rpx;
+  box-shadow: 2rpx 2rpx 8rpx #ddd;
+  background-color: #fff;
+  position: fixed;
+  top:20rpx;
+  right: 20rpx;
+  z-index: 100;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+.music-btn.hide{
+  right: -60rpx;
+  background-color: #fff;
+}
+.music-btn .hide-icon{
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border:2px solid #31c27c;
+  position: relative;
+  -webkit-animation:ripple 1s infinite;
+  animation:ripple 1s infinite;
+}
+.music-btn .hide-icon image{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.music-btn .hide-icon::before{
+  content: '';
+  position: absolute;
+  left:0;
+  top:50%;
+  height: 16rpx;
+  width: 16rpx;
+  margin-top: -8rpx;
+  border-radius: 50%;
+  background-color: #31c27c;
+}
+@keyframes ripple {
+  0% {
+    transform: rotate(0)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
+.music-btn .music-symbol{
+  position: absolute;
+  width: 100%;
+  bottom: 15rpx;
+  left:0;
+  text-align: center;
+}
+.music-btn text{
+  display: inline-block;
+  height: 12rpx;
+  width: 8rpx;
+  margin:0 3rpx;
+  background-color: #ddd;
+}
+.music-symbol.play text{
+  background-color: #31c27c;
+}
+.music-symbol.play text:nth-of-type(1){-webkit-animation:wave 0.6s linear infinite;animation:wave 0.66s linear infinite;}
+.music-symbol.play text:nth-of-type(2){-webkit-animation:wave 1s linear infinite;animation:wave 0.8s linear infinite;}
+.music-symbol.play text:nth-of-type(3){-webkit-animation:wave 0.7s linear infinite;animation:wave 0.7s linear infinite;}
+.music-symbol.play text:nth-of-type(4){-webkit-animation:wave 0.5s linear infinite;animation:wave 0.5s linear infinite;}
+.music-symbol.play text:nth-of-type(5){-webkit-animation:wave 0.8s linear infinite;animation:wave 0.9s linear infinite;}
+.music-symbol.play text:nth-of-type(6){-webkit-animation:wave 1.2s linear infinite;animation:wave 1.2s linear infinite;}
+.music-symbol.stop text:nth-of-type(1){height: 16rpx;}
+.music-symbol.stop text:nth-of-type(2){height: 30rpx;}
+.music-symbol.stop text:nth-of-type(3){height: 20rpx;}
+.music-symbol.stop text:nth-of-type(4){height: 40rpx;}
+.music-symbol.stop text:nth-of-type(5){height: 25rpx;}
+.music-symbol.stop text:nth-of-type(6){height: 60rpx;}
+@-webkit-keyframes wave{
+	0%{height:8rpx}
+	50%{height: 50rpx}
+	100%{height: 30rpx}
+}
+@keyframes wave{
+	0%{height:8rpx}
+	50%{height: 45rpx}
+	100%{height: 28rpx}
+}

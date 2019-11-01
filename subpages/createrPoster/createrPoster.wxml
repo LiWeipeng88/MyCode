@@ -1,0 +1,26 @@
+<!--subpages/createrPoster/createrPoster.wxml-->
+<view class="empty_tip" wx:if="{{isDrawfinish==false}}">
+  <image src="/images/empty_img.png"></image>
+  <text>{{tips?tips:'暂无相关海报'}}~</text>
+</view>
+<view class="poster-modal fadeInUp" wx:if="{{isDrawfinish}}">
+  <view class="poster-con">
+    <view class="empty_tip" wx:if="{{isDrawfinish==false}}" style="display:none;">
+      <image src="/images/empty_img.png"></image>
+      <text>{{tips?tips:'暂无相关海报'}}~</text>
+    </view>  
+    <canvas wx:else="{{isDrawfinish}}" canvas-id="myCanvas" class="pic_con" style="width:80%;height:{{canvasH}}px;background-color:#fff;margin:0 auto;"></canvas>
+    <view class="opera-box" wx:if="{{isDrawfinish}}">
+      <view class="btn-box bg-orange" bindtap="saveImage">
+        <button type="primary"></button>
+        <text>保存图片</text>
+      </view>
+    </view>
+    <view class="ts-infor">保存图片到手机相册后，可分享到朋友圈</view>
+  </view>
+</view> 
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>
+

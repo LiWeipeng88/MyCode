@@ -1,0 +1,17 @@
+<view class='serve-contenr'>
+  <!-- 管道疏通 -->
+
+
+  <view class='serve-list' wx:for="{{cate}}">
+    <view class='serve-title'>{{item.cate_name}}</view>
+    <view class='serve-info'>
+      <text wx:for="{{item.info}}" data-id="{{goods_list.g_id}}" data-aid="{{aid}}" data-wuye="1" bindtap="goodDetail" wx:for-item="goods_list" >{{goods_list.g_name}}</text>
+    </view>
+  </view>
+ 
+
+
+  <view class='backIndex' bindtap='backIndex'>
+    返回首页
+    </view>
+</view>

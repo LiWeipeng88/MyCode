@@ -1,0 +1,91 @@
+<!--subpages/myOrder/myOrder.wxml-->
+<view class="tab-title-zhanwei">
+  <view class="tab-title">
+    <scroll-view scroll-x>
+      <text class="{{orderfenlei == 'all' ? 'active' : ''}}" data-fenlei="all" bindtap="chooseFenlei">全部</text>
+      <text class="{{orderfenlei == 'nopay' ? 'active' : ''}}" data-fenlei="nopay" bindtap="chooseFenlei">待支付</text>
+      <text class="{{orderfenlei == 'peisong' ? 'active' : ''}}" data-fenlei="peisong" bindtap="chooseFenlei">待配送</text>
+      <text class="{{orderfenlei == 'hadpay' ? 'active' : ''}}" data-fenlei="hadpay" bindtap="chooseFenlei">待取货</text>
+      
+      <text class="{{orderfenlei == 'finish' ? 'active' : ''}}" data-fenlei="finish" bindtap="chooseFenlei">已完成</text>
+      <text class="{{orderfenlei == 'refund' ? 'active' : ''}}" data-fenlei="refund" bindtap="chooseFenlei">售后</text>
+    </scroll-view>
+  </view>
+</view>
+<view class="order-list">
+  <block wx:key="" wx:for="{{orderList}}" wx:for-item="order">
+    <view class="order-item" data-tid="{{order.tid}}" bindtap="orderDetail">
+      <view class="tid-status flex-wrap">
+        <view class="tid-num flex-con">
+          订单编号：{{order.tid}}
+        
+        </view>
+        
+        <view class="status">{{order.statusNote}}</view>
+      </view>
+      <!-- <view class="eq_id" wx:if="{{order.status!= 1}}" style='color:#2CC08C'>
+          
+          编号：{{order.id}}
+        </view> -->
+      <view class="good-info">
+        <block wx:key="" wx:for="{{order.goods}}" wx:for-item="good">
+          <view class="item flex-wrap">
+            <view class="cover">
+              <image src="{{good.cover}}" mode="aspectFit"></image>
+            </view>
+            <view class="infor-wrap flex-con flex-wrap1">
+              <view class="flex-con"><view class="name">{{good.name}}</view></view>
+            
+              <view class="money-num">
+                <view class="money">￥{{good.price}}</view>
+                <view class="num">x {{good.num}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+        <view class="flex-con"><view class="name" wx:if="{{order.payTime!=0}}" >支付时间:{{order.payTime}}</view></view>
+         <view class="flex-con"><view class="name">取货时间:{{order.start_time}}</view></view>
+         
+         <view class="flex-con"><view class="name" wx:if="{{order.use_exp>0}}">积分使用:{{order.use_exp}}积分</view></view>
+      <view class="total-money">
+        共1件商品 合计：<text>￥{{order.total}}</text>
+      </view>
+      <view class="btn-wrap">
+        <view class="btn" wx:if="{{order.status==1}}" data-id="{{order.tid}}" catchtap="cancelOrder">取消订单</view>
+        <view class="btn" wx:if="{{order.status>=6}}" data-id="{{order.tid}}" catchtap="delOrder">删除订单</view>
+        <view class="btn blue-btn" wx:if="{{order.status==1}}">付款</view>
+        
+      </view>
+    </view>
+  </block>
+</view>
+<view class="no-data" wx:if="{{orderList.length<=0}}">
+  <image src="/images/zw_order.png" mode="aspectFit"></image>
+  <text>暂无相关订单</text>
+  <!-- <view class="technical-support" data-onoff="{{supportOpen==1}}" wx:if="{{openWatermark==1}}" bindtap="toTechnicalPage">
+    <text>{{watermark}}v{{curVersion}}</text>
+    <view class="make-applet" wx:if="{{supportOpen==1}}">做一样的小程序</view>
+  </view> -->
+</view>
+<!--上拉加载提示-->
+  <view class="loading-tip" wx:if="{{showLoading}}">
+    <view class="icon_load">
+      <view id="floatingBarsG">
+        <view class="blockG" id="rotateG_01"></view>
+        <view class="blockG" id="rotateG_02"></view>
+        <view class="blockG" id="rotateG_03"></view>
+        <view class="blockG" id="rotateG_04"></view>
+        <view class="blockG" id="rotateG_05"></view>
+        <view class="blockG" id="rotateG_06"></view>
+        <view class="blockG" id="rotateG_07"></view>
+        <view class="blockG" id="rotateG_08"></view>
+      </view>
+    </view>
+    <text>努力加载中...</text>
+  </view> 
+  <view class="nomore-tip" wx:if="{{noMoretip}}">没有更多数据了</view> 
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>

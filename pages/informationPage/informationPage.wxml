@@ -1,0 +1,176 @@
+<form-container>
+<!--折叠菜单  -->
+<fold-menu></fold-menu>
+<view class="tab-experience-zhanwei" wx:if="{{newsTab.length>1}}">
+  <view class="tab-experience border-t">
+    <scroll-view class="{{showStyle==1?'style-one':'style-two'}}" scroll-x="true" scroll-into-view="{{goIntoView}}" scroll-with-animation="true">
+      <block wx:key="" wx:for="{{newsTab}}">
+        <view id="newsfl{{item.id}}" class="tab-item {{item.id==curNewsId?'active':''}}" data-id="{{item.id}}" bindtap="newsToggle" style="color:{{item.id==curNewsId?navColor:'#333'}}"><text style="background-color:{{item.id==curNewsId?navColor:''}}"></text>{{item.name}}</view>
+      </block>
+    </scroll-view>
+  </view>
+</view>
+<view class="info-banner" wx:if="{{slideImgs.length>0}}">
+  <swiper indicator-dots="true" indicator-color="#C5C9C9" indicator-active-color="#0083CD" autoplay="true" interval="4000" duration="800" circular="true">
+    <block wx:key="" wx:for="{{slideImgs}}" wx:for-item="slide">
+      <swiper-item>
+        <image src="{{slide.img}}" class="slide-image" wx:if="{{slide}}" mode="aspectFill" data-id="{{slide.link}}" bindtap="seeDetail"/>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view class="no-data" wx:if="{{newsList.length<=0}}">
+  <image src="../../images/no-data.png" mode="aspectFit"></image>
+  <text>暂无数据哦~</text>
+</view>
+<!-- 普通版 -->
+<block wx:if="{{liststyle!=5}}">
+  <view class="news-list style_{{liststyle}}">
+    <block wx:key="" wx:for="{{newsList}}" wx:for-item="news">
+      <view class="news-item border-b" data-id="{{news.id}}" data-title="{{news.title}}" bindtap="seeDetail">
+        <image src="{{news.cover}}" class="cover" mode="aspectFill"></image>
+        <view class="news-intro">
+          <view class="title"><image src="/images/newsimg/icon_fufei.png" class="charge-tag" wx:if="{{news.price>0}}"></image>{{news.title}}</view>
+          <view class="intro">{{news.brief}}</view>
+        </view>
+      </view>
+      <block wx:if="{{(randomIndex==index&&newsList.length>=randomIndex+1)||(newsList.length<randomIndex+1&&newsList.length-1==index)}}">
+        <ad unit-id="{{adInfo.informationListAdId}}" wx:if="{{adInfo.informationListAdOpen==1&&adInfo.informationListAdId!=''}}"></ad>
+      </block>
+    </block>
+    <!--上拉加载提示-->
+    <view class="loading-tip" wx:if="{{showLoading}}">
+      <view class="icon_load">
+        <view id="floatingBarsG">
+          <view class="blockG" id="rotateG_01"></view>
+          <view class="blockG" id="rotateG_02"></view>
+          <view class="blockG" id="rotateG_03"></view>
+          <view class="blockG" id="rotateG_04"></view>
+          <view class="blockG" id="rotateG_05"></view>
+          <view class="blockG" id="rotateG_06"></view>
+          <view class="blockG" id="rotateG_07"></view>
+          <view class="blockG" id="rotateG_08"></view>
+        </view>
+      </view>
+      <text>努力加载中...</text>
+    </view>
+    <view class="nomore-tip" wx:if="{{noMoretip&&newsList.length>0}}">没有更多数据了</view>
+  </view>
+</block>
+<!-- 高级列表 -->
+<block wx:if="{{liststyle==5}}">
+  <view class="info-list">
+    <block wx:key="" wx:for="{{newsList}}" wx:for-item="news">
+      <view class="info-item border-b" data-index="{{index}}" data-id="{{news.id}}" data-title="{{news.title}}" bindtap="seeDetail">
+        <view class="single-img flex-wrap"  wx:if="{{news.videoUrl==''&&news.images.length<3}}">
+          <view class="flex-con">
+            <view class="title"><image src="/images/newsimg/icon_fufei.png" class="charge-tag" wx:if="{{news.price>0}}"></image>{{news.title}}</view>
+            <view class="other-info">
+              <view class="tag-box">
+                <image src="/images/newsimg/icon_yd.png" mode="aspectFit"></image>
+                <text>{{news.showNum}}</text>
+              </view>
+              <view class="tag-box">
+                <image src="/images/newsimg/icon_pl.png" mode="aspectFit"></image>
+                <text>{{news.commentNum}}</text>
+              </view>
+              <view class="tag-box">
+                <image src="/images/newsimg/icon_dzs.png" mode="aspectFit"></image>
+                <text>{{news.likeNum}}</text>
+              </view>
+              <view class="tag-box">
+                <text class="time">{{news.time}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="img-ele fade_in">
+            <image src="{{news.images[0]}}" class="img-ele fade_in" mode="aspectFill"></image>
+          </view>
+        </view>
+        <view class="three-img" wx:if="{{news.videoUrl==''&&news.images.length>=3}}">
+          <view class="title"><image src="/images/newsimg/icon_fufei.png" class="charge-tag" wx:if="{{news.price>0}}"></image>{{news.title}}</view>
+          <view class="img-list">
+            <block wx:key="" wx:for="{{news.images}}" wx:for-item="img">
+            <view class="img-ele fade_in" wx:if="{{index<3}}">
+              <image src="{{img}}" class="img-ele fade_in" mode="aspectFill"></image>
+            </view>
+            </block>
+          </view>
+          <view class="other-info">
+              <view class="tag-box">
+                <image src="/images/newsimg/icon_yd.png" mode="aspectFit"></image>
+                <text>{{news.showNum}}</text>
+              </view>
+              <view class="tag-box">
+                <image src="/images/newsimg/icon_pl.png" mode="aspectFit"></image>
+                <text>{{news.commentNum}}</text>
+              </view>
+              <view class="tag-box">
+                <image src="/images/newsimg/icon_dzs.png" mode="aspectFit"></image>
+                <text>{{news.likeNum}}</text>
+              </view>
+              <view class="tag-box">
+                <text class="time">{{news.time}}</text>
+              </view>
+            </view>
+        </view>
+        <view class="video-img" wx:if="{{news.videoUrl!=''}}">
+          <view class="title"><image src="/images/newsimg/icon_fufei.png" class="charge-tag" wx:if="{{news.price>0}}"></image>{{news.title}}</view>
+          <view class="video-box">
+            <view class="play-btn"><image src="/images/newsimg/icon_bf.png" mode="aspectFit"></image></view>
+            <image src="{{news.images[0]}}" class="img-ele fade_in" mode="aspectFill"></image>
+          </view>
+          <view class="other-info">
+              <view class="tag-box">
+                <image src="/images/newsimg/icon_yd.png" mode="aspectFit"></image>
+                <text>{{news.showNum}}</text>
+              </view>
+              <view class="tag-box">
+                <image src="/images/newsimg/icon_pl.png" mode="aspectFit"></image>
+                <text>{{news.commentNum}}</text>
+              </view>
+              <view class="tag-box">
+                <image src="/images/newsimg/icon_dzs.png" mode="aspectFit"></image>
+                <text>{{news.likeNum}}</text>
+              </view>
+              <view class="tag-box">
+                <text class="time">{{news.time}}</text>
+              </view>
+            </view>
+        </view>
+      </view>
+      <block wx:if="{{(randomIndex==index&&newsList.length>=randomIndex+1)||(newsList.length<randomIndex+1&&newsList.length-1==index)}}">
+        <ad unit-id="{{adInfo.informationListAdId}}" wx:if="{{adInfo.informationListAdOpen==1&&adInfo.informationListAdId!=''}}"></ad>
+      </block>
+    </block>
+  </view>
+  <!--上拉加载提示-->
+    <view class="loading-tip" wx:if="{{showLoading}}">
+      <view class="icon_load">
+        <view id="floatingBarsG">
+          <view class="blockG" id="rotateG_01"></view>
+          <view class="blockG" id="rotateG_02"></view>
+          <view class="blockG" id="rotateG_03"></view>
+          <view class="blockG" id="rotateG_04"></view>
+          <view class="blockG" id="rotateG_05"></view>
+          <view class="blockG" id="rotateG_06"></view>
+          <view class="blockG" id="rotateG_07"></view>
+          <view class="blockG" id="rotateG_08"></view>
+        </view>
+      </view>
+      <text>努力加载中...</text>
+    </view>
+    <view class="nomore-tip" wx:if="{{noMoretip&&newsList.length>0}}">没有更多数据了</view>
+</block>
+<!--联系客服-->
+<view class="contact-wrap" style="background-color:{{navColor}};" wx:if="{{customerService==1}}">
+  <button open-type="contact" session-from="{{sessionForm}}" wx:if="{{customerMobile==0||(customerMobile==1&&contactPhone!='')}}" bindcontact="contactRecord"> </button>
+  <button open-type="getPhoneNumber" wx:if="{{customerMobile==1&&contactPhone==''}}" bindgetphonenumber="getPhoneNumber"> </button> 
+  <image src="/images/icon_kefu.png" class='icon-kf' mode='aspectFit'></image>
+</view>
+
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>
+</form-container>

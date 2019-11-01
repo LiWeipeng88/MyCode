@@ -1,0 +1,23 @@
+<!--subpages/orderHexiao/orderHexiao.wxml-->
+<view class="hexiao-wrap">
+  <view class="hexiao-item">
+    <view class="desc">核销码</view>
+    <view class="input-wrap flex-wrap">
+      <view class="input-box flex-con">
+        <input type="text" value="{{codeNum}}" placeholder="请输入核销码" bindinput="codeValue"></input>
+      </view>
+      <view class="icon" bindtap="toScanCode">
+        <image src="/images/icon_saoma.png" mode="aspectFit"></image>
+      </view>
+    </view>
+    <view class="reset-btn" bindtap="toSearchHexiao">查询</view>
+  </view>
+</view>
+<view class="record-btn" bindtap="toHexiaoRecord">
+  <text>核销记录</text>
+  <image src="/images/icon_right_gray.png" mode="aspectFit"></image>
+</view>
+<!--错误提示-->
+<view class="error-tip fade_in" wx:if="{{errorTip.isShow}}">
+  {{errorTip.text}}
+</view>
